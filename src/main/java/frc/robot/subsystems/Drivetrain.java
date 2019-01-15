@@ -18,7 +18,7 @@ public class Drivetrain extends Subsystem {
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
     double y = gp.getLeftYAxis()*-.95;
-    double x = gp.getRightXAxis()*.8;
+    double x = gp.getRightXAxis()*.82;
     
     frontleftMotor.set(ControlMode.PercentOutput, (y+x)/2);
     frontrightMotor.set(ControlMode.PercentOutput, (x-y)/2);
