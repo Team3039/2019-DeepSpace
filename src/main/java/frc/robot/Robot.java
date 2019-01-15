@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Lights;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static Elevator elevator = new Elevator();
+  public static Lights lights = new Lights();
   public static OI oi;
 
   Command autoCommand;
