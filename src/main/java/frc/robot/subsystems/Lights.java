@@ -59,13 +59,16 @@ public class Lights extends Subsystem {
 
   public void runAlliance()
   {
-    if(redAlliance)
+    if(!hatchGrabbed && !cargoGrabbed)
     {
-      state1();
-    }
-    else
-    {
-      state2();
+      if(redAlliance)
+      {
+        state1();
+      }
+      else
+      {
+        state2();
+      }
     }
   }
 

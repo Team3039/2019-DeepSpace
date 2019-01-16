@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
 
   Command autoCommand;
   SendableChooser<Command> autoChooser = new SendableChooser<>();
+  boolean red = true;
 
   @Override
   public void robotInit() {
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", autoChooser);
+    SmartDashboard.putBoolean("Red Alliance", true);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
@@ -36,6 +38,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    red = SmartDashboard.getBoolean("Red Alliance", true);
+    if(red)
+    {
+      lights.setRedAlliance();
+    }
+    else
+    {
+      lights.setBlueAlliance();
+    }
+    lights.runAlliance();
   }
 
   @Override
