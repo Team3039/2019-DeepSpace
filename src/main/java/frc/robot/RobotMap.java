@@ -24,9 +24,9 @@ public class RobotMap {
   public static int maxLevel = 4;
   public static int minLevel = 6;
   
-  public static int switch1 = 100;
-  public static int switch2 = 101;
-  public static int switch3 = 102;
-  public static int switch4 = 103;
+  public static int switch1 = 10;
+  public static int switch2 = 11;
+  public static int switch3 = 12;
+  public static int directionSwitch = 13;
 //AIO
 }
