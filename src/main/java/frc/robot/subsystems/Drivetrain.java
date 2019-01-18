@@ -25,8 +25,6 @@ public class Drivetrain extends Subsystem {
     rearleftMotor.set(ControlMode.PercentOutput, (y+x)/2);
     rearrightMotor.set(ControlMode.PercentOutput, (x-y)/2); 
 
-    System.out.println("X Value " + x);
-    System.out.println("Y Value " +y);
   }
 
   public void stop() {

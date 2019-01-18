@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Kinematics;
 import frc.robot.subsystems.Lights;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
+  public static Kinematics kinematics = new Kinematics();
   public static Elevator elevator = new Elevator();
   public static Lights lights = new Lights();
   public static OI oi;
@@ -34,7 +36,7 @@ public class Robot extends TimedRobot {
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
     usbCamera.setFPS(60);
     
-    elevator.resetEncoder();
+    elevator.setupEncoder();
   }
 
   @Override
@@ -84,8 +86,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-
-    SmartDashboard.putNumber("Elevator", elevator.getDistance());
+    SmartDashboard.putNumber("Elevator", elevator.getPosition());
   }
 
   @Override
