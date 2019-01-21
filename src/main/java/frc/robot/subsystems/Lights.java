@@ -17,14 +17,14 @@ public class Lights extends Subsystem {
   public static boolean hatchGrabbed = false;
   public static boolean cargoGrabbed = false;
 
-  public void state0() { switch1.set(false); switch2.set(false); switch3.set(false);}
-  public void state1() { switch1.set(true);  switch2.set(false); switch3.set(false);}
-  public void state2() { switch1.set(false); switch2.set(true);  switch3.set(false);}
-  public void state3() { switch1.set(true);  switch2.set(true);  switch3.set(false);}
-  public void state4() { switch1.set(false); switch2.set(false); switch3.set(true); }
-  public void state5() { switch1.set(true);  switch2.set(false); switch3.set(true); }
-  public void state6() { switch1.set(false); switch2.set(true);  switch3.set(true); }
-  public void state7() { switch1.set(true);  switch2.set(true);  switch3.set(true); }
+  public void state0() { switch3.set(false); switch2.set(false); switch1.set(false); }
+  public void state1() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
+  public void state2() { switch3.set(false); switch2.set(true);  switch1.set(false); }
+  public void state3() { switch1.set(false); switch2.set(true);  switch1.set(true);  }
+  public void state4() { switch3.set(true);  switch2.set(false); switch1.set(false); }
+  public void state5() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
+  public void state6() { switch3.set(true);  switch2.set(true);  switch1.set(false); }
+  public void state7() { switch3.set(true);  switch2.set(true);  switch1.set(true);  }
 
   public void setDirectionForwards() { directionSwitch.set(false); }
   public void setDirectionBackWards() { directionSwitch.set(true); }
@@ -37,6 +37,18 @@ public class Lights extends Subsystem {
   public void setBlueAlliance()
   {
     redAlliance = false;
+  }
+
+  public boolean getRedAlliance()
+  {
+    return redAlliance;
+  }
+
+  public String getAlliance()
+  {
+    if(redAlliance)
+      return "Red Alliance";
+    return "Blue Alliance";
   }
 
   public void grabbedHatch()
@@ -86,6 +98,20 @@ public class Lights extends Subsystem {
     {
       runAlliance();
     }
+  }
+
+  public void setMatrixText(String text)
+  {
+    if(text.equals("Mafia"))
+      state4();
+    else if(text.equals("Sicko"))
+      state5();
+    else if(text.equals("But"))
+      state6();
+    else if(text.equals("Sub"))
+      state7();
+    else
+      runLights();
   }
 
   @Override

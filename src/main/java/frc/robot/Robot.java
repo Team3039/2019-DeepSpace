@@ -22,15 +22,22 @@ public class Robot extends TimedRobot {
 
   Command autoCommand;
   SendableChooser<Command> autoChooser = new SendableChooser<>();
-  boolean red = true;
+  SendableChooser<String> matrixChooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
     oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
+    matrixChooser.addOption("", "");
+    matrixChooser.addOption("That's How Mafia Works", "Mafia");
+    matrixChooser.addOption("Sicko Mode or Mo Bamba?", "Sicko");
+    matrixChooser.addOption("But Can It Do This???", "But");
+    matrixChooser.addOption("Subscribe 2 Pewdiepie", "Sub");
+
     SmartDashboard.putData("Auto mode", autoChooser);
     SmartDashboard.putBoolean("Red Alliance", true);
+    SmartDashboard.putData("End game text", matrixChooser);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
@@ -41,7 +48,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    red = SmartDashboard.getBoolean("Red Alliance", true);
+    
+    boolean red = SmartDashboard.getBoolean("Red Alliance", true);
     if(red)
     {
       lights.setRedAlliance();
@@ -50,7 +58,14 @@ public class Robot extends TimedRobot {
     {
       lights.setBlueAlliance();
     }
+    System.out.println(lights.getAlliance());
     lights.runLights();
+    String selected = matrixChooser.getSelected();
+    if(selected != null && !selected.equals(""))
+    {
+      System.out.println(selected);
+      lights.setMatrixText(selected);
+    }
   }
 
   @Override
