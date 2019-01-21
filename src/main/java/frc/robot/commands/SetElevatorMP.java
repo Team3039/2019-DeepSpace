@@ -10,11 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetElevatorPID extends Command {
-  double position;
-
-  public SetElevatorPID(double position) {
-    this.position = position;
+public class SetElevatorMP extends Command {
+  public SetElevatorMP() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -28,7 +25,7 @@ public class SetElevatorPID extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorPID(position);
+    Robot.elevator.setElevatorMP();
   }
 
   // Make this return true when this Command no longer needs to run execute()

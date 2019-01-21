@@ -26,18 +26,23 @@ public class Elevator extends Subsystem {
   }
 
   public void setPIDValues() {
-    elevatorA.config_kP(0, .01);
-    elevatorA.config_kI(0, .005);
-    elevatorA.config_kD(0, .0000001);
-    elevatorA.config_kF(0, 0);
+    // elevatorA.config_kP(0, .005);
+    // elevatorA.config_kI(0, .005);
+    // elevatorA.config_kD(0, .0000001);
+    // elevatorA.config_kF(0, 0);
   }
 
   public void setElevatorPID(double position) {
-    setPIDValues();
-    elevatorA.set(ControlMode.Position, position);
-    elevatorB.follow(elevatorA);
+    // setPIDValues();
+    // elevatorA.set(ControlMode.Position, position);
+    // elevatorB.follow(elevatorA);
   }
 
+  public void setElevatorMP() {
+    setPIDValues();
+    elevatorA.set(ControlMode.MotionProfile, 2000);
+
+  }
   public void stopElevator() {
     driveElevator(0);
   }

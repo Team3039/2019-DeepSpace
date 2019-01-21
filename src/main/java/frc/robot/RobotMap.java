@@ -8,8 +8,8 @@ public class RobotMap {
 //CAN
   public static int frontleftMotor = 1;
   public static int frontrightMotor = 8;
-  public static int rearrightMotor = 9;
-  public static int rearleftMotor = 0;
+  public static int rearrightMotor = 3; //9
+  public static int rearleftMotor = 2; //0
 
   public static int elevatorMotorA = 3;
   public static int elevatorMotorB = 7;
