@@ -34,9 +34,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", autoChooser);
     SmartDashboard.putBoolean("Red Alliance", true);
 
-    // UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
-    // usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
-    // usbCamera.setFPS(60);
+    UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
+    usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
+    usbCamera.setFPS(60);
     
     elevator.setupEncoder();
   }
