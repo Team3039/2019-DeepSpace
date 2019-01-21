@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
     {
       lights.setBlueAlliance();
     }
-    lights.runAlliance();
+    lights.runLights();
   }
 
   @Override

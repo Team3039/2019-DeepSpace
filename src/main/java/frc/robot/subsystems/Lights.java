@@ -17,14 +17,14 @@ public class Lights extends Subsystem {
   public static boolean hatchGrabbed = false;
   public static boolean cargoGrabbed = false;
 
-  public void state1() { switch1.set(false); switch2.set(false); switch3.set(false);}
-  public void state2() { switch1.set(true);  switch2.set(false); switch3.set(false); }
-  public void state3() { switch1.set(false); switch2.set(true);  switch3.set(false); }
+  public void state0() { switch1.set(false); switch2.set(false); switch3.set(false);}
+  public void state1() { switch1.set(true);  switch2.set(false); switch3.set(false);}
+  public void state2() { switch1.set(false); switch2.set(true);  switch3.set(false);}
+  public void state3() { switch1.set(true);  switch2.set(true);  switch3.set(false);}
   public void state4() { switch1.set(false); switch2.set(false); switch3.set(true); }
-  public void state5() { switch1.set(true);  switch2.set(true);  switch3.set(false); }
+  public void state5() { switch1.set(true);  switch2.set(false); switch3.set(true); }
   public void state6() { switch1.set(false); switch2.set(true);  switch3.set(true); }
-  public void state7() { switch1.set(true);  switch2.set(false); switch3.set(true); }
-  public void state8() { switch1.set(true);  switch2.set(true);  switch3.set(true); }
+  public void state7() { switch1.set(true);  switch2.set(true);  switch3.set(true); }
 
   public void setDirectionForwards() { directionSwitch.set(false); }
   public void setDirectionBackWards() { directionSwitch.set(true); }
@@ -63,24 +63,24 @@ public class Lights extends Subsystem {
     {
       if(redAlliance)
       {
-        state1();
+        state0();
       }
       else
       {
-        state2();
+        state1();
       }
     }
   }
 
   public void runLights()
   {
-    if(cargoGrabbed)
+    if(hatchGrabbed)
+    {
+      state2();
+    }
+    else if(cargoGrabbed)
     {
       state3();
-    }
-    else if(hatchGrabbed)
-    {
-      state4();
     }
     else 
     {
