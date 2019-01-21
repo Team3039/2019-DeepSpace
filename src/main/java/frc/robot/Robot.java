@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Kinematics;
 import frc.robot.subsystems.Lights;
 
@@ -18,6 +19,7 @@ public class Robot extends TimedRobot {
   public static Kinematics kinematics = new Kinematics();
   public static Elevator elevator = new Elevator();
   public static Lights lights = new Lights();
+  public static Intake intake = new Intake();
   public static OI oi;
 
   Command autoCommand;
@@ -32,9 +34,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", autoChooser);
     SmartDashboard.putBoolean("Red Alliance", true);
 
-    UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
-    usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
-    usbCamera.setFPS(60);
+    // UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
+    // usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
+    // usbCamera.setFPS(60);
     
     elevator.setupEncoder();
   }

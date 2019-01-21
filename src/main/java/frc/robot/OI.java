@@ -1,9 +1,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
-import frc.robot.commands.SetElevatorPID;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -29,7 +29,7 @@ public class OI {
 		//driver Controls
 			L1.whileHeld(new LowerElevator());
 			R1.whileHeld(new RaiseElevator());
-			x.toggleWhenPressed(new SetElevatorPID(2000));
+			x.toggleWhenPressed(new IntakeCargo());
 
 		//Operator Controls
 	}
