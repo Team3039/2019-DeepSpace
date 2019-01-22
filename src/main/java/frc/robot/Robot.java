@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Kinematics;
 import frc.robot.subsystems.Lights;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
-  public static Kinematics kinematics = new Kinematics();
   public static Elevator elevator = new Elevator();
   public static Lights lights = new Lights();
   public static Intake intake = new Intake();

@@ -6,24 +6,27 @@ public class RobotMap {
   public final static int operator = 1;
 
 //CAN
-  public static int frontleftMotor = 1;
-  public static int frontrightMotor = 8;
-  public static int rearrightMotor = 3; //9
-  public static int rearleftMotor = 2; //0
+  public static int frontleftMotor = 0;
+  public static int frontrightMotor = 1;
+  public static int rearrightMotor = 2; 
+  public static int rearleftMotor = 3; 
 
-  public static int elevatorMotorA = 3;
-  public static int elevatorMotorB = 7;
+  public static int intake = 4;
+  public static int leftShooter = 5;
+  public static int rightShooter = 6;
+
+  public static int elevatorMotorA = 7;
+  public static int elevatorMotorB = 8;
+
 //SOLENOID
+  public static int intakeExtension = 0;
+  public static int hatchLaunch = 1;
+  public static int hatchGrip = 2;
 
 //PWM
 
-//DIO
-	public static int elevatorEncoderA = 2;
-  public static int elevatorEncoderB = 3;
-  
-  public static int maxLevel = 4;
-  public static int minLevel = 6;
-  
+//DIO	
+  public static int hatchPressure = 0;
   public static int switch1 = 10;
   public static int switch2 = 11;
   public static int switch3 = 12;

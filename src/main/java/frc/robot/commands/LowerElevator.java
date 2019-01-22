@@ -15,13 +15,7 @@ public class LowerElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.elevator.getMin()) {
-      Robot.elevator.stopElevator();
-      Robot.elevator.resetEncoder();
-    }
-    else {
-      Robot.elevator.driveElevator(-.8);
-    }
+    Robot.elevator.driveElevator(-.8);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,8 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class RaiseElevator extends Command {
-  public RaiseElevator() {
+public class GrabHatch extends Command {
+  public GrabHatch() {
+    requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
@@ -22,7 +23,17 @@ public class RaiseElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.driveElevator(.8);
+    if(Robot.intake.keepHatch) {
+      if(Robot.intake.getHatchStatus()) {
+        Robot.intake.gripHatch();
+      }
+      else {
+        Robot.intake.releaseHatch();
+      }
+    }
+    else {
+      Robot.intake.releaseHatch();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -34,13 +45,11 @@ public class RaiseElevator extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stopElevator();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-    Robot.elevator.stopElevator();
+  protected void interrupted() { 
   }
 }
