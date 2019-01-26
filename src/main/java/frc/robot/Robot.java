@@ -40,8 +40,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("End game text", matrixChooser);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
-    usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 640, 360, 60);
-    usbCamera.setFPS(60);
+    usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
     elevator.setupEncoder();
   }
