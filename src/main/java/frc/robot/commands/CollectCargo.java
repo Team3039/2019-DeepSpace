@@ -25,6 +25,7 @@ public class CollectCargo extends Command {
   @Override
   protected void execute() {
     Robot.intake.collectCargo();
+    Robot.lights.releasedGamePiece();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +38,7 @@ public class CollectCargo extends Command {
   @Override
   protected void end() {
     Robot.intake.stopCargo();
+    Robot.lights.grabbedCargo();
   }
 
   // Called when another command which requires one or more of the same
@@ -44,5 +46,6 @@ public class CollectCargo extends Command {
   @Override
   protected void interrupted() {
     Robot.intake.stopCargo();
+    Robot.lights.grabbedCargo();
   }
 }

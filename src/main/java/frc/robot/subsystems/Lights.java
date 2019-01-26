@@ -11,7 +11,7 @@ public class Lights extends Subsystem {
   public DigitalOutput switch1 = new DigitalOutput(RobotMap.switch1);
   public DigitalOutput switch2 = new DigitalOutput(RobotMap.switch2);
   public DigitalOutput switch3 = new DigitalOutput(RobotMap.switch3);
-  public DigitalOutput directionSwitch = new DigitalOutput(RobotMap.directionSwitch);
+  public DigitalOutput switch4 = new DigitalOutput(RobotMap.switch4);
 
   public static boolean redAlliance = true;
   public static boolean hatchGrabbed = false;
@@ -25,9 +25,6 @@ public class Lights extends Subsystem {
   public void state5() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
   public void state6() { switch3.set(true);  switch2.set(true);  switch1.set(false); }
   public void state7() { switch3.set(true);  switch2.set(true);  switch1.set(true);  }
-
-  public void setDirectionForwards() { directionSwitch.set(false); }
-  public void setDirectionBackWards() { directionSwitch.set(true); }
 
   public void setRedAlliance()
   {
@@ -74,30 +71,20 @@ public class Lights extends Subsystem {
     if(!hatchGrabbed && !cargoGrabbed)
     {
       if(redAlliance)
-      {
         state0();
-      }
       else
-      {
         state1();
-      }
     }
   }
 
   public void runLights()
   {
     if(hatchGrabbed)
-    {
       state2();
-    }
     else if(cargoGrabbed)
-    {
       state3();
-    }
     else 
-    {
       runAlliance();
-    }
   }
 
   public void setMatrixText(String text)
@@ -117,6 +104,5 @@ public class Lights extends Subsystem {
   @Override
   public void initDefaultCommand() {
     runAlliance();
-    setDirectionForwards();
   }
 }

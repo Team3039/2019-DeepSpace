@@ -30,6 +30,6 @@ public class RobotMap {
   public static int switch1 = 10;
   public static int switch2 = 11;
   public static int switch3 = 12;
-  public static int directionSwitch = 13;
+  public static int switch4 = 13;
 //AIO
 }

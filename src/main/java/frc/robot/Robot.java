@@ -57,14 +57,15 @@ public class Robot extends TimedRobot {
     {
       lights.setBlueAlliance();
     }
-    System.out.println(lights.getAlliance());
-    lights.runLights();
+    //System.out.println(lights.getAlliance());
     String selected = matrixChooser.getSelected();
     if(selected != null && !selected.equals(""))
     {
-      System.out.println(selected);
+      //System.out.println(selected);
       lights.setMatrixText(selected);
     }
+    else
+      lights.runLights();
   }
 
   @Override

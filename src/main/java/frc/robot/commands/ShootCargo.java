@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootHatch extends Command {
-  public ShootHatch() {
+public class ShootCargo extends Command {
+  public ShootCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,8 +24,7 @@ public class ShootHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.shootHatch();
-    Robot.intake.keepHatch = false;
+    Robot.intake.shootCargo();
     Robot.lights.releasedGamePiece();
   }
 
@@ -38,13 +37,13 @@ public class ShootHatch extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.retractShootHatch();
+    Robot.intake.stopCargo();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.intake.retractShootHatch();
+    Robot.intake.stopCargo();
   }
 }
