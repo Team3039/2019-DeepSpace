@@ -18,13 +18,25 @@ public class Drivetrain extends Subsystem {
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
     double y = gp.getLeftYAxis()*-.95;
-    double x = gp.getRightXAxis()*.82;
-    
-    frontleftMotor.set(ControlMode.PercentOutput, (y+x)/2);
-    frontrightMotor.set(ControlMode.PercentOutput, (x-y)/2);
-    rearleftMotor.set(ControlMode.PercentOutput, (y+x)/2);
-    rearrightMotor.set(ControlMode.PercentOutput, (x-y)/2); 
+    double rot = gp.getRightXAxis()*.82;
+    frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
+    frontrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
+    rearleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
+    rearrightMotor.set(ControlMode.PercentOutput, (rot-y)/2); 
+  }
+  
+  public void strafeLeft(double power) {
+    frontleftMotor.set(ControlMode.PercentOutput, (-power));
+    frontrightMotor.set(ControlMode.PercentOutput, (-power));
+    rearleftMotor.set(ControlMode.PercentOutput, (power));
+    rearrightMotor.set(ControlMode.PercentOutput, (power));   
+  }
 
+  public void strafeRight(double power) {
+    frontleftMotor.set(ControlMode.PercentOutput, (power));
+    frontrightMotor.set(ControlMode.PercentOutput, (power));
+    rearleftMotor.set(ControlMode.PercentOutput, (-power));
+    rearrightMotor.set(ControlMode.PercentOutput, (-power));   
   }
 
   public void stop() {
