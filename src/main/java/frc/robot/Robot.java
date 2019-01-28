@@ -32,8 +32,8 @@ public class Robot extends TimedRobot {
     matrixChooser.addOption("", "");
     matrixChooser.addOption("That's How Mafia Works", "Mafia");
     matrixChooser.addOption("Sicko Mode or Mo Bamba?", "Sicko");
-    matrixChooser.addOption("But Can It Do This???", "But");
-    matrixChooser.addOption("Subscribe 2 Pewdiepie", "Sub");
+    matrixChooser.addOption("But Can It Do This???", "Chair");
+    matrixChooser.addOption("Subscribe 2 Pewdiepie", "Pewds");
 
     SmartDashboard.putData("Auto mode", autoChooser);
     SmartDashboard.putBoolean("Red Alliance", true);
