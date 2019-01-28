@@ -66,9 +66,18 @@ public class OI {
 			driverR2.whileHeld(new StrafeRight(.7));
 			
 		//Operator Controls
-			operatorX.whenPressed(new SetElevatorPID(50));
-			operatorSquare.whenPressed(new SetElevatorPID(100));
-			operatorTriangle.whenPressed(new SetElevatorPID(150));
+		if(!Robot.elevator.isCargoMode) {
+			operatorX.whenPressed(new SetElevatorPID(Robot.elevator.hatchLow));
+			operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.hatchMid));
+			operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.hatchHigh));
+		}
+		else {
+			operatorX.whenPressed(new SetElevatorPID(Robot.elevator.cargoLow));
+			operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.cargoMid));
+			operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.cargoHigh));
+		}
+		operatorCircle.whenPressed(new SetElevatorPID(Robot.elevator.cargoShip));
+
 	}
 
 	

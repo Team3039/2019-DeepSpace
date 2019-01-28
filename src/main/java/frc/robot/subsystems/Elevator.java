@@ -14,6 +14,15 @@ public class Elevator extends Subsystem {
   public TalonSRX elevatorA = new TalonSRX(RobotMap.elevatorMotorA);
   public TalonSRX elevatorB = new TalonSRX(RobotMap.elevatorMotorB);
 
+  public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
+  public final double hatchLow = 10;
+  public final double hatchMid = 20;
+  public final double hatchHigh = 30;
+  public final double cargoLow = 15;
+  public final double cargoMid = 25;
+  public final double cargoHigh = 35;
+  public final double cargoShip = 18;
+
   public void driveElevator(double power) {
     elevatorA.set(ControlMode.PercentOutput, power);
     elevatorB.set(ControlMode.PercentOutput, power);

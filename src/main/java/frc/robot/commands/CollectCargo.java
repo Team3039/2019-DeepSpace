@@ -26,6 +26,7 @@ public class CollectCargo extends Command {
   protected void execute() {
     Robot.intake.collectCargo();
     Robot.lights.releasedGamePiece();
+    Robot.elevator.isCargoMode = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
