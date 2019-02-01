@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,6 +39,8 @@ public class Elevator extends Subsystem {
   public void setElevatorPID(double position) {
     setPIDValues();
     elevatorA.set(ControlMode.Position, position);
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+    elevatorB.setNeutralMode(NeutralMode.Brake);
     elevatorB.follow(elevatorA);
   }
 

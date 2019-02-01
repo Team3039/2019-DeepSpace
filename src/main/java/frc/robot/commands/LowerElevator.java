@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LowerElevator extends Command {
-  public LowerElevator() {
+  double power;
+  public LowerElevator(double power) {
+    this.power = power;
   }
 
   // Called just before this Command runs the first time
@@ -15,7 +17,7 @@ public class LowerElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.driveElevator(-.8);
+    Robot.elevator.driveElevator(-power);
   }
 
   // Make this return true when this Command no longer needs to run execute()

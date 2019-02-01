@@ -5,6 +5,7 @@ import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.SetElevatorPID;
+import frc.robot.commands.ShootCargo;
 import frc.robot.commands.ShootHatchSequence;
 import frc.robot.commands.StrafeLeft;
 import frc.robot.commands.StrafeRight;
@@ -57,13 +58,15 @@ public class OI {
 		Button operatorR3 = operatorPad.getR3();
 
 		//driver Controls
-			driverL1.whileHeld(new LowerElevator());
-			driverR1.whileHeld(new RaiseElevator());
-			driverX.toggleWhenPressed(new CollectCargo());
+			driverL1.whileHeld(new LowerElevator(.85));
+			driverR1.whileHeld(new RaiseElevator(.85));
+			driverX.whileHeld(new ShootCargo());
+			driverSquare.toggleWhenPressed(new CollectCargo());
 			driverCircle.whenPressed(new ShootHatchSequence());
 
-			driverL2.whileHeld(new StrafeLeft(.7));
-			driverR2.whileHeld(new StrafeRight(.7));
+
+			driverL2.whileHeld(new StrafeLeft(.6));
+			driverR2.whileHeld(new StrafeRight(.6));
 			
 		//Operator Controls
 		if(!Robot.elevator.isCargoMode) {

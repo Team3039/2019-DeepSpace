@@ -30,7 +30,7 @@ public class Intake extends Subsystem {
 
   public void collectCargo() {
     intake.set(ControlMode.PercentOutput,.6);
-    leftShooter.set(ControlMode.PercentOutput, .4);
+    leftShooter.set(ControlMode.PercentOutput, -.4);
     rightShooter.set(ControlMode.PercentOutput, -.4);
     intakeExtension.set(true);
   }
@@ -43,7 +43,7 @@ public class Intake extends Subsystem {
   }
 
   public void shootCargo() {
-    leftShooter.set(ControlMode.PercentOutput, -.4);
+    leftShooter.set(ControlMode.PercentOutput, .4);
     rightShooter.set(ControlMode.PercentOutput, .4);
   }
 

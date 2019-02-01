@@ -26,8 +26,12 @@ public class StrafeRight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.strafeRight(power);
-  }
+    if(Robot.drivetrain.isReversed) {
+      Robot.drivetrain.strafeLeft(power);
+    }
+    else {
+      Robot.drivetrain.strafeLeft(-power);
+    }  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
