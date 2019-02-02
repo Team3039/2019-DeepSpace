@@ -43,20 +43,6 @@ public class Drivetrain extends Subsystem {
       isReversed = false;
     }
   }
-  
-  public void strafeLeft(double power) {
-    frontleftMotor.set(ControlMode.PercentOutput, (-power));
-    frontrightMotor.set(ControlMode.PercentOutput, (-power));
-    rearleftMotor.set(ControlMode.PercentOutput, (power));
-    rearrightMotor.set(ControlMode.PercentOutput, (power));   
-  }
-
-  public void strafeRight(double power) {
-    frontleftMotor.set(ControlMode.PercentOutput, (power));
-    frontrightMotor.set(ControlMode.PercentOutput, (power));
-    rearleftMotor.set(ControlMode.PercentOutput, (-power));
-    rearrightMotor.set(ControlMode.PercentOutput, (-power));   
-  }
 
   public void stop() {
     frontleftMotor.set(ControlMode.PercentOutput, 0);

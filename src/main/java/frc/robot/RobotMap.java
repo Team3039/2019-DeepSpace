@@ -11,12 +11,14 @@ public class RobotMap {
   public static int rearleftMotor = 3; 
   public static int rearrightMotor = 8; 
 
-  public static int intake = 7;
+  public static int intake = 6;
   public static int leftShooter = 0;
   public static int rightShooter = 5;
 
   public static int elevatorMotorA = 1;
   public static int elevatorMotorB = 2;
+
+  public static int climbingMotor = 7;
 
 //SOLENOID
   public static int intakeExtension = 0;

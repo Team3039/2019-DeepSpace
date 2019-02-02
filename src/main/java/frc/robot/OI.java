@@ -7,8 +7,6 @@ import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.SetElevatorPID;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.ShootHatchSequence;
-import frc.robot.commands.StrafeLeft;
-import frc.robot.commands.StrafeRight;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -58,15 +56,11 @@ public class OI {
 		Button operatorR3 = operatorPad.getR3();
 
 		//driver Controls
-			driverL1.whileHeld(new LowerElevator(.85));
+			driverL1.whileHeld(new LowerElevator(.5));
 			driverR1.whileHeld(new RaiseElevator(.85));
 			driverX.whileHeld(new ShootCargo());
-			driverSquare.toggleWhenPressed(new CollectCargo());
+			driverSquare.whileHeld(new CollectCargo());
 			driverCircle.whenPressed(new ShootHatchSequence());
-
-
-			driverL2.whileHeld(new StrafeLeft(.6));
-			driverR2.whileHeld(new StrafeRight(.6));
 			
 		//Operator Controls
 		if(!Robot.elevator.isCargoMode) {
