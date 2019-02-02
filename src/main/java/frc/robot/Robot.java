@@ -3,6 +3,9 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,21 +17,34 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lights;
 
 public class Robot extends TimedRobot {
+
+  //Subsytems
   public static Drivetrain drivetrain = new Drivetrain();
   public static Elevator elevator = new Elevator();
   public static Lights lights = new Lights();
   public static Intake intake = new Intake();
   public static OI oi;
 
+  //Choosers
   Command autoCommand;
   SendableChooser<Command> autoChooser = new SendableChooser<>();
   SendableChooser<String> matrixChooser = new SendableChooser<>();
 
+  //Vision Setup
+  public static NetworkTable targetTable = NetworkTableInstance.getDefault().getTable("GRIP/targetReport");
+  public static NetworkTableEntry targetEntryX = targetTable.getEntry("centerX");
+  public static NetworkTableEntry targetEntryArea = targetTable.getEntry("area");
+  public static double[] defaultValue = new double [0];
+  public static double[] targetX;
+  public static double[] targetArea;
+  public static double x;
+  public static double area;
+  public static double distance;
+
   @Override
   public void robotInit() {
     oi = new OI();
-    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    
     matrixChooser.addOption("", "");
     matrixChooser.addOption("That's How Mafia Works", "Mafia");
     matrixChooser.addOption("Sicko Mode or Mo Bamba?", "Sicko");
@@ -42,6 +58,7 @@ public class Robot extends TimedRobot {
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
+
     elevator.setupEncoder();
   }
 
@@ -66,6 +83,35 @@ public class Robot extends TimedRobot {
     }
     else
       lights.runLights();
+
+    //Vision Target Data Aquistion
+
+    //X Coordinates
+    targetX = targetEntryX.getDoubleArray(defaultValue);
+    if(targetX.length < 1) {
+    	x = 0;
+    }
+    else if(targetX.length == 1) {
+    	x = targetX[0];
+    }
+    else {
+    	x = (targetX[0] + targetX[1])/2;
+    }
+
+    //Area
+    targetArea = targetEntryArea.getDoubleArray(defaultValue);
+    if(targetArea.length < 1) {
+    	area = 0;
+    }
+    else if(targetArea.length == 1) {
+    	area = targetX[0];
+    }
+    else {
+    	area = (targetArea[0] + targetArea[1])/2;
+    }
+
+    //Area to Distance Calculation
+    distance = 57.7495 * Math.pow(Math.E, (-0.0000168466 * area));
   }
 
   @Override
