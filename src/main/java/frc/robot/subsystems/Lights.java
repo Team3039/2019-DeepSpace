@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 
@@ -13,10 +14,6 @@ public class Lights extends Subsystem {
   public DigitalOutput switch3 = new DigitalOutput(RobotMap.switch3);
   public DigitalOutput switch4 = new DigitalOutput(RobotMap.switch4);
 
-  public static boolean redAlliance = true;
-  public static boolean hatchGrabbed = false;
-  public static boolean cargoGrabbed = false;
-
   public void state0() { switch3.set(false); switch2.set(false); switch1.set(false); }
   public void state1() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
   public void state2() { switch3.set(false); switch2.set(true);  switch1.set(false); }
@@ -26,65 +23,12 @@ public class Lights extends Subsystem {
   public void state6() { switch3.set(true);  switch2.set(true);  switch1.set(false); }
   public void state7() { switch3.set(true);  switch2.set(true);  switch1.set(true);  }
 
-  public void setRedAlliance()
-  {
-    redAlliance = true;
-  }
-
-  public void setBlueAlliance()
-  {
-    redAlliance = false;
-  }
-
-  public boolean getRedAlliance()
-  {
-    return redAlliance;
-  }
-
-  public String getAlliance()
-  {
-    if(redAlliance)
-      return "Red Alliance";
-    return "Blue Alliance";
-  }
-
-  public void grabbedHatch()
-  {
-    hatchGrabbed = true;
-    cargoGrabbed = false;
-  }
-
-  public void grabbedCargo()
-  {
-    hatchGrabbed = false;
-    cargoGrabbed = true;
-  }
-
-  public void releasedGamePiece()
-  {
-    hatchGrabbed = false;
-    cargoGrabbed = false;
-  }
-
-  public void runAlliance()
-  {
-    if(!hatchGrabbed && !cargoGrabbed)
-    {
-      if(redAlliance)
-        state0();
-      else
-        state1();
-    }
-  }
-
   public void runLights()
   {
-    if(hatchGrabbed)
+    if(Robot.elevator.isCargoMode)
       state2();
-    else if(cargoGrabbed)
-      state3();
     else 
-      runAlliance();
+      state0();
   }
 
   public void setMatrixText(String text)
@@ -103,6 +47,6 @@ public class Lights extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    runAlliance();
+    state0();
   }
 }
