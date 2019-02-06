@@ -5,9 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.ReleaseHatch;
+import frc.robot.commands.ShootHatch;
 
 public class ShootHatchSequence extends CommandGroup {
   /**

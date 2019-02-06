@@ -6,7 +6,8 @@ import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.SetElevatorPID;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.ShootHatchSequence;
+import frc.robot.commands.Sequences.CollectCargoSequence;
+import frc.robot.commands.Sequences.ShootHatchSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -63,17 +64,10 @@ public class OI {
 			driverCircle.whenPressed(new ShootHatchSequence());
 			
 		//Operator Controls
-		if(!Robot.elevator.isCargoMode) {
-			operatorX.whenPressed(new SetElevatorPID(Robot.elevator.hatchLow));
-			operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.hatchMid));
-			operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.hatchHigh));
-		}
-		else {
-			operatorX.whenPressed(new SetElevatorPID(Robot.elevator.cargoLow));
-			operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.cargoMid));
-			operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.cargoHigh));
-		}
-		operatorCircle.whenPressed(new SetElevatorPID(Robot.elevator.cargoShip));
+		operatorX.whenPressed(new SetElevatorPID(Robot.elevator.low));
+		operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.mid));
+		operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.high));
+		operatorCircle.whenPressed(new CollectCargoSequence());
 
 	}
 

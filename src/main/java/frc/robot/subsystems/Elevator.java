@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 
 public class Elevator extends Subsystem {
@@ -16,15 +17,12 @@ public class Elevator extends Subsystem {
   public TalonSRX elevatorB = new TalonSRX(RobotMap.elevatorMotorB);
 
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
-  public final double cargoIntake = -10;
-  public final double hatchLow = 10; //Start Position
-  public final double hatchMid = 20;
-  public final double hatchHigh = 30;
-  public final double cargoLow = 15;
-  public final double cargoMid = 25;
-  public final double cargoHigh = 35;
-  public final double cargoShip = 18;
-
+  
+  //Dynamic Setpoints (Value being changed and read by the CommandGroups)
+  public double low = Constants.hatchLow;
+  public double mid = Constants.hatchMid;
+  public double high = Constants.hatchHigh;
+  
   public void driveElevator(double power) {
     elevatorA.setNeutralMode(NeutralMode.Brake);
     elevatorB.setNeutralMode(NeutralMode.Brake);
@@ -33,13 +31,24 @@ public class Elevator extends Subsystem {
   }
 
   public void setPIDValues() {
-    elevatorA.config_kP(0, .005);
-    elevatorA.config_kI(0, .005);
-    elevatorA.config_kD(0, .0000001);
+    elevatorA.config_kP(0, Constants.kP_Elevator);
+    elevatorA.config_kI(0, Constants.kI_Elevator);
+    elevatorA.config_kD(0, Constants.kD_Elevator);
     elevatorA.config_kF(0, 0);
   }
 
   public void setElevatorPID(double position) {
+    if(isCargoMode) {
+      low = Constants.cargoLow;
+      mid = Constants.cargoMid;
+      high = Constants.cargoHigh;
+    }
+    else {
+      low = Constants.hatchLow;
+      mid = Constants.hatchMid;
+      high = Constants.hatchHigh;
+    }
+    
     setPIDValues();
     elevatorA.set(ControlMode.Position, position);
     elevatorA.setNeutralMode(NeutralMode.Brake);

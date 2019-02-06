@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.commands.TeleOpDrive;
 import frc.util.PS4Gamepad;
@@ -23,8 +24,8 @@ public class Drivetrain extends Subsystem {
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
-    double y = gp.getLeftYAxis()*-.95;
-    double rot = gp.getRightXAxis()*.9;
+    double y = gp.getLeftYAxis()*-Constants.y;
+    double rot = gp.getRightXAxis()*Constants.rot;
 
     frontleftMotor.setNeutralMode(NeutralMode.Brake);
     frontrightMotor.setNeutralMode(NeutralMode.Brake);

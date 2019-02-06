@@ -5,12 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.ElevatorSequences;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.ExtendIntake;
+import frc.robot.commands.RetractIntake;
 import frc.robot.commands.SetElevatorPID;
 
 public class CollectCargoSequence extends CommandGroup {
@@ -20,5 +21,6 @@ public class CollectCargoSequence extends CommandGroup {
     addSequential(new SetElevatorPID(Robot.elevator.cargoIntake));
     addSequential(new CollectCargo());
     addSequential(new SetElevatorPID(Robot.elevator.cargoShip));
+    addSequential(new RetractIntake());
   }
 }
