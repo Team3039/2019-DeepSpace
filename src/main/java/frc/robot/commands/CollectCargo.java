@@ -25,7 +25,6 @@ public class CollectCargo extends Command {
   @Override
   protected void execute() {
     Robot.shooter.collectCargo();
-    Robot.lights.releasedGamePiece();
     Robot.elevator.isCargoMode = true;
   }
 
@@ -39,7 +38,7 @@ public class CollectCargo extends Command {
   @Override
   protected void end() {
     Robot.shooter.stopCargo();
-    Robot.lights.grabbedCargo();
+    Robot.shooter.stopCargo();
   }
 
   // Called when another command which requires one or more of the same
@@ -47,6 +46,6 @@ public class CollectCargo extends Command {
   @Override
   protected void interrupted() {
     Robot.shooter.stopCargo();
-    Robot.lights.grabbedCargo();
+    Robot.shooter.stopCargo();
   }
 }

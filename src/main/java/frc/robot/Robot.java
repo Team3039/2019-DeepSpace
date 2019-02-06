@@ -52,7 +52,6 @@ public class Robot extends TimedRobot {
     matrixChooser.addOption("Subscribe 2 Pewdiepie", "Pewds");
 
     SmartDashboard.putData("Auto mode", autoChooser);
-    SmartDashboard.putBoolean("Red Alliance", true);
     SmartDashboard.putData("End game text", matrixChooser);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
@@ -64,16 +63,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    
-    boolean red = SmartDashboard.getBoolean("Red Alliance", true);
-    if(red)
-    {
-      lights.setRedAlliance();
-    }
-    else
-    {
-      lights.setBlueAlliance();
-    }
     //System.out.println(lights.getAlliance());
     String selected = matrixChooser.getSelected();
     if(selected != null && !selected.equals(""))

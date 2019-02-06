@@ -26,7 +26,6 @@ public class GrabHatch extends Command {
     if(Robot.shooter.keepHatch) {
       if(Robot.shooter.getHatchStatus()) {
         Robot.shooter.gripHatch();
-        Robot.lights.grabbedHatch();
         Robot.elevator.isCargoMode = false;
       }
       else {

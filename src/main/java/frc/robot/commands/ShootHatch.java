@@ -26,7 +26,6 @@ public class ShootHatch extends Command {
   protected void execute() {
     Robot.shooter.shootHatch();
     Robot.shooter.keepHatch = false;
-    Robot.lights.releasedGamePiece();
   }
 
   // Make this return true when this Command no longer needs to run execute()
