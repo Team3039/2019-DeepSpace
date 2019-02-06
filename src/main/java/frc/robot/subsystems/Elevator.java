@@ -17,7 +17,7 @@ public class Elevator extends Subsystem {
 
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
   public final double cargoIntake = -10;
-  public final double hatchLow = 10;
+  public final double hatchLow = 10; //Start Position
   public final double hatchMid = 20;
   public final double hatchHigh = 30;
   public final double cargoLow = 15;

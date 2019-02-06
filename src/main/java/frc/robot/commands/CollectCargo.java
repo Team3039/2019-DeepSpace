@@ -25,6 +25,7 @@ public class CollectCargo extends Command {
   @Override
   protected void execute() {
     Robot.shooter.collectCargo();
+    Robot.intake.collectCargo();
     Robot.elevator.isCargoMode = true;
   }
 
@@ -32,12 +33,13 @@ public class CollectCargo extends Command {
   @Override
   protected boolean isFinished() {
     return false;
+    //TODO Add Limit Switch Code for Sequencing
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.shooter.stopCargo();
+    Robot.intake.stopCargo();
     Robot.shooter.stopCargo();
   }
 
@@ -45,7 +47,7 @@ public class CollectCargo extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.shooter.stopCargo();
+    Robot.intake.stopCargo();
     Robot.shooter.stopCargo();
   }
 }

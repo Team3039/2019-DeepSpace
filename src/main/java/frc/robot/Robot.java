@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
@@ -23,6 +24,7 @@ public class Robot extends TimedRobot {
   public static Elevator elevator = new Elevator();
   public static Lights lights = new Lights();
   public static Shooter shooter = new Shooter();
+  public static Intake intake = new Intake();
   public static OI oi;
 
   //Choosers
