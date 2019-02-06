@@ -24,7 +24,7 @@ public class CollectCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.collectCargo();
+    Robot.shooter.collectCargo();
     Robot.lights.releasedGamePiece();
     Robot.elevator.isCargoMode = true;
   }
@@ -38,7 +38,7 @@ public class CollectCargo extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.stopCargo();
+    Robot.shooter.stopCargo();
     Robot.lights.grabbedCargo();
   }
 
@@ -46,7 +46,7 @@ public class CollectCargo extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.intake.stopCargo();
+    Robot.shooter.stopCargo();
     Robot.lights.grabbedCargo();
   }
 }

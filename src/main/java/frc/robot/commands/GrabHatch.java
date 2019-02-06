@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class GrabHatch extends Command {
   public GrabHatch() {
-    requires(Robot.intake);
+    requires(Robot.shooter);
   }
 
   // Called just before this Command runs the first time
@@ -23,18 +23,18 @@ public class GrabHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.intake.keepHatch) {
-      if(Robot.intake.getHatchStatus()) {
-        Robot.intake.gripHatch();
+    if(Robot.shooter.keepHatch) {
+      if(Robot.shooter.getHatchStatus()) {
+        Robot.shooter.gripHatch();
         Robot.lights.grabbedHatch();
         Robot.elevator.isCargoMode = false;
       }
       else {
-        Robot.intake.releaseHatch();
+        Robot.shooter.releaseHatch();
       }
     }
     else {
-      Robot.intake.releaseHatch();
+      Robot.shooter.releaseHatch();
     }
   }
 

@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
     double y = gp.getLeftYAxis()*-.95;
-    double rot = gp.getRightXAxis()*.82;
+    double rot = gp.getRightXAxis()*.9;
 
     frontleftMotor.setNeutralMode(NeutralMode.Brake);
     frontrightMotor.setNeutralMode(NeutralMode.Brake);

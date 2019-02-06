@@ -7,18 +7,18 @@ public class RobotMap {
 
 //CAN
   public static int frontleftMotor = 4;
-  public static int frontrightMotor = 9;
-  public static int rearleftMotor = 3; 
-  public static int rearrightMotor = 8; 
+  public static int frontrightMotor = 11;
+  public static int rearleftMotor = 5; 
+  public static int rearrightMotor = 12; 
 
-  public static int intake = 6;
-  public static int leftShooter = 0;
-  public static int rightShooter = 5;
+  public static int intake = 1;
+  public static int leftShooter = 8;
+  public static int rightShooter = 9;
 
-  public static int elevatorMotorA = 1;
-  public static int elevatorMotorB = 2;
+  public static int elevatorMotorA = 2;
+  public static int elevatorMotorB = 3;
 
-  public static int climbingMotor = 7;
+  public static int climbingMotor = 7; //Not Wired Yet
 
 //SOLENOID
   public static int intakeExtension = 0;

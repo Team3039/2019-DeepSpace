@@ -24,8 +24,8 @@ public class ShootHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.shootHatch();
-    Robot.intake.keepHatch = false;
+    Robot.shooter.shootHatch();
+    Robot.shooter.keepHatch = false;
     Robot.lights.releasedGamePiece();
   }
 
@@ -38,13 +38,13 @@ public class ShootHatch extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.retractShootHatch();
+    Robot.shooter.retractShootHatch();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.intake.retractShootHatch();
+    Robot.shooter.retractShootHatch();
   }
 }
