@@ -27,9 +27,13 @@ public class Shooter extends Subsystem {
   public Solenoid hatchGrip = new Solenoid(RobotMap.hatchGrip);
   public DigitalInput hatchStatus = new DigitalInput(RobotMap.hatchPressure);
 
+  public boolean acquiredCargo = false;
+  public boolean acquiredHatch = false;
+
   public void collectCargo() {
     leftShooter.set(ControlMode.PercentOutput, -.55);
     rightShooter.set(ControlMode.PercentOutput, -.55);
+    acquiredCargo = false;
   }
 
   public void stopCargo() {
@@ -37,16 +41,18 @@ public class Shooter extends Subsystem {
     rightShooter.set(ControlMode.PercentOutput, 0);
     leftShooter.setNeutralMode(NeutralMode.Brake);
     rightShooter.setNeutralMode(NeutralMode.Brake);
-
+    acquiredCargo = true;
   }
 
   public void shootCargo() {
     leftShooter.set(ControlMode.PercentOutput, .7);
     rightShooter.set(ControlMode.PercentOutput, .7);
+    acquiredCargo = false;
   }
 
   public void gripHatch() {
     hatchGrip.set(true);
+    acquiredHatch = true;
   }
 
   public void releaseHatch() {
@@ -56,6 +62,7 @@ public class Shooter extends Subsystem {
   public void shootHatch() {
     hatchGrip.set(false);
     hatchLaunch.set(true);
+    acquiredHatch = false;
   }
 
   public void retractShootHatch() {

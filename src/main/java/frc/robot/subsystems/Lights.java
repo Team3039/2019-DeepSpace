@@ -25,7 +25,9 @@ public class Lights extends Subsystem {
 
   public void runLights()
   {
-    if(Robot.elevator.isCargoMode)
+    if(Robot.shooter.acquiredHatch)
+      state1();
+    else if(Robot.shooter.acquiredCargo)
       state2();
     else 
       state0();
@@ -47,6 +49,6 @@ public class Lights extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    state0();
+    runLights();
   }
 }
