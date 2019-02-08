@@ -22,7 +22,7 @@ public class Constants {
     public static final double kD_Elevator = 0.0000001;
 
     //Elevator Levels
-    public final double cargoIntake = -10;
+    public static final double cargoIntake = -10;
     public static final double hatchLow = 10; 
     public static final double hatchMid = 20;
     public static final double hatchHigh = 30;
