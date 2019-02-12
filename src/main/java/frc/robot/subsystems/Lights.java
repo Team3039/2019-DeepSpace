@@ -12,7 +12,6 @@ public class Lights extends Subsystem {
   public DigitalOutput switch1 = new DigitalOutput(RobotMap.switch1);
   public DigitalOutput switch2 = new DigitalOutput(RobotMap.switch2);
   public DigitalOutput switch3 = new DigitalOutput(RobotMap.switch3);
-  public DigitalOutput switch4 = new DigitalOutput(RobotMap.switch4);
 
   public void state0() { switch3.set(false); switch2.set(false); switch1.set(false); }
   public void state1() { switch3.set(true);  switch2.set(false); switch1.set(true);  }

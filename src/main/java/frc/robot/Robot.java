@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    //System.out.println(lights.getAlliance());
+    
     String selected = matrixChooser.getSelected();
     if(selected != null && !selected.equals(""))
     {
@@ -138,7 +138,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    SmartDashboard.putNumber("Elevator", elevator.getPosition());
+    System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
+    // System.out.println("\nUpper Limit is " + !Robot.elevator.upperLimit.get());
+    // System.out.println("\nLower Limit is " + Robot.elevator.lowerLimit.get());
+    // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());
+
   }
 
   @Override

@@ -22,13 +22,11 @@ public class Intake extends Subsystem {
 
   public void collectCargo() {
     intake.set(ControlMode.PercentOutput,.6);
-    extend();
   }
 
   public void stopCargo() {
     intake.setNeutralMode(NeutralMode.Brake);
     intake.set(ControlMode.PercentOutput, 0);
-    retract();
   }
 
   public void extend() {

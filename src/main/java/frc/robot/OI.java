@@ -1,12 +1,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
-import frc.robot.commands.SetElevatorPID;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
@@ -60,15 +59,22 @@ public class OI {
 			driverL1.whileHeld(new LowerElevator(.5));
 			driverR1.whileHeld(new RaiseElevator(.85));
 			driverX.whileHeld(new ShootCargo());
-			driverSquare.whileHeld(new CollectCargo());
-			driverCircle.whenPressed(new ShootHatchSequence());
+			driverCircle.whileHeld(new CollectCargo());
+			driverSquare.whenPressed(new ShootHatchSequence());
+			driverOptions.toggleWhenPressed(new ActuateIntake());			
 			
 		//Operator Controls
-		operatorX.whenPressed(new SetElevatorPID(Robot.elevator.low));
-		operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.mid));
-		operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.high));
-		operatorCircle.whenPressed(new CollectCargoSequence());
+		// operatorX.whenPressed(new SetElevatorPID(Robot.elevator.low));
+		// operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.mid));
+		// operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.high));
+		// operatorCircle.whenPressed(new CollectCargoSequence());
 
+		// operatorR2.whileHeld(new LowerElevator(.7));
+		// operatorR1.whileHeld(new RaiseElevator(.95));
+		// operatorL1.whileHeld(new ShootCargo());
+		// operatorX.whileHeld(new CollectCargo());
+		// operatorL2.toggleWhenPressed(new ActuateIntake());
+		// operatorSquare.whenPressed(new ShootHatchSequence());
 	}
 
 	

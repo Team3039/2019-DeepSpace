@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootHatch extends Command {
-  public ShootHatch() {
+public class ManualHatchGrip extends Command {
+  public ManualHatchGrip() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,8 +24,7 @@ public class ShootHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter.shootHatch();
-    Robot.shooter.keepHatch = false;
+    Robot.shooter.gripHatch();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,15 +36,13 @@ public class ShootHatch extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.shooter.retractShootHatch();
-    Robot.shooter.keepHatch = true;
+    Robot.shooter.releaseHatch();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.shooter.retractShootHatch();
-    Robot.shooter.keepHatch = true;
+    Robot.shooter.releaseHatch();
   }
 }

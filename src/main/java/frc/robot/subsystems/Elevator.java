@@ -100,15 +100,15 @@ public class Elevator extends Subsystem {
   }
 
   public double getPosition() {
-    return elevatorA.getSelectedSensorPosition();
+    return elevatorA.getSelectedSensorPosition()*-1;
   }
 
   public boolean getLimit() {
     if(isRaising) {
-      return upperLimit.get();
+      return !upperLimit.get();
     }
     if(isLowering) {
-      return lowerLimit.get();
+      return !lowerLimit.get();
     }
     return false;
   }
