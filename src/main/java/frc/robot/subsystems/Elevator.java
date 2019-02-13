@@ -22,6 +22,7 @@ public class Elevator extends Subsystem {
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
   public boolean isRaising = false;
   public boolean isLowering = false;
+  public boolean onTarget = false;
   
   //Dynamic Setpoints (Value being changed and read by the CommandGroups)
   public double low = Constants.hatchLow;
@@ -39,7 +40,7 @@ public class Elevator extends Subsystem {
     elevatorA.config_kP(0, Constants.kP_Elevator);
     elevatorA.config_kI(0, Constants.kI_Elevator);
     elevatorA.config_kD(0, Constants.kD_Elevator);
-    elevatorA.config_kF(0, 0);
+    elevatorA.config_kF(0, Constants.kF_Elevator);
   }
 
   public void setElevatorPID(double targetPosition) {

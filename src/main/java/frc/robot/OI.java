@@ -1,12 +1,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
+import frc.robot.commands.SetElevatorPID;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.Sequences.ShootHatchSequence;
+import frc.robot.commands.ShootHatch;
+import frc.robot.commands.Sequences.ZeroElevatorSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -55,27 +56,24 @@ public class OI {
 		Button operatorR2 = operatorPad.getR2();
 		Button operatorR3 = operatorPad.getR3();
 
-		//driver Controls
-			driverL1.whileHeld(new LowerElevator(.5));
-			driverR1.whileHeld(new RaiseElevator(.85));
-			driverX.whileHeld(new ShootCargo());
-			driverCircle.whileHeld(new CollectCargo());
-			driverSquare.whenPressed(new ShootHatchSequence());
-			driverOptions.toggleWhenPressed(new ActuateIntake());			
+		//driver Controls		
 			
+		driverCircle.whenPressed(new CollectCargo());
+		driverX.whileHeld(new ShootCargo());
+		driverSquare.whenPressed(new ShootHatch());
+		driverTriangle.whenPressed(new SetElevatorPID(Robot.elevator.mid));
+		driverR1.whileHeld(new RaiseElevator(.8));
+		driverL1.whileHeld(new LowerElevator(.5));
+		driverOptions.whenPressed(new ZeroElevatorSequence());
+
+
 		//Operator Controls
 		// operatorX.whenPressed(new SetElevatorPID(Robot.elevator.low));
 		// operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.mid));
 		// operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.high));
 		// operatorCircle.whenPressed(new CollectCargoSequence());
+		// operatorPadButton.whenPressed(new ZeroElevatorSequence());
 
-		// operatorR2.whileHeld(new LowerElevator(.7));
-		// operatorR1.whileHeld(new RaiseElevator(.95));
-		// operatorL1.whileHeld(new ShootCargo());
-		// operatorX.whileHeld(new CollectCargo());
-		// operatorL2.toggleWhenPressed(new ActuateIntake());
-		// operatorSquare.whenPressed(new ShootHatchSequence());
+
 	}
-
-	
 }

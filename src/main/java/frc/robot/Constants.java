@@ -14,20 +14,21 @@ public class Constants {
 
     //Drivetrain Limiter
     public static final double y = .95;
-    public static final double rot = .9;
+    public static final double rot = .85;
 
     //Elevator PID Constants
     public static final double kP_Elevator = 0.005;
     public static final double kI_Elevator = 0.005;
     public static final double kD_Elevator = 0.0000001;
-
+    public static final double kF_Elevator = 0.0;
+    
     //Elevator Levels
-    public static final double cargoIntake = -10;
-    public static final double hatchLow = 10; 
-    public static final double hatchMid = 20;
-    public static final double hatchHigh = 30;
-    public static final double cargoLow = 15;
-    public static final double cargoMid = 25;
-    public static final double cargoHigh = 35;
-    public static final double cargoShip = 18;
+    public static final double cargoIntake = 0;
+    public static final double hatchLow = 850; 
+    public static final double hatchMid = 16850;
+    public static final double hatchHigh = 32850;
+    public static final double cargoLow = 6850;
+    public static final double cargoMid = 21850;
+    public static final double cargoHigh = 36850;
+    public static final double cargoShip = 14850;
 }

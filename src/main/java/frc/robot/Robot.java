@@ -139,6 +139,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
+    
     // System.out.println("\nUpper Limit is " + !Robot.elevator.upperLimit.get());
     // System.out.println("\nLower Limit is " + Robot.elevator.lowerLimit.get());
     // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());
