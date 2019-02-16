@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
-import frc.robot.commands.SetElevatorPID;
+import frc.robot.commands.SetElevator;
 import frc.robot.commands.ZeroElevator;
 
 public class ZeroElevatorSequence extends CommandGroup {
@@ -21,8 +21,8 @@ public class ZeroElevatorSequence extends CommandGroup {
   public ZeroElevatorSequence() {
     addSequential(new ExtendIntake(),2);
     addSequential(new ZeroElevator());
-    addSequential(new SetElevatorPID(Constants.cargoLow));
+    addSequential(new SetElevator(Constants.cargoLow));
     addSequential(new RetractIntake());
-    addSequential(new SetElevatorPID(Constants.hatchLow));
+    addSequential(new SetElevator(Constants.hatchLow));
     }
 }

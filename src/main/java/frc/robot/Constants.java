@@ -17,9 +17,9 @@ public class Constants {
     public static final double rot = .85;
 
     //Elevator PID Constants
-    public static final double kP_Elevator = 0.005;
-    public static final double kI_Elevator = 0.005;
-    public static final double kD_Elevator = 0.0000001;
+    public static final double kP_Elevator = 0.7;
+    public static final double kI_Elevator = 0.0;
+    public static final double kD_Elevator = 0.0;
     public static final double kF_Elevator = 0.0;
     
     //Elevator Levels

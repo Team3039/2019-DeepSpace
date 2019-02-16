@@ -10,8 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetElevatorMP extends Command {
-  public SetElevatorMP() {
+public class SetElevator extends Command {
+  double targetPosition;
+
+  public SetElevator(double targetPosition) {
+    this.targetPosition = targetPosition;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,24 +23,27 @@ public class SetElevatorMP extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.setupEncoder();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorMP();
+
+    Robot.elevator.setElevator(targetPosition);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Math.abs(targetPosition - Robot.elevator.getPosition()) < 250;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
     Robot.elevator.stopElevator();
+
   }
 
   // Called when another command which requires one or more of the same
@@ -45,5 +51,6 @@ public class SetElevatorMP extends Command {
   @Override
   protected void interrupted() {
     Robot.elevator.stopElevator();
+
   }
 }

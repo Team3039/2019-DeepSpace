@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
-import frc.robot.commands.SetElevatorPID;
+import frc.robot.commands.SetElevator;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.ShootHatch;
-import frc.robot.commands.Sequences.ZeroElevatorSequence;
+import frc.robot.commands.ZeroElevator;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -61,10 +61,11 @@ public class OI {
 		driverCircle.whenPressed(new CollectCargo());
 		driverX.whileHeld(new ShootCargo());
 		driverSquare.whenPressed(new ShootHatch());
-		driverTriangle.whenPressed(new SetElevatorPID(Robot.elevator.mid));
+		driverShare.whileHeld(new SetElevator(2000));
+		driverOptions.whileHeld(new SetElevator(8000));
 		driverR1.whileHeld(new RaiseElevator(.8));
 		driverL1.whileHeld(new LowerElevator(.5));
-		driverOptions.whenPressed(new ZeroElevatorSequence());
+		driverTriangle.whenPressed(new ZeroElevator());
 
 
 		//Operator Controls

@@ -12,16 +12,16 @@ import frc.robot.Constants;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
-import frc.robot.commands.SetElevatorPID;
+import frc.robot.commands.SetElevator;
 
 public class CollectCargoSequence extends CommandGroup {
 
   public CollectCargoSequence() {
-    addSequential(new SetElevatorPID(Constants.cargoLow));
+    addSequential(new SetElevator(Constants.cargoLow));
     addSequential(new ExtendIntake(),2);
-    addSequential(new SetElevatorPID(Constants.cargoIntake));
+    addSequential(new SetElevator(Constants.cargoIntake));
     addSequential(new CollectCargo());
-    addSequential(new SetElevatorPID(Constants.cargoShip));
+    addSequential(new SetElevator(Constants.cargoShip));
     addSequential(new RetractIntake());
   }
 }

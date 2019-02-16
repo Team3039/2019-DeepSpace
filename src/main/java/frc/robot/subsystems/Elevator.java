@@ -2,6 +2,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -18,6 +19,7 @@ public class Elevator extends Subsystem {
   public TalonSRX elevatorB = new TalonSRX(RobotMap.elevatorMotorB);
   public DigitalInput lowerLimit = new DigitalInput(RobotMap.elevatorLowerLimit);
   public DigitalInput upperLimit = new DigitalInput(RobotMap.elevatorUpperLimit);
+  public Faults elevatorFaults = new Faults();
 
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
   public boolean isRaising = false;
@@ -28,6 +30,7 @@ public class Elevator extends Subsystem {
   public double low = Constants.hatchLow;
   public double mid = Constants.hatchMid;
   public double high = Constants.hatchHigh;
+  public double oldPosition;
   
   public void driveElevator(double power) {
     elevatorA.setNeutralMode(NeutralMode.Brake);
@@ -41,24 +44,23 @@ public class Elevator extends Subsystem {
     elevatorA.config_kI(0, Constants.kI_Elevator);
     elevatorA.config_kD(0, Constants.kD_Elevator);
     elevatorA.config_kF(0, Constants.kF_Elevator);
+
+    // elevatorA.configMotionCruiseVelocity(9500);
+    // elevatorA.configMotionAcceleration(15000);
   }
 
-  public void setElevatorPID(double targetPosition) {
+  public void setElevator(double targetPosition) {
     //PID Values
     setPIDValues();
 
-    //Elevator Direction
-    if(targetPosition > getPosition()) {
+    //Direction
+    if(elevatorA.getMotorOutputVoltage() > 0) {
       isRaising = true;
       isLowering = false;
     }
-    else if(targetPosition < getPosition()) {
+    if(elevatorA.getMotorOutputVoltage() < 0) {
       isRaising = false;
       isLowering = true;
-    }
-    else {
-      isRaising = false;
-      isLowering = false;
     }
 
     //Cargo or Hatch Levels?
@@ -82,26 +84,24 @@ public class Elevator extends Subsystem {
       elevatorA.set(ControlMode.PercentOutput, 0);
       elevatorB.follow(elevatorA);
     }
-    
+
     elevatorA.setNeutralMode(NeutralMode.Brake);
     elevatorB.setNeutralMode(NeutralMode.Brake);
   }
-
-  public void setElevatorMP() {
-    setPIDValues();
-    elevatorA.set(ControlMode.MotionProfile, 2000);
-
-  }
-  public void stopElevator() {
+  
+   public void stopElevator() {
     driveElevator(0);
+    elevatorA.neutralOutput();
+    elevatorB.neutralOutput();
   }
 
   public void setupEncoder() {
-    elevatorA.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    elevatorA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevatorA.setSensorPhase(true);
   }
 
   public double getPosition() {
-    return elevatorA.getSelectedSensorPosition()*-1;
+    return elevatorA.getSelectedSensorPosition();
   }
 
   public boolean getLimit() {
@@ -115,7 +115,7 @@ public class Elevator extends Subsystem {
   }
 
   public void resetEncoder() {
-    // elevatorA.reset
+    elevatorA.setSelectedSensorPosition(0);
   }
 
   @Override
