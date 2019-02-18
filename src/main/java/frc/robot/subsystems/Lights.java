@@ -13,14 +13,14 @@ public class Lights extends Subsystem {
   public DigitalOutput switch2 = new DigitalOutput(RobotMap.switch2);
   public DigitalOutput switch3 = new DigitalOutput(RobotMap.switch3);
 
-  public void state0() { switch3.set(false); switch2.set(false); switch1.set(false); }
-  public void state1() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
-  public void state2() { switch3.set(false); switch2.set(true);  switch1.set(false); }
-  public void state3() { switch1.set(false); switch2.set(true);  switch1.set(true);  }
-  public void state4() { switch3.set(true);  switch2.set(false); switch1.set(false); }
-  public void state5() { switch3.set(true);  switch2.set(false); switch1.set(true);  }
-  public void state6() { switch3.set(true);  switch2.set(true);  switch1.set(false); }
-  public void state7() { switch3.set(true);  switch2.set(true);  switch1.set(true);  }
+  public void state0() { switch1.set(false); switch2.set(false); switch3.set(false); }
+  public void state1() { switch1.set(true);  switch2.set(false); switch3.set(false);  }
+  public void state2() { switch1.set(false); switch2.set(true);  switch3.set(false); }
+  public void state3() { switch1.set(true);  switch2.set(true);  switch3.set(false);  }
+  public void state4() { switch1.set(false); switch2.set(false); switch3.set(true); }
+  public void state5() { switch1.set(true);  switch2.set(false); switch3.set(true);  }
+  public void state6() { switch1.set(false); switch2.set(true);  switch3.set(true); }
+  public void state7() { switch1.set(true);  switch2.set(true);  switch3.set(true);  }
 
   public void runLights()
   {
@@ -31,7 +31,7 @@ public class Lights extends Subsystem {
     else 
       state0();
   }
-
+  /*
   public void setMatrixText(String text)
   {
     if(text.equals("Mafia"))
@@ -45,7 +45,7 @@ public class Lights extends Subsystem {
     else
       runLights();
   }
-
+  */
   @Override
   public void initDefaultCommand() {
     runLights();
