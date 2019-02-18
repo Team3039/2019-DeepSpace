@@ -45,6 +45,5 @@ public class ZeroElevator extends Command {
   protected void interrupted() {
     Robot.elevator.driveElevator(0);
     Robot.elevator.elevatorA.setSelectedSensorPosition(0);
-    Robot.elevator.oldPosition = 0;
   }
 }

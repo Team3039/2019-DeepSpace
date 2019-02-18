@@ -30,7 +30,6 @@ public class Elevator extends Subsystem {
   public double low = Constants.hatchLow;
   public double mid = Constants.hatchMid;
   public double high = Constants.hatchHigh;
-  public double oldPosition;
   
   public void driveElevator(double power) {
     elevatorA.setNeutralMode(NeutralMode.Brake);
@@ -58,9 +57,13 @@ public class Elevator extends Subsystem {
       isRaising = true;
       isLowering = false;
     }
-    if(elevatorA.getMotorOutputVoltage() < 0) {
+    else if(elevatorA.getMotorOutputVoltage() < 0) {
       isRaising = false;
       isLowering = true;
+    }
+    else {
+      isRaising = false;
+      isLowering = false;   
     }
 
     //Cargo or Hatch Levels?
