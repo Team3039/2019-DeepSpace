@@ -18,11 +18,15 @@ public class RobotMap {
   public static int elevatorMotorA = 2;
   public static int elevatorMotorB = 3;
 
+  public static int roller = 1;
+  public static int liftA = 8;
+  public static int liftB = 9;
 
 //SOLENOID
-  public static int intakeExtension = 2;
-  public static int hatchLaunch = 1;
   public static int hatchGrip = 0;
+  public static int hatchLaunch = 1;
+  public static int intakeExtension = 2;
+  public static int forklift = 3;
 
 //PWM
 

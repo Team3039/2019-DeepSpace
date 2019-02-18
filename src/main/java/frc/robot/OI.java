@@ -2,12 +2,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.CollectCargo;
+import frc.robot.commands.FrontLift;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
-import frc.robot.commands.SetElevator;
+import frc.robot.commands.RearLift;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.ShootHatch;
 import frc.robot.commands.ZeroElevator;
+import frc.robot.commands.Sequences.ShootHatchSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -57,23 +58,24 @@ public class OI {
 		Button operatorR3 = operatorPad.getR3();
 
 		//driver Controls		
-			
-		driverCircle.whenPressed(new CollectCargo());
-		driverX.whileHeld(new ShootCargo());
-		driverSquare.whenPressed(new ShootHatch());
-		driverShare.whileHeld(new SetElevator(2000));
-		driverOptions.whileHeld(new SetElevator(8000));
-		driverR1.whileHeld(new RaiseElevator(.8));
-		driverL1.whileHeld(new LowerElevator(.5));
-		driverTriangle.whenPressed(new ZeroElevator());
-
+		
+		driverL2.whileHeld(new FrontLift(-.9));
+		driverL1.whileHeld(new FrontLift(.9));
+		driverTriangle.toggleWhenActive(new RearLift());
+		
 
 		//Operator Controls
-		// operatorX.whenPressed(new SetElevatorPID(Robot.elevator.low));
-		// operatorSquare.whenPressed(new SetElevatorPID(Robot.elevator.mid));
-		// operatorTriangle.whenPressed(new SetElevatorPID(Robot.elevator.high));
-		// operatorCircle.whenPressed(new CollectCargoSequence());
-		// operatorPadButton.whenPressed(new ZeroElevatorSequence());
+		//TODO Change Cargo Collection and Zeroing back to Sequences, and add Macros back after PID Tuning
+
+		// operatorX.whenPressed(new SetElevator(Robot.elevator.low));
+		// operatorSquare.whenPressed(new SetElevator(Robot.elevator.mid));
+		// operatorTriangle.whenPressed(new SetElevator(Robot.elevator.high));
+		operatorCircle.whenPressed(new CollectCargo());
+		operatorPadButton.whenPressed(new ZeroElevator()); 
+		operatorR1.whileHeld(new RaiseElevator(.8));
+		operatorR2.whileHeld(new LowerElevator(.5));
+		operatorL1.whenPressed(new ShootHatchSequence());
+		operatorL2.whileHeld(new ShootCargo());
 
 
 	}
