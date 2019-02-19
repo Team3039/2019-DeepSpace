@@ -1,7 +1,7 @@
 /*
  * Designed by Timothy Ramsey McReynolds on 2/5/19
  */
-/*
+
 #include <FastLED.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -17,10 +17,9 @@
 #define INTAKE_FIRE_COOLING  75
 #define INTAKE_FIRE_SPARKING 175
 
-#define STATE_PIN_1 9
+#define STATE_PIN_1 7
 #define STATE_PIN_2 8
-#define STATE_PIN_3 7
-#define ALLIANCE_PIN 6
+#define ALLIANCE_PIN 9
 
 #define IDLE_CASE 0
 #define HATCH_CASE 1
@@ -56,8 +55,7 @@ boolean redAlliance = true,
 int inputs[] = 
 {
   STATE_PIN_1, 
-  STATE_PIN_2, 
-  STATE_PIN_3
+  STATE_PIN_2
 };
 
 void setup()
@@ -75,7 +73,6 @@ void setup()
   //Initializes the state and alliance input pins
   pinMode(STATE_PIN_1, INPUT);
   pinMode(STATE_PIN_2, INPUT);
-  pinMode(STATE_PIN_3, INPUT);
   pinMode(ALLIANCE_PIN ,INPUT);
 }
 
@@ -101,9 +98,6 @@ void loop()
       break;
   }
   
-  
-  redAlliance = true;
-  runFire();
   
   //Actually displays everything changed during loop()
   intake.show();
@@ -304,15 +298,4 @@ boolean myDelay(int prev, long interval)
     return true;
   }
   return false;
-}
-*/
-
-void setup()
-{
-
-}
-
-void loop()
-{
-  
 }

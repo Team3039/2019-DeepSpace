@@ -47,7 +47,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
+
     SmartDashboard.putData("Auto mode", autoChooser);
+    SmartDashboard.putBoolean("Red Alliance", true);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
@@ -60,6 +62,14 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   
       lights.runLights();
+      if(SmartDashboard.getBoolean("Red Alliance", true))
+      {
+        lights.setRedAlliance();
+      }
+      else
+      {
+        lights.setBlueAlliance();
+      }
 
     //Vision Target Data Aquistion
 
