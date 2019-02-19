@@ -1,15 +1,9 @@
 /*
  * Designed by Timothy Ramsey McReynolds on 2/5/19
  */
-
+/*
 #include <FastLED.h>
 #include <Adafruit_NeoPixel.h>
-#ifndef PSTR
- #define PSTR
-#endif
-#ifdef __AVR__
-  #include <avr/power.h>
-#endif
 
 #define BRIGHTNESS 200
 
@@ -87,7 +81,7 @@ void setup()
 
 void loop()
 {
-  /*
+  
   //Determines the binary state based off of state input pins
   binaryState = getState();
   //Determines which alliance to set default fire color and matrix text color to
@@ -106,7 +100,7 @@ void loop()
       runFire();
       break;
   }
-  */
+  
   
   redAlliance = true;
   runFire();
@@ -310,4 +304,15 @@ boolean myDelay(int prev, long interval)
     return true;
   }
   return false;
+}
+*/
+
+void setup()
+{
+
+}
+
+void loop()
+{
+  
 }

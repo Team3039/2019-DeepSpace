@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
     if(selected != null && !selected.equals(""))
     {
       //System.out.println(selected);
-      lights.setMatrixText(selected);
+      //lights.setMatrixText(selected);
     }
     else
       lights.runLights();
