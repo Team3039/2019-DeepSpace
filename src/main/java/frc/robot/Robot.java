@@ -32,7 +32,6 @@ public class Robot extends TimedRobot {
   //Choosers
   Command autoCommand;
   SendableChooser<Command> autoChooser = new SendableChooser<>();
-  SendableChooser<String> matrixChooser = new SendableChooser<>();
 
   //Vision Setup
   public static NetworkTable targetTable = NetworkTableInstance.getDefault().getTable("GRIP/targetReport");
@@ -48,15 +47,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    
-    matrixChooser.addOption("", "");
-    matrixChooser.addOption("That's How Mafia Works", "Mafia");
-    matrixChooser.addOption("Sicko Mode or Mo Bamba?", "Sicko");
-    matrixChooser.addOption("But Can It Do This???", "Chair");
-    matrixChooser.addOption("Subscribe 2 Pewdiepie", "Pewds");
-
     SmartDashboard.putData("Auto mode", autoChooser);
-    SmartDashboard.putData("End game text", matrixChooser);
 
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
@@ -67,14 +58,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    
-    String selected = matrixChooser.getSelected();
-    if(selected != null && !selected.equals(""))
-    {
-      //System.out.println(selected);
-      //lights.setMatrixText(selected);
-    }
-    else
+  
       lights.runLights();
 
     //Vision Target Data Aquistion

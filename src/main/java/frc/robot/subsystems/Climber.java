@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -23,21 +24,33 @@ public class Climber extends Subsystem {
 
   public Solenoid forklift = new Solenoid(RobotMap.forklift);
 
+  boolean isClimbing = false;
+
   public void driveFrontLift(double power) {
+    liftA.setNeutralMode(NeutralMode.Brake);
+    liftB.setNeutralMode(NeutralMode.Brake);
     liftA.set(ControlMode.PercentOutput, power);
     liftB.follow(liftA);
   }
 
   public void extendRearLift() {
     forklift.set(true);
+    isClimbing = true;
   }
 
   public void retractRearLift() {
     forklift.set(false);
+    isClimbing = false;
   }
 
   public void driveRoller(PS4Gamepad gp) {
-    roller.set(ControlMode.PercentOutput, gp.getLeftYAxis());
+    roller.setNeutralMode(NeutralMode.Brake);
+    if(isClimbing) {
+      roller.set(ControlMode.PercentOutput, gp.getLeftYAxis());
+    }
+    else {
+      roller.set(ControlMode.PercentOutput, 0);
+    }
   }
 
   @Override
