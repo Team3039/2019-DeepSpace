@@ -15,5 +15,6 @@
     "**/.factorypath": true
   },
   "wpilib.online": true,
-  "C_Cpp.intelliSenseEngineFallback": "Disabled"
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  "C_Cpp.errorSquiggles": "Disabled"
 }
