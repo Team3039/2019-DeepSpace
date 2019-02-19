@@ -35,7 +35,7 @@ public class RobotMap {
   public static int elevatorLowerLimit = 1;
   public static int elevatorUpperLimit = 2;
   public static int cargoSwitch = 3;
-  
+
   public static int switch1 = 7;
   public static int switch2 = 8;
   public static int allianceSwitch = 9;
