@@ -28,6 +28,7 @@ public class Shooter extends Subsystem {
   public DigitalInput hatchStatus = new DigitalInput(RobotMap.hatchSwitch);
   public DigitalInput cargoStatus = new DigitalInput(RobotMap.cargoSwitch);
 
+  //Used for Lighting
   public boolean acquiredCargo = false;
   public boolean acquiredHatch = false;
 

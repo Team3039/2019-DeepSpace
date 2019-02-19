@@ -11,19 +11,18 @@ import frc.robot.commands.TeleOpDrive;
 import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
-
-
     //Drive Motors
     public TalonSRX frontleftMotor = new TalonSRX(RobotMap.frontleftMotor); 
     public TalonSRX frontrightMotor = new TalonSRX(RobotMap.frontrightMotor);
     public TalonSRX rearleftMotor = new TalonSRX(RobotMap.rearleftMotor);
     public TalonSRX rearrightMotor = new TalonSRX(RobotMap.rearrightMotor);
 
-    //Values
+    //Checks if Robot is being driven in Reverse
     public boolean isReversed = false;
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
+    //Each Motor is Set to Brake Mode, the motor speeds are set in an Arcade Drive fashion
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
 
@@ -46,6 +45,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public void stop() {
+    //Stops all drive
     frontleftMotor.set(ControlMode.PercentOutput, 0);
     frontrightMotor.set(ControlMode.PercentOutput, 0);
     rearleftMotor.set(ControlMode.PercentOutput, 0);
@@ -54,6 +54,8 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    // The following command is constantly being run, and thus the gamepad input is constantly being
+    // updated as well as the drivetrain speed.
     setDefaultCommand(new TeleOpDrive());
   }
 }

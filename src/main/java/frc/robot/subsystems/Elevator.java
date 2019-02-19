@@ -14,7 +14,6 @@ import frc.robot.RobotMap;
 
 public class Elevator extends Subsystem {
 
-  
   public TalonSRX elevatorA = new TalonSRX(RobotMap.elevatorMotorA);
   public TalonSRX elevatorB = new TalonSRX(RobotMap.elevatorMotorB);
   public DigitalInput lowerLimit = new DigitalInput(RobotMap.elevatorLowerLimit);
@@ -22,35 +21,36 @@ public class Elevator extends Subsystem {
   public Faults elevatorFaults = new Faults();
 
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
-  public boolean isRaising = false;
-  public boolean isLowering = false;
-  public boolean onTarget = false;
+  public boolean isRaising = false; //The Elevator is moving up
+  public boolean isLowering = false; //The Elevator is coming down
   
-  //Dynamic Setpoints (Value being changed and read by the CommandGroups)
+  //Dynamic Setpoints (Value being changed and read by the CommandGroups, initially set to hatch levels)
   public double low = Constants.hatchLow;
   public double mid = Constants.hatchMid;
   public double high = Constants.hatchHigh;
   
   public void driveElevator(double power) {
+    //Manual drive for the elevator
     elevatorA.setNeutralMode(NeutralMode.Brake);
     elevatorB.setNeutralMode(NeutralMode.Brake);
     elevatorA.set(ControlMode.PercentOutput, power);
     elevatorB.set(ControlMode.PercentOutput, power);
   }
 
-  public void setPIDValues() {
+  public void setConstants() {
+    //PID Config 
     elevatorA.config_kP(0, Constants.kP_Elevator);
     elevatorA.config_kI(0, Constants.kI_Elevator);
     elevatorA.config_kD(0, Constants.kD_Elevator);
     elevatorA.config_kF(0, Constants.kF_Elevator);
 
-    // elevatorA.configMotionCruiseVelocity(9500);
-    // elevatorA.configMotionAcceleration(15000);
+    //Motion Magic Config
+    elevatorA.configMotionCruiseVelocity(9500);
+    elevatorA.configMotionAcceleration(15000);
   }
 
   public void setElevator(double targetPosition) {
-    //PID Values
-    setPIDValues();
+    setConstants();
 
     //Direction
     if(elevatorA.getMotorOutputVoltage() > 0) {
@@ -100,7 +100,7 @@ public class Elevator extends Subsystem {
 
   public void setupEncoder() {
     elevatorA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-    elevatorA.setSensorPhase(true);
+    elevatorA.setSensorPhase(true); //Ensures motor and encoder both increase/decrease at the same time
   }
 
   public double getPosition() {
@@ -109,10 +109,10 @@ public class Elevator extends Subsystem {
 
   public boolean getLimit() {
     if(isRaising) {
-      return !upperLimit.get();
+      return !upperLimit.get(); //If im raising do not hit the top
     }
     if(isLowering) {
-      return !lowerLimit.get();
+      return !lowerLimit.get(); //If im lowering do not bottom out
     }
     return false;
   }
