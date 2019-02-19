@@ -31,23 +31,9 @@ public class Lights extends Subsystem {
     else 
       state0();
   }
-  /*
-  public void setMatrixText(String text)
-  {
-    if(text.equals("Mafia"))
-      state4();
-    else if(text.equals("Sicko"))
-      state5();
-    else if(text.equals("But"))
-      state6();
-    else if(text.equals("Sub"))
-      state7();
-    else
-      runLights();
-  }
-  */
+
   @Override
   public void initDefaultCommand() {
-    runLights();
-  }
+    
+    }
 }
