@@ -33,16 +33,12 @@ public class Robot extends TimedRobot {
   Command autoCommand;
   SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-  //Vision Setup
-  public static NetworkTable targetTable = NetworkTableInstance.getDefault().getTable("GRIP/targetReport");
-  public static NetworkTableEntry targetEntryX = targetTable.getEntry("centerX");
-  public static NetworkTableEntry targetEntryArea = targetTable.getEntry("area");
-  public static double[] defaultValue = new double [0];
-  public static double[] targetX;
-  public static double[] targetArea;
-  public static double x;
-  public static double area;
-  public static double distance;
+  //Vision Information
+  public static double targetValid; //Whether the limelight has any valid targets (0 or 1)
+  public static double targetX; //Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
+  public static double targetY; //Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
+  public static double targetArea; //Target Area (0% of image to 100% of image)
+  public static double targetSkew; //Skew or rotation (-90 degrees to 0 degrees)
 
   @Override
   public void robotInit() {
@@ -54,8 +50,8 @@ public class Robot extends TimedRobot {
     UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
-
     elevator.setupEncoder();
+    Robot.drivetrain.setDriverCamMode();
   }
 
   @Override
@@ -71,34 +67,18 @@ public class Robot extends TimedRobot {
         lights.setBlueAlliance();
       }
 
-    //Vision Target Data Aquistion
+    //Gather Vision Information
+    targetValid = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    targetX = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    targetY = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    targetArea = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+    targetSkew = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
 
-    //X Coordinates
-    targetX = targetEntryX.getDoubleArray(defaultValue);
-    if(targetX.length < 1) {
-    	x = 0;
-    }
-    else if(targetX.length == 1) {
-    	x = targetX[0];
-    }
-    else {
-    	x = (targetX[0] + targetX[1])/2;
-    }
-
-    //Area
-    targetArea = targetEntryArea.getDoubleArray(defaultValue);
-    if(targetArea.length < 1) {
-    	area = 0;
-    }
-    else if(targetArea.length == 1) {
-    	area = targetX[0];
-    }
-    else {
-    	area = (targetArea[0] + targetArea[1])/2;
-    }
-
-    //Area to Distance Calculation
-    distance = 57.7495 * Math.pow(Math.E, (-0.0000168466 * area));
+    SmartDashboard.putNumber("Valid Target", targetValid);
+    SmartDashboard.putNumber("Target X", targetX);
+    SmartDashboard.putNumber("Target Y", targetY);
+    SmartDashboard.putNumber("Target Area", targetArea);
+    SmartDashboard.putNumber("Target Skew", targetSkew);
   }
 
   @Override
