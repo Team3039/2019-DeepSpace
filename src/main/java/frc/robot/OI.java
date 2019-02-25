@@ -1,11 +1,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.FrontLift;
 import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.RearLift;
+import frc.robot.commands.SetElevator;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.ZeroElevator;
 import frc.robot.commands.Sequences.ShootHatchSequence;
@@ -70,10 +72,11 @@ public class OI {
 		// operatorX.whenPressed(new SetElevator(Robot.elevator.low));
 		// operatorSquare.whenPressed(new SetElevator(Robot.elevator.mid));
 		// operatorTriangle.whenPressed(new SetElevator(Robot.elevator.high));
-		operatorCircle.whenPressed(new CollectCargo());
+		operatorCircle.whileHeld(new CollectCargo());
+		operatorOptions.toggleWhenPressed(new ActuateIntake());
 		operatorPadButton.whenPressed(new ZeroElevator()); 
-		operatorR1.whileHeld(new RaiseElevator(.8));
-		operatorR2.whileHeld(new LowerElevator(.5));
+		operatorR1.whileHeld(new RaiseElevator(.9));
+		operatorR2.whileHeld(new LowerElevator(.6));
 		operatorL1.whenPressed(new ShootHatchSequence());
 		operatorL2.whileHeld(new ShootCargo());
 

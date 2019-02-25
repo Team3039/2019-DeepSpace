@@ -37,6 +37,7 @@ public class ShootCargo extends Command {
   @Override
   protected void end() {
     Robot.shooter.stopCargo();
+    Robot.shooter.acquiredCargo = false;
   }
 
   // Called when another command which requires one or more of the same
@@ -44,5 +45,6 @@ public class ShootCargo extends Command {
   @Override
   protected void interrupted() {
     Robot.shooter.stopCargo();
+    Robot.shooter.acquiredCargo = false;
   }
 }

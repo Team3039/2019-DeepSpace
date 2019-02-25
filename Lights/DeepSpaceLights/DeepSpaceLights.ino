@@ -2,6 +2,11 @@
  * Designed by Timothy Ramsey McReynolds on 2/5/19
  */
 
+//TODO
+//Change Intake Delay to longer
+//Change Endgame Strobe to be the alliance color, lower brightness, legnthen delay
+//Change Cargo State to solid alliance color
+//Change Hatch State to running lights of alliance color
 #include <FastLED.h>
 #include <Adafruit_NeoPixel.h>
 

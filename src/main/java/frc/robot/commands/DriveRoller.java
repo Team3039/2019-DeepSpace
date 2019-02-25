@@ -12,6 +12,7 @@ import frc.robot.Robot;
 
 public class DriveRoller extends Command {
   public DriveRoller() {
+    requires(Robot.climber);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

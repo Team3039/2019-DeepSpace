@@ -14,7 +14,7 @@ public class Constants {
 
     //Drivetrain 
     public static final double y = .95;
-    public static final double rot = .85;
+    public static final double rot = .9;
 
     //Elevator 
 
@@ -38,11 +38,11 @@ public class Constants {
     
     //Elevator Levels
     public static final double cargoIntake = 0;
-    public static final double hatchLow = 850; 
-    public static final double hatchMid = 16850;
-    public static final double hatchHigh = 32850;
-    public static final double cargoLow = 6850;
-    public static final double cargoMid = 21850;
-    public static final double cargoHigh = 36850;
-    public static final double cargoShip = 14850;
+    public static final double hatchLow = 350; 
+    public static final double hatchMid = 16325;
+    public static final double hatchHigh = 33000;
+    public static final double cargoLow = 7000;
+    public static final double cargoMid = 22000;
+    public static final double cargoHigh = 37000;
+    public static final double cargoShip = 15000;
 }

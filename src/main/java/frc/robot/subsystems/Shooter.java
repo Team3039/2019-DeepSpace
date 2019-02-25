@@ -76,7 +76,7 @@ public class Shooter extends Subsystem {
   }
 
   public boolean getCargoStatus() {
-    return cargoStatus.get();
+    return !cargoStatus.get();
   }
   
   @Override
