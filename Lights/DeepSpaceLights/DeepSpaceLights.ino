@@ -2,12 +2,6 @@
  * Designed by Timothy Ramsey McReynolds on 2/5/19
  */
 
-//TODO
-//Change Intake Delay to longer
-//Change Endgame Strobe to be the alliance color, lower brightness, legnthen delay
-//Change Cargo State to solid alliance color
-//Change Hatch State to running lights of alliance color
-
 #include <FastLED.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -32,26 +26,31 @@
 #define CARGO_CASE 2
 #define CLIMBING_CASE 3
 
-#define FIRE_MILLIS 0
-#define FLASH_MILLIS 1
+#define ELEVATOR_FIRE_MILLIS 0
+#define INTAKE_FIRE_MILLIS 1
+#define FLASH_MILLIS 2
+#define THEATER_MILLIS 3
 
-#define FIRE_SPEED 10
-#define FLASH_SPEED 75
+#define ELEVATOR_FIRE_SPEED 10
+#define INTAKE_FIRE_SPEED 20
+#define FLASH_SPEED 115
+#define THEATER_SPEED 55
 
 Adafruit_NeoPixel elevator = Adafruit_NeoPixel(ELEVATOR_NUM_LEDS, ELEVATOR_PIN, NEO_GRBW + NEO_KHZ800);
 Adafruit_NeoPixel intake = Adafruit_NeoPixel(INTAKE_NUM_LEDS, INTAKE_PIN, NEO_GRBW + NEO_KHZ800);
 
 const CRGBPalette16 redFirePalette = CRGBPalette16(CRGB::Black, CRGB::Red, CRGB::Yellow, CRGB::White);
 const CRGBPalette16 blueFirePalette = CRGBPalette16(CRGB::Black, CRGB::Blue, CRGB::Aqua, CRGB::White);
+const CRGB redAllianceColor = CRGB::Red;
+const CRGB blueAllianceColor = CRGB::Blue;
 const CRGB white = CRGB::White;
-const CRGB cargoFlash = CRGB::OrangeRed;
-const CRGB hatchFlash = CRGB::Yellow;
-const CRGB climbFlash = white;
 
 CRGBPalette16 firePalette = redFirePalette;
-CRGB flashColor = CRGB::White;
+CRGB allianceColor = CRGB::Red;
 
 unsigned long previousMillis[] = {0, 0, 0, 0};
+
+int prevTheaterChaseIndex = 0, theaterChaseIndex = 1;
 
 byte binaryState = 0;
 
@@ -84,27 +83,33 @@ void setup()
 
 void loop()
 {
-  
   //Determines the binary state based off of state input pins
   binaryState = getState();
-  //Determines which alliance to set default fire color and matrix text color to
+  //Determines which alliance to set fire, flash, and solid color to
   redAlliance = digitalRead(ALLIANCE_PIN)==LOW;
+
+  if(redAlliance)
+    allianceColor = redAllianceColor;
+  else
+    allianceColor = blueAllianceColor;
   //Run light programs based off of binary state
   switch(binaryState)
   {
     case HATCH_CASE:
+      runTheaterChase();
+      break;
     case CARGO_CASE:
+      runSolid();
+      break;
     case CLIMBING_CASE:
       runFlash();
       break;
-      
     case IDLE_CASE:
     default:
       runFire();
       break;
   }
-  
-  
+   
   //Actually displays everything changed during loop()
   intake.show();
   elevator.show();
@@ -125,31 +130,18 @@ void runFire()
     firePalette = blueFirePalette;
 
   //Runs fire programs without delaying the whole program
-  if(myDelay(FIRE_MILLIS, FIRE_SPEED))
+  if(myDelay(ELEVATOR_FIRE_MILLIS, ELEVATOR_FIRE_SPEED))
   {
     elevatorFire();
+  }
+  if(myDelay(INTAKE_FIRE_MILLIS, INTAKE_FIRE_SPEED))
+  {
     intakeFire();
   }
 }
 
 void runFlash()
 {
-  switch(binaryState)
-  {
-    case HATCH_CASE:
-      flashColor = hatchFlash;
-      break;
-      
-    case CARGO_CASE:
-      flashColor = cargoFlash;
-      break;
-      
-    case CLIMBING_CASE:
-    default:
-      flashColor = climbFlash;
-      break;
-  }
-  
   //Runs flashing programs without delaying the whole program
   if(myDelay(FLASH_MILLIS, FLASH_SPEED))
   {
@@ -157,6 +149,26 @@ void runFlash()
     intakeFlash();
     flashed = !flashed;
   } 
+}
+
+void runSolid()
+{
+  //Runs solid program without using any form of delay
+  setElevatorAll(allianceColor);
+  setIntakeAll(allianceColor);
+}
+
+void runTheaterChase()
+{
+  //Runs theater chase programs without delaying the whole program
+  if(myDelay(THEATER_MILLIS, THEATER_SPEED))
+  {
+    elevatorTheaterChase();
+    intakeTheaterChase();
+  }
+  //Increments both theaterChaseIndexes so that prevTheaterChaseIndex is always one behind theaterChaseIndex
+  prevTheaterChaseIndex = (prevTheaterChaseIndex >= 2 ? 0 : prevTheaterChaseIndex + 1);
+  theaterChaseIndex = (theaterChaseIndex >= 2 ? 0 : theaterChaseIndex + 1);
 }
 
 void elevatorFire()
@@ -218,24 +230,38 @@ void intakeFire()
 void elevatorFlash()
 {
   //Custom code to flash a color on the elevator
-  for(int i = 0; i < ELEVATOR_NUM_LEDS; i++)
-  {
-    if(!flashed)
-      setElevatorPixel(i, flashColor);
-    else
-      setElevatorPixel(i, CRGB::Black);
-  }
+  if(!flashed)
+    setElevatorAll(allianceColor);
+  else
+    setElevatorAll(CRGB::Black);
 }
 
 void intakeFlash()
 {
   //Custom code to flash a color on the intake
-  for(int i = 0; i < INTAKE_NUM_LEDS; i++)
+  if(!flashed)
+    setIntakeAll(allianceColor);
+  else
+    setIntakeAll(CRGB::Black);
+}
+
+void elevatorTheaterChase()
+{
+  //Theater chase modeled after theaterChase in strandtest
+  for(int i = 0; i < ELEVATOR_NUM_LEDS; i += 3)
   {
-    if(!flashed)
-      setIntakePixel(i, flashColor);
-    else
-      setIntakePixel(i, CRGB::Black);
+    setElevatorPixel(i + prevTheaterChaseIndex, CRGB::Black);
+    setElevatorPixel(i + theaterChaseIndex, allianceColor);
+  }
+}
+
+void intakeTheaterChase()
+{
+  //Theater chase modeled after theaterChase in strandtest
+  for(int i = 0; i < INTAKE_NUM_LEDS; i += 3)
+  {
+    setIntakePixel(i + prevTheaterChaseIndex, CRGB::Black);
+    setIntakePixel(i + theaterChaseIndex, allianceColor);
   }
 }
 
@@ -259,12 +285,32 @@ void setIntakePixel(int pixel, CRGB color)
 
 void setElevatorPixelWhite(int pixel)
 {
+  //Uses the white LED in the RGBW strip
   elevator.setPixelColor(pixel, elevator.Color(255, 255, 255, 255));
 }
 
 void setIntakePixelWhite(int pixel)
 {
+  //Uses the white LED in the RGBW strip
   intake.setPixelColor(pixel, intake.Color(255, 255, 255, 255));
+}
+
+void setElevatorAll(CRGB color)
+{
+  //Sets the color of all of the elevator LEDs
+  for(int i = 0; i < ELEVATOR_NUM_LEDS; i++)
+  {
+    setElevatorPixel(i, color);
+  }
+}
+
+void setIntakeAll(CRGB color)
+{
+  //Sets the color of all of the intake LEDs
+  for(int i = 0; i < INTAKE_NUM_LEDS; i++)
+  {
+    setIntakePixel(i, color);
+  }
 }
 
 void setIntakeFirstHalf(int pixel, CRGB color)
