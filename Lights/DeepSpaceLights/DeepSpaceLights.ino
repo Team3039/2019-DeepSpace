@@ -41,6 +41,7 @@ Adafruit_NeoPixel intake = Adafruit_NeoPixel(INTAKE_NUM_LEDS, INTAKE_PIN, NEO_GR
 
 const CRGBPalette16 redFirePalette = CRGBPalette16(CRGB::Black, CRGB::Red, CRGB::Yellow, CRGB::White);
 const CRGBPalette16 blueFirePalette = CRGBPalette16(CRGB::Black, CRGB::Blue, CRGB::Aqua, CRGB::White);
+//const CRGBPalette16 rainbowPalette = RainbowColors_p;
 const CRGB redAllianceColor = CRGB::Red;
 const CRGB blueAllianceColor = CRGB::Blue;
 const CRGB white = CRGB::White;
