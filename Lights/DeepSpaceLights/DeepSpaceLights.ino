@@ -49,7 +49,7 @@ const CRGB white = CRGB::White;
 CRGBPalette16 firePalette = redFirePalette;
 CRGB allianceColor = CRGB::Red;
 
-unsigned long previousMillis[] = {0, 0, 0, 0};
+unsigned long previousMillis[] = {0, 0, 0, 0, 0, 0, 0};
 
 int prevTheaterChaseIndex = 0, theaterChaseIndex = 1;
 
