@@ -84,8 +84,13 @@ void setup()
 
 void loop()
 {
+  //Resets the brightness of the strips back to normal if they are changed by runFlash()
+  elevator.setBrightness(BRIGHTNESS);
+  intake.setBrightness(BRIGHTNESS);
+
   //Determines the binary state based off of state input pins
   binaryState = getState();
+  
   //Determines which alliance to set fire, flash, and solid color to
   //Use this whenever you want to change alliance color with a switch conneccted to the robot
   redAlliance = digitalRead(ALLIANCE_PIN)==LOW;
@@ -160,6 +165,10 @@ void runFire()
 
 void runFlash()
 {
+  //Lowers the brightness to avoid lawsuits
+  elevator.setBrightness(75);
+  intake.setBrightness(75);
+
   //Runs flashing programs without delaying the whole program
   if(myDelay(FLASH_MILLIS, FLASH_SPEED))
   {
@@ -281,11 +290,6 @@ void intakeTheaterChase()
     setIntakePixel(i + prevTheaterChaseIndex, CRGB::Black);
     setIntakePixel(i + theaterChaseIndex, allianceColor);
   }
-}
-
-void elevatorSolid()
-{
-  
 }
 
 void setElevatorPixel(int pixel, CRGB color)
