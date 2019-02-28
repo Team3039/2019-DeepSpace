@@ -283,6 +283,11 @@ void intakeTheaterChase()
   }
 }
 
+void elevatorSolid()
+{
+  
+}
+
 void setElevatorPixel(int pixel, CRGB color)
 {
   //Sets the color of an elevator pixel
