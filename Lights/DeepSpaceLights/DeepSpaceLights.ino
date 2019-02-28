@@ -87,12 +87,36 @@ void loop()
   //Determines the binary state based off of state input pins
   binaryState = getState();
   //Determines which alliance to set fire, flash, and solid color to
+  //Use this whenever you want to change alliance color with a switch conneccted to the robot
   redAlliance = digitalRead(ALLIANCE_PIN)==LOW;
 
   if(redAlliance)
     allianceColor = redAllianceColor;
   else
     allianceColor = blueAllianceColor;
+  
+  //Run this method when you want to test lights when connected to the robot:
+  runBinaryLights();
+
+  //Change to true or false depending on which alliance color you want to test:
+  //redAlliance = false;
+
+  //Run one of these when you want to test a specific sequence:
+  //runFire();
+  //runTheaterChase();
+  //runSolid();
+  //runFlash();
+
+  //Actually displays everything changed during loop()
+  intake.show();
+  elevator.show();
+
+  //Momentarily delays program 
+  delay(10);
+}
+
+void runBinaryLights()
+{
   //Run light programs based off of binary state
   switch(binaryState)
   {
@@ -110,13 +134,6 @@ void loop()
       runFire();
       break;
   }
-   
-  //Actually displays everything changed during loop()
-  intake.show();
-  elevator.show();
-
-  //Momentarily delays program 
-  delay(10);
 }
 
 void runFire()
@@ -154,7 +171,7 @@ void runFlash()
 
 void runSolid()
 {
-  //Runs solid program without using any form of delay
+  //Runs solid programs without using any form of delay
   setElevatorAll(allianceColor);
   setIntakeAll(allianceColor);
 }
