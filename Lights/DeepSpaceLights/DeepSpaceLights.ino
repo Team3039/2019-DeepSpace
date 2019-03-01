@@ -45,13 +45,15 @@ const CRGBPalette16 blueFirePalette = CRGBPalette16(CRGB::Black, CRGB::Blue, CRG
 const CRGB redAllianceColor = CRGB::Red;
 const CRGB blueAllianceColor = CRGB::Blue;
 const CRGB white = CRGB::White;
+const CRGB black = CRGB::Black;
 
 CRGBPalette16 firePalette = redFirePalette;
 CRGB allianceColor = CRGB::Red;
 
 unsigned long previousMillis[] = {0, 0, 0, 0, 0, 0, 0};
 
-int prevTheaterChaseIndex = 0, theaterChaseIndex = 1;
+int prevTheaterChaseIndex = 0, 
+  theaterChaseIndex = 1;
 
 byte binaryState = 0;
 
@@ -80,6 +82,9 @@ void setup()
   pinMode(STATE_PIN_1, INPUT);
   pinMode(STATE_PIN_2, INPUT);
   pinMode(ALLIANCE_PIN ,INPUT);
+
+  //Run this if you want the lights to flash when the robot is first turned on
+  //startup();
 }
 
 void loop()
@@ -118,6 +123,21 @@ void loop()
 
   //Momentarily delays program 
   delay(10);
+}
+
+//Starts the lights off by flashing them
+void startup()
+{
+  for(int i = 0; i < 3; i++)
+  {
+    setElevatorAll(redAllianceColor);
+    setIntakeAll(redAllianceColor);
+    delay(FLASH_SPEED);
+    setElevatorAll(black);
+    setIntakeAll(black);
+    delay(FLASH_SPEED);
+  }
+  delay(FLASH_SPEED * 2);
 }
 
 void runBinaryLights()
@@ -194,8 +214,8 @@ void runTheaterChase()
     intakeTheaterChase();
   }
   //Increments both theaterChaseIndexes so that prevTheaterChaseIndex is always one behind theaterChaseIndex
-  prevTheaterChaseIndex = (prevTheaterChaseIndex >= 2 ? 0 : prevTheaterChaseIndex + 1);
-  theaterChaseIndex = (theaterChaseIndex >= 2 ? 0 : theaterChaseIndex + 1);
+  if(++prevTheaterChaseIndex >= 3) prevTheaterChaseIndex = 0;
+  if(++theaterChaseIndex >= 3) theaterChaseIndex = 0;
 }
 
 void elevatorFire()
@@ -260,7 +280,7 @@ void elevatorFlash()
   if(!flashed)
     setElevatorAll(allianceColor);
   else
-    setElevatorAll(CRGB::Black);
+    setElevatorAll(black);
 }
 
 void intakeFlash()
@@ -269,7 +289,7 @@ void intakeFlash()
   if(!flashed)
     setIntakeAll(allianceColor);
   else
-    setIntakeAll(CRGB::Black);
+    setIntakeAll(black);
 }
 
 void elevatorTheaterChase()
@@ -277,7 +297,7 @@ void elevatorTheaterChase()
   //Theater chase modeled after theaterChase in strandtest
   for(int i = 0; i < ELEVATOR_NUM_LEDS; i += 3)
   {
-    setElevatorPixel(i + prevTheaterChaseIndex, CRGB::Black);
+    setElevatorPixel(i + prevTheaterChaseIndex, black);
     setElevatorPixel(i + theaterChaseIndex, allianceColor);
   }
 }
@@ -287,7 +307,7 @@ void intakeTheaterChase()
   //Theater chase modeled after theaterChase in strandtest
   for(int i = 0; i < INTAKE_NUM_LEDS; i += 3)
   {
-    setIntakePixel(i + prevTheaterChaseIndex, CRGB::Black);
+    setIntakePixel(i + prevTheaterChaseIndex, black);
     setIntakePixel(i + theaterChaseIndex, allianceColor);
   }
 }

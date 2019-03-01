@@ -24,7 +24,7 @@ public class Climber extends Subsystem {
 
   public Solenoid forklift = new Solenoid(RobotMap.forklift);
 
-  boolean isClimbing = false;
+  public boolean isClimbing = false;
 
   public void driveFrontLift(double power) {
     liftA.setNeutralMode(NeutralMode.Brake);

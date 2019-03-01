@@ -24,6 +24,8 @@ public class Lights extends Subsystem {
       state1();
     else if(Robot.shooter.acquiredCargo)
       state2();
+    else if(Robot.climber.isClimbing)
+      state3();
     else 
       state0();
   }
