@@ -137,7 +137,7 @@ void startup()
     setIntakeAll(black);
     delay(FLASH_SPEED);
   }
-  delay(FLASH_SPEED * 2);
+  delay(FLASH_SPEED);
 }
 
 void runBinaryLights()
