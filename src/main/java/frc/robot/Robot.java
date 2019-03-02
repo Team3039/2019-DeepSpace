@@ -117,11 +117,12 @@ public class Robot extends TimedRobot {
     System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
     SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
     SmartDashboard.putNumber("Velocity", Robot.elevator.elevatorA.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
+    // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
 
-    if(!Robot.elevator.lowerLimit.get()) {
-      Robot.elevator.resetEncoder();
-    }
+      if(!Robot.elevator.lowerLimit.get()) {
+        Robot.elevator.resetEncoder();
+      }
+
 
 
     // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());

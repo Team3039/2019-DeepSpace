@@ -18,7 +18,7 @@ public class CollectCargoSequence extends CommandGroup {
 
   public CollectCargoSequence() {
     addSequential(new SetElevator(Constants.cargoLow));
-    addSequential(new ExtendIntake(),2);
+    addSequential(new ExtendIntake(),5);
     addSequential(new SetElevator(Constants.cargoIntake));
     addSequential(new CollectCargo());
     addSequential(new SetElevator(Constants.cargoShip));

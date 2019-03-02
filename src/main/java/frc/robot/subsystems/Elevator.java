@@ -45,8 +45,8 @@ public class Elevator extends Subsystem {
     elevatorA.config_kF(0, Constants.kF_Elevator);
 
     //Motion Magic Config
-    elevatorA.configMotionCruiseVelocity(9500);
-    elevatorA.configMotionAcceleration(15000);
+    elevatorA.configMotionCruiseVelocity(Constants.kCrusieVelocity, 0);
+    elevatorA.configMotionAcceleration(Constants.kAcceleration);
   }
 
   public void setElevator(double targetPosition) {

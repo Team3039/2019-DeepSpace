@@ -19,7 +19,7 @@ public class Constants {
     //Elevator 
 
     //Proportional Gain: The distance between the actual position and the setpoint
-    public static final double kP_Elevator = 0.7;
+    public static final double kP_Elevator = 0.4;
     
     //Integral Gain: The area between the actual position and the setpoint over time 
     public static final double kI_Elevator = 0.0;
@@ -31,14 +31,14 @@ public class Constants {
     public static final double kF_Elevator = 0.0;
 
     //Cruise Velocity: The (position/time) to be acheived while executing a motion profile
-    public static final double kCrusieVelocity = 9500;
+    public static final int kCrusieVelocity = 9500;
 
     //Acceleration: The derivitive of Velocity (position/time^2) to be used when entering a motion profile
-    public static final double kAcceleration = 15000;
+    public static final int kAcceleration = 15000;
     
     //Elevator Levels
     public static final double cargoIntake = 0;
-    public static final double hatchLow = 350; 
+    public static final double hatchLow = 2000; 
     public static final double hatchMid = 16325;
     public static final double hatchHigh = 33000;
     public static final double cargoLow = 7000;

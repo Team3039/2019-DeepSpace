@@ -10,7 +10,9 @@ import frc.robot.commands.RearLift;
 import frc.robot.commands.SetElevator;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.ZeroElevator;
+import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
+import frc.robot.commands.Sequences.ZeroElevatorSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -69,12 +71,12 @@ public class OI {
 		//Operator Controls
 		//TODO Change Cargo Collection and Zeroing back to Sequences, and add Macros back after PID Tuning
 
-		// operatorX.whenPressed(new SetElevator(Robot.elevator.low));
-		// operatorSquare.whenPressed(new SetElevator(Robot.elevator.mid));
-		// operatorTriangle.whenPressed(new SetElevator(Robot.elevator.high));
-		operatorCircle.whileHeld(new CollectCargo());
+		operatorX.whenPressed(new SetElevator(Robot.elevator.low));
+		operatorSquare.whenPressed(new SetElevator(Robot.elevator.mid));
+		operatorTriangle.whenPressed(new SetElevator(Robot.elevator.high));
+		operatorCircle.whenPressed(new CollectCargoSequence());
 		operatorOptions.toggleWhenPressed(new ActuateIntake());
-		operatorPadButton.whenPressed(new ZeroElevator()); 
+		operatorPadButton.whenPressed(new ZeroElevatorSequence()); 
 		operatorR1.whileHeld(new RaiseElevator(.9));
 		operatorR2.whileHeld(new LowerElevator(.6));
 		operatorL1.whenPressed(new ShootHatchSequence());
