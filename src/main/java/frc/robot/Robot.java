@@ -3,8 +3,6 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -114,18 +112,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
+    // System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
     SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
     SmartDashboard.putNumber("Velocity", Robot.elevator.elevatorA.getSelectedSensorVelocity());
     // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
-
-      if(!Robot.elevator.lowerLimit.get()) {
-        Robot.elevator.resetEncoder();
-      }
-
-
-
     // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());
+    // System.out.println("\n  Raising " + Robot.elevator.isRaising);
+    // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
 
   }
 

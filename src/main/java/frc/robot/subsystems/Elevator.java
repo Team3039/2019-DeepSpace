@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveElevator;
 
 public class Elevator extends Subsystem {
 
@@ -23,48 +24,29 @@ public class Elevator extends Subsystem {
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
   public boolean isRaising = false; //The Elevator is moving up
   public boolean isLowering = false; //The Elevator is coming down
-  
+  public boolean isClosedLoopControl = false;
+
+  public double targetPosition = 0;
+
   //Dynamic Setpoints (Value being changed and read by the CommandGroups, initially set to hatch levels)
   public double low = Constants.hatchLow;
   public double mid = Constants.hatchMid;
   public double high = Constants.hatchHigh;
   
-  public void driveElevator(double power) {
+  public void driveElevatorManual(double power) {
     //Manual drive for the elevator
+    elevatorA.configClosedloopRamp(0);
+
     elevatorA.setNeutralMode(NeutralMode.Brake);
     elevatorB.setNeutralMode(NeutralMode.Brake);
+
     elevatorA.set(ControlMode.PercentOutput, power);
-    elevatorB.set(ControlMode.PercentOutput, power);
+    elevatorB.set(ControlMode.PercentOutput, power);  
+    isClosedLoopControl = false;
   }
 
-  public void setConstants() {
-    //PID Config 
-    elevatorA.config_kP(0, Constants.kP_Elevator);
-    elevatorA.config_kI(0, Constants.kI_Elevator);
-    elevatorA.config_kD(0, Constants.kD_Elevator);
-    elevatorA.config_kF(0, Constants.kF_Elevator);
-
-    //Motion Magic Config
-    elevatorA.configMotionCruiseVelocity(Constants.kCrusieVelocity, 0);
-    elevatorA.configMotionAcceleration(Constants.kAcceleration);
-  }
-
-  public void setElevator(double targetPosition) {
+  public void driveElevatorClosedLoop() {
     setConstants();
-
-    //Direction
-    if(elevatorA.getMotorOutputVoltage() > 0) {
-      isRaising = true;
-      isLowering = false;
-    }
-    else if(elevatorA.getMotorOutputVoltage() < 0) {
-      isRaising = false;
-      isLowering = true;
-    }
-    else {
-      isRaising = false;
-      isLowering = false;   
-    }
 
     //Cargo or Hatch Levels?
     if(isCargoMode) {
@@ -79,21 +61,40 @@ public class Elevator extends Subsystem {
     }
     
     //Powering Elevator
-    if(!getLimit()) {
-      elevatorA.set(ControlMode.Position, targetPosition);
-      elevatorB.follow(elevatorA);  
-    }
-    else {
-      elevatorA.set(ControlMode.PercentOutput, 0);
-      elevatorB.follow(elevatorA);
-    }
+    elevatorA.configClosedloopRamp(Constants.kRampSeconds);
+    elevatorA.set(ControlMode.MotionMagic, targetPosition);
+    elevatorB.follow(elevatorA); 
 
     elevatorA.setNeutralMode(NeutralMode.Brake);
     elevatorB.setNeutralMode(NeutralMode.Brake);
   }
-  
+
+  public void changePosition(double newTarget) {
+    isClosedLoopControl = true;
+    targetPosition = newTarget;
+  }
+
+  public void setConstants() {
+    //PID Config 
+    if(isLowering) {
+      elevatorA.config_kP(0, Constants.kP_Elevator_Down);
+    }
+    else {
+      elevatorA.config_kP(0, Constants.kP_Elevator);
+    }
+    elevatorA.config_kP(0, Constants.kP_Elevator);
+    elevatorA.config_kI(0, Constants.kI_Elevator);
+    elevatorA.config_kD(0, Constants.kD_Elevator);
+    elevatorA.config_kF(0, Constants.kF_Elevator);
+
+    //Motion Magic Config
+    elevatorA.configMotionCruiseVelocity(Constants.kCrusieVelocity);
+    elevatorA.configMotionAcceleration(Constants.kAcceleration);
+  }
+
    public void stopElevator() {
-    driveElevator(0);
+    elevatorA.set(ControlMode.PercentOutput,0);
+    elevatorB.follow(elevatorA);
     elevatorA.neutralOutput();
     elevatorB.neutralOutput();
   }
@@ -123,6 +124,6 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
+    setDefaultCommand(new DriveElevator());
   }
 }

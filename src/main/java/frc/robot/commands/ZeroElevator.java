@@ -24,7 +24,7 @@ public class ZeroElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.driveElevator(-.4);
+    Robot.elevator.driveElevatorManual(-.4);
     Robot.elevator.elevatorA.setSelectedSensorPosition(0,0,0);
   }
 
@@ -38,14 +38,14 @@ public class ZeroElevator extends Command {
   @Override
   protected void end() {
     Robot.elevator.elevatorA.setSelectedSensorPosition(0,0,0);
-    Robot.elevator.driveElevator(0);
+    Robot.elevator.stopElevator();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.elevator.driveElevator(0);
+    Robot.elevator.stopElevator();
     Robot.elevator.elevatorA.setSelectedSensorPosition(0,0,0);
   }
 }
