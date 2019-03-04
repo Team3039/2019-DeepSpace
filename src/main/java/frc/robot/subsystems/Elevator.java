@@ -76,12 +76,7 @@ public class Elevator extends Subsystem {
 
   public void setConstants() {
     //PID Config 
-    if(isLowering) {
-      elevatorA.config_kP(0, Constants.kP_Elevator_Down);
-    }
-    else {
-      elevatorA.config_kP(0, Constants.kP_Elevator);
-    }
+    elevatorA.config_kP(0, Constants.kP_Elevator);
     elevatorA.config_kP(0, Constants.kP_Elevator);
     elevatorA.config_kI(0, Constants.kI_Elevator);
     elevatorA.config_kD(0, Constants.kD_Elevator);

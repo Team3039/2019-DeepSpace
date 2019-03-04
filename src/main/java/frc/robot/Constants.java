@@ -20,7 +20,6 @@ public class Constants {
 
     //Proportional Gain: The distance between the actual position and the setpoint
     public static final double kP_Elevator = 0.14;
-    public static final double kP_Elevator_Down = 0.0;
     
     //Integral Gain: The area between the actual position and the setpoint over time 
     public static final double kI_Elevator = 0.0;
