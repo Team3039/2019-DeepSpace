@@ -67,7 +67,7 @@ public class Drivetrain extends Subsystem {
       rot = kP*errorX; //If LL2 sees a target, use a P Controller to turn to it
     }
     else if(Robot.targetValid == 0) {
-      rot = .4; //If LL2 does not see a target, spin in place
+      rot = gp.getRightXAxis(); //If LL2 does not see a target, spin in place
     }
 
     frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
