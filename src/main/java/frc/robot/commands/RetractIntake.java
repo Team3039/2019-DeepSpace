@@ -25,6 +25,7 @@ public class RetractIntake extends Command {
   @Override
   protected void execute() {
     Robot.intake.retract();
+    Robot.drivetrain.cameraPivot(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()

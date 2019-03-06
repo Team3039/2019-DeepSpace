@@ -2,13 +2,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.ActuateIntake;
+import frc.robot.commands.Aim;
 import frc.robot.commands.ChangeElevatorPosition;
-import frc.robot.commands.FrontLift;
-import frc.robot.commands.RearLift;
+import frc.robot.commands.CollectCargo;
+import frc.robot.commands.LiftBack;
+import frc.robot.commands.LiftFront;
 import frc.robot.commands.ShootCargo;
+import frc.robot.commands.Sequences.CargoFaultSequence;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
-import frc.robot.commands.Sequences.ZeroElevatorSequence;
 import frc.util.PS4Copad;
 import frc.util.PS4Gamepad;
 
@@ -57,20 +59,22 @@ public class OI {
 		Button operatorR2 = operatorPad.getR2();
 		Button operatorR3 = operatorPad.getR3();
 
-		//driver Controls		
-		driverL2.whileHeld(new FrontLift(-.9));
-		driverL1.whileHeld(new FrontLift(.9));
-		driverTriangle.toggleWhenActive(new RearLift());
-		
+		//driver Controls		;
+		driverX.toggleWhenActive(new Aim());
+		driverSquare.toggleWhenPressed(new LiftFront());
+		driverCircle.toggleWhenPressed(new LiftBack());
+		driverR1.whileHeld(new CollectCargo());
 
 		//Operator Controls
-		operatorX.whileHeld(new ChangeElevatorPosition(Robot.elevator.low));
-		operatorSquare.whileHeld(new ChangeElevatorPosition(Robot.elevator.mid));
-		operatorTriangle.whileHeld(new ChangeElevatorPosition(Robot.elevator.high));
-		operatorCircle.whenPressed(new CollectCargoSequence());
-		operatorOptions.toggleWhenPressed(new ActuateIntake());
+		operatorX.whileHeld(new ChangeElevatorPosition(Constants.hatchLow));
+		operatorSquare.whileHeld(new ChangeElevatorPosition(Constants.hatchMid));
+		operatorTriangle.whileHeld(new ChangeElevatorPosition(Constants.hatchHigh));
+		operatorCircle.whileHeld(new ChangeElevatorPosition(Constants.cargoShip));
+		operatorR2.whenPressed(new CollectCargoSequence());
+		operatorL2.whenPressed(new CargoFaultSequence());
 		operatorL1.whenPressed(new ShootHatchSequence());
-		operatorL2.whileHeld(new ShootCargo());
+		operatorR1.whileHeld(new ShootCargo());
+		operatorOptions.toggleWhenPressed(new ActuateIntake());
 
 
 	}

@@ -5,23 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Sequences;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.ChangeElevatorPosition;
-import frc.robot.commands.CollectCargo;
-import frc.robot.commands.ExtendIntake;
-import frc.robot.commands.RetractIntake;
 
-public class CollectCargoSequence extends CommandGroup {
-
-  public CollectCargoSequence() {
+public class CargoFaultSequence extends CommandGroup {
+  /**
+   * Add your docs here.
+   */
+  public CargoFaultSequence() {
     addSequential(new ChangeElevatorPosition(Constants.cargoLow),1);
-    addSequential(new ExtendIntake(),.5);
-    addSequential(new ChangeElevatorPosition(Constants.cargoIntake),1);
-    addSequential(new CollectCargo());
-    addSequential(new ChangeElevatorPosition(Constants.cargoShip),2);
-    addSequential(new RetractIntake(),.1);
+    addParallel(new RetractIntake(),.1);
+    addSequential(new ShootCargo(),2);
   }
 }

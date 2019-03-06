@@ -24,8 +24,9 @@ public class DriveElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
     if(!Robot.elevator.getLimit()) {
-      if((Math.abs(Robot.oi.getCopad().getRightYAxis()) > .1)) {
+      if((Math.abs(Robot.oi.getCopad().getRightYAxis()) > .2)) {
         Robot.elevator.targetPosition = Robot.elevator.getPosition();
         Robot.elevator.isClosedLoopControl = false;
       }

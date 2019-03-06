@@ -27,8 +27,12 @@ public class ChangeElevatorPosition extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.elevator.changePosition(targetPosition);
+    if(Robot.shooter.acquiredCargo) {
+      Robot.elevator.changePosition(targetPosition+6000);
+    }
+    else {
+      Robot.elevator.changePosition(targetPosition);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

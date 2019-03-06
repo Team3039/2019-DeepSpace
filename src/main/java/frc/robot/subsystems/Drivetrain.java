@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -18,6 +19,7 @@ public class Drivetrain extends Subsystem {
     public TalonSRX frontrightMotor = new TalonSRX(RobotMap.frontrightMotor);
     public TalonSRX rearleftMotor = new TalonSRX(RobotMap.rearleftMotor);
     public TalonSRX rearrightMotor = new TalonSRX(RobotMap.rearrightMotor);
+    public Solenoid cameraPivot = new Solenoid(RobotMap.cameraPivot);
 
     //Checks if Robot is being driven in Reverse
     public boolean isReversed = false;
@@ -58,7 +60,7 @@ public class Drivetrain extends Subsystem {
 
   public void aim(PS4Gamepad gp) {
 
-    double kP = -0.02;
+    double kP = -0.12;
     double errorX = -Robot.targetX;
     double y = gp.getLeftYAxis()*-.9;
     double rot = 0;
@@ -84,6 +86,10 @@ public class Drivetrain extends Subsystem {
     rearrightMotor.set(ControlMode.PercentOutput, 0);   
   }
 
+  public void cameraPivot(boolean state) {
+    cameraPivot.set(!state);
+  }
+  
   @Override
   public void initDefaultCommand() {
     // The following command is constantly being run, and thus the gamepad input is constantly being

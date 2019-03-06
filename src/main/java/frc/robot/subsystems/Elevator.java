@@ -28,10 +28,7 @@ public class Elevator extends Subsystem {
 
   public double targetPosition = 0;
 
-  //Dynamic Setpoints (Value being changed and read by the CommandGroups, initially set to hatch levels)
-  public double low = Constants.hatchLow;
-  public double mid = Constants.hatchMid;
-  public double high = Constants.hatchHigh;
+  //Dynamic Setpoints (Value being changed and read by the Commands, initially set to hatch levels)
   
   public void driveElevatorManual(double power) {
     //Manual drive for the elevator
@@ -47,19 +44,10 @@ public class Elevator extends Subsystem {
 
   public void driveElevatorClosedLoop() {
     setConstants();
-
-    //Cargo or Hatch Levels?
-    if(isCargoMode) {
-      low = Constants.cargoLow;
-      mid = Constants.cargoMid;
-      high = Constants.cargoHigh;
-    }
-    else {
-      low = Constants.hatchLow;
-      mid = Constants.hatchMid;
-      high = Constants.hatchHigh;
-    }
     
+    //Cargo or Hatch Levels?
+
+        
     //Powering Elevator
     elevatorA.configClosedloopRamp(Constants.kRampSeconds);
     elevatorA.set(ControlMode.MotionMagic, targetPosition);

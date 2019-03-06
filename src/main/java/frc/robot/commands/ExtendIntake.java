@@ -25,6 +25,7 @@ public class ExtendIntake extends Command {
   @Override
   protected void execute() {
     Robot.intake.extend();
+    Robot.drivetrain.cameraPivot(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -49,19 +49,18 @@ public class Robot extends TimedRobot {
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
     elevator.setupEncoder();
+    drivetrain.cameraPivot(false);
     Robot.drivetrain.setDriverCamMode();
   }
 
   @Override
   public void robotPeriodic() {
   
-      lights.runLights();
-      if(SmartDashboard.getBoolean("Red Alliance", true))
-      {
-        lights.setRedAlliance();
-      }
-      else
-      {
+    lights.runLights();
+    if(SmartDashboard.getBoolean("Red Alliance", true)) {
+      lights.setRedAlliance();
+    }
+    else {
         lights.setBlueAlliance();
       }
 
@@ -119,6 +118,7 @@ public class Robot extends TimedRobot {
     // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);
     // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
+    System.out.println("\n   " + Robot.shooter.acquiredCargo);
 
   }
 

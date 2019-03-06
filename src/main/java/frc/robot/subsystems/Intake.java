@@ -29,6 +29,10 @@ public class Intake extends Subsystem {
     intake.set(ControlMode.PercentOutput, 0);
   }
 
+  public void expelCargo() {
+    intake.set(ControlMode.PercentOutput, -.6);
+  }
+
   public void extend() {
     extension.set(true);
   }
