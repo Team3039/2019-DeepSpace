@@ -12,9 +12,7 @@ import frc.robot.commands.ReleaseHatch;
 import frc.robot.commands.ShootHatch;
 
 public class ShootHatchSequence extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+
   public ShootHatchSequence() {
     addSequential(new ReleaseHatch(),.1);
     addSequential(new ShootHatch(),.5);

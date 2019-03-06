@@ -5,15 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
+import frc.robot.commands.ChangeElevatorPosition;
+import frc.robot.commands.RetractIntake;
+import frc.robot.commands.ShootCargo;
 
 public class CargoFaultSequence extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+
   public CargoFaultSequence() {
     addSequential(new ChangeElevatorPosition(Constants.cargoLow),1);
     addParallel(new RetractIntake(),.1);
