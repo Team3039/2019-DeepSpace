@@ -24,7 +24,7 @@
 #define IDLE_CASE 0
 #define HATCH_CASE 1
 #define CARGO_CASE 2
-#define CLIMBING_CASE 3
+#define STARTUP_CASE 3
 
 #define ELEVATOR_FIRE_MILLIS 0
 #define INTAKE_FIRE_MILLIS 1
@@ -84,7 +84,7 @@ void setup()
   pinMode(ALLIANCE_PIN ,INPUT);
 
   //Run this if you want the lights to flash when the robot is first turned on
-  //startup();
+  startup();
 }
 
 void loop()
@@ -128,10 +128,12 @@ void loop()
 //Starts the lights off by flashing them
 void startup()
 {
+ elevator.setBrightness(75);
+  intake.setBrightness(75); 
   for(int i = 0; i < 3; i++)
   {
-    setElevatorAll(redAllianceColor);
-    setIntakeAll(redAllianceColor);
+    setElevatorAll(white);
+    setIntakeAll(white);
     delay(FLASH_SPEED);
     setElevatorAll(black);
     setIntakeAll(black);
@@ -145,14 +147,14 @@ void runBinaryLights()
   //Run light programs based off of binary state
   switch(binaryState)
   {
+    case STARTUP_CASE:
+      runFlash();
+      break;
     case HATCH_CASE:
       runTheaterChase();
       break;
     case CARGO_CASE:
       runSolid();
-      break;
-    case CLIMBING_CASE:
-      runFlash();
       break;
     case IDLE_CASE:
     default:
@@ -278,7 +280,7 @@ void elevatorFlash()
 {
   //Custom code to flash a color on the elevator
   if(!flashed)
-    setElevatorAll(allianceColor);
+    setElevatorAll(white);
   else
     setElevatorAll(black);
 }
@@ -287,7 +289,7 @@ void intakeFlash()
 {
   //Custom code to flash a color on the intake
   if(!flashed)
-    setIntakeAll(allianceColor);
+    setIntakeAll(white);
   else
     setIntakeAll(black);
 }
