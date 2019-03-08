@@ -2,11 +2,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -15,14 +17,44 @@ import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
     //Drive Motors
-    public TalonSRX frontleftMotor = new TalonSRX(RobotMap.frontleftMotor); 
-    public TalonSRX frontrightMotor = new TalonSRX(RobotMap.frontrightMotor);
-    public TalonSRX rearleftMotor = new TalonSRX(RobotMap.rearleftMotor);
-    public TalonSRX rearrightMotor = new TalonSRX(RobotMap.rearrightMotor);
+    public WPI_TalonSRX frontleftMotor = new WPI_TalonSRX(RobotMap.frontleftMotor); 
+    public WPI_TalonSRX frontrightMotor = new WPI_TalonSRX(RobotMap.frontrightMotor);
+    public WPI_TalonSRX rearleftMotor = new WPI_TalonSRX(RobotMap.rearleftMotor);
+    public WPI_TalonSRX rearrightMotor = new WPI_TalonSRX(RobotMap.rearrightMotor);
+
+    public SpeedControllerGroup leftDrive = new SpeedControllerGroup(frontleftMotor, rearleftMotor);
+    public SpeedControllerGroup rightDrive = new SpeedControllerGroup(frontrightMotor, rearrightMotor);
+
+    public DifferentialDrive drivetrain = new DifferentialDrive(leftDrive, rightDrive);
+
     public Solenoid cameraPivot = new Solenoid(RobotMap.cameraPivot);
 
     //Checks if Robot is being driven in Reverse
     public boolean isReversed = false;
+
+  // public void joystickControl(PS4Gamepad gp) {
+  //   //Tele-Op Driving
+  //   //Each Motor is Set to Brake Mode, the motor speeds are set in an Arcade Drive fashion
+  //   double y = gp.getLeftYAxis()*-Constants.y;
+  //   double rot = gp.getRightXAxis()*Constants.rot;
+
+  //   frontleftMotor.setNeutralMode(NeutralMode.Brake);
+  //   frontrightMotor.setNeutralMode(NeutralMode.Brake);
+  //   rearrightMotor.setNeutralMode(NeutralMode.Brake);
+  //   rearleftMotor.setNeutralMode(NeutralMode.Brake);
+
+  //   frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
+  //   frontrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
+  //   rearleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
+  //   rearrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
+    
+  //   if(y < 0) {
+  //     isReversed = true;
+  //   }
+  //   else {
+  //     isReversed = false;
+  //   }
+  // }
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
@@ -30,22 +62,13 @@ public class Drivetrain extends Subsystem {
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
 
+    //Set Motor's Neutral Mode to Brake
     frontleftMotor.setNeutralMode(NeutralMode.Brake);
     frontrightMotor.setNeutralMode(NeutralMode.Brake);
     rearrightMotor.setNeutralMode(NeutralMode.Brake);
     rearleftMotor.setNeutralMode(NeutralMode.Brake);
 
-    frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    frontrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
-    rearleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    rearrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
-    
-    if(y < 0) {
-      isReversed = true;
-    }
-    else {
-      isReversed = false;
-    }
+    drivetrain.arcadeDrive(y, rot);
   }
 
   public void setTrackingMode() {
