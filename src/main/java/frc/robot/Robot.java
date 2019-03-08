@@ -55,7 +55,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-  
     lights.runLights();
     if(SmartDashboard.getBoolean("Red Alliance", true)) {
       lights.setRedAlliance();
@@ -72,10 +71,10 @@ public class Robot extends TimedRobot {
     targetSkew = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
 
     SmartDashboard.putNumber("Valid Target", targetValid);
-    SmartDashboard.putNumber("Target X", targetX);
-    SmartDashboard.putNumber("Target Y", targetY);
-    SmartDashboard.putNumber("Target Area", targetArea);
-    SmartDashboard.putNumber("Target Skew", targetSkew);
+    // SmartDashboard.putNumber("Target X", targetX);
+    // SmartDashboard.putNumber("Target Y", targetY);
+    // SmartDashboard.putNumber("Target Area", targetArea);
+    // SmartDashboard.putNumber("Target Skew", targetSkew);
   }
 
   @Override
@@ -111,14 +110,14 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    // System.out.println("\n Elevator Position " + Robot.elevator.getPosition());
+    System.out.println("\n Elevator Position " + Robot.elevator.elevatorA.getMotorOutputVoltage());
     SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
     SmartDashboard.putNumber("Velocity", Robot.elevator.elevatorA.getSelectedSensorVelocity());
     // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
-    // System.out.println("\n Hatch Pressure is " + Robot.shooter.getHatchStatus());
+    // System.out.println("\n Hatch Pres  sure is " + Robot.shooter.getHatchStatus());
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);
     // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
-    System.out.println("\n   " + Robot.shooter.acquiredCargo);
+    // System.out.println("\n   " + Robot.shooter.acquiredCargo);
 
   }
 

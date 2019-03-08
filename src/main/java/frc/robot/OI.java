@@ -71,7 +71,7 @@ public class OI {
 		operatorTriangle.whileHeld(new ChangeElevatorPosition(Constants.hatchHigh));
 		operatorCircle.whileHeld(new ChangeElevatorPosition(Constants.cargoShip));
 		operatorR2.whenPressed(new CollectCargoSequence());
-		operatorL2.whenPressed(new CargoFaultSequence());
+		// operatorL2.whenPressed(new CargoFaultSequence());
 		operatorL1.whenPressed(new ShootHatchSequence());
 		operatorR1.whileHeld(new ShootCargo());
 		operatorOptions.toggleWhenPressed(new ActuateIntake());

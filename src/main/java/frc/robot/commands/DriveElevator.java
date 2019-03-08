@@ -43,27 +43,18 @@ public class DriveElevator extends Command {
       Robot.elevator.stopElevator();
     }
 
-    if(Robot.elevator.isClosedLoopControl) {
-      if(Robot.elevator.elevatorA.getClosedLoopError() > 0)  {
-        Robot.elevator.isRaising = true;
-        Robot.elevator.isLowering = false;
-      }
-      if(Robot.elevator.elevatorA.getClosedLoopError() < 0)  {
-        Robot.elevator.isRaising = false;
-        Robot.elevator.isLowering = true;
-      }
+    if(Robot.elevator.elevatorA.getMotorOutputVoltage() > 1) {
+      Robot.elevator.isRaising = true;
+      Robot.elevator.isLowering = false;
     }
-    if(!Robot.elevator.isClosedLoopControl) {
-      if((Robot.oi.getCopad().getRightYAxis()) < -.25)  {
-        Robot.elevator.isRaising = true;
-        Robot.elevator.isLowering = false;
-      }
-      if((Robot.oi.getCopad().getRightYAxis()) > .25)  {
-        Robot.elevator.isRaising = false;
-        Robot.elevator.isLowering = true;
-      }
+    else if(Robot.elevator.elevatorA.getMotorOutputVoltage() < -1) {
+      Robot.elevator.isRaising = false;
+      Robot.elevator.isLowering = true; 
     }
-
+    else {
+      Robot.elevator.isRaising = false;
+      Robot.elevator.isLowering = false;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

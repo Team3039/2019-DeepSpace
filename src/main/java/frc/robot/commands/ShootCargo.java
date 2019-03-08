@@ -24,7 +24,7 @@ public class ShootCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.expelCargo();
+    Robot.intake.collectCargo();
     Robot.shooter.shootCargo();
   }
 
@@ -38,6 +38,7 @@ public class ShootCargo extends Command {
   @Override
   protected void end() {
     Robot.shooter.stopCargo();
+    Robot.intake.stopCargo();
     Robot.shooter.acquiredCargo = false;
   }
 
@@ -46,6 +47,7 @@ public class ShootCargo extends Command {
   @Override
   protected void interrupted() {
     Robot.shooter.stopCargo();
+    Robot.intake.stopCargo();
     Robot.shooter.acquiredCargo = false;
   }
 }
