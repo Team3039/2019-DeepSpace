@@ -13,8 +13,10 @@ package frc.robot;
 public class Constants {
 
     //Drivetrain 
-    public static final double y = .95;
-    public static final double rot = .85;
+    public static final double y = .98;
+    public static final double rot = .92;
+
+
 
     //Elevator 
 
@@ -31,7 +33,7 @@ public class Constants {
     public static final double kF_Elevator = 0.0;
 
     //Cruise Velocity: The (position/time) to be acheived while executing a motion profile
-    public static final int kCrusieVelocity = 2500;
+    public static final int kCrusieVelocity = 3000;
 
     //Acceleration: The derivitive of Velocity (position/time^2) to be used when entering a motion profile
     public static final int kAcceleration = 3400;
@@ -40,12 +42,9 @@ public class Constants {
     public static final double kRampSeconds = 0.75;
     
     //Elevator Levels
-    public static final double cargoIntake = -1250;
-    public static final double hatchLow = 0; 
-    public static final double hatchMid = 16000;
-    public static final double hatchHigh = 29000;
-    public static final double cargoLow = 7000;
-    public static final double cargoMid = 22000;
-    public static final double cargoHigh = 30000;
+    public static final double intake = -1500;
+    public static final double low = 0; 
+    public static final double mid = 16000;
+    public static final double high = 29000;
     public static final double cargoShip = 9000;
 }

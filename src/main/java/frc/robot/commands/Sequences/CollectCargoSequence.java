@@ -8,6 +8,7 @@
 package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.ChangeElevatorPosition;
 import frc.robot.commands.CollectCargo;
@@ -17,11 +18,12 @@ import frc.robot.commands.RetractIntake;
 public class CollectCargoSequence extends CommandGroup {
 
   public CollectCargoSequence() {
-    addSequential(new ChangeElevatorPosition(Constants.cargoLow),1);
+    addSequential(new ChangeElevatorPosition(Constants.low + 6000),1);
     addSequential(new ExtendIntake(),.5);
-    addSequential(new ChangeElevatorPosition(Constants.cargoIntake),1);
+    addParallel(new ChangeElevatorPosition(Constants.intake),1);
     addSequential(new CollectCargo());
-    addSequential(new ChangeElevatorPosition(Constants.cargoShip),2);
+    addSequential(new WaitCommand(.25));
+    addSequential(new ChangeElevatorPosition(Constants.low),1);
     addSequential(new RetractIntake(),.1);
   }
 }

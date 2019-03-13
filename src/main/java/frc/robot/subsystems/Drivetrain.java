@@ -32,6 +32,9 @@ public class Drivetrain extends Subsystem {
     //Checks if Robot is being driven in Reverse
     public boolean isReversed = false;
 
+    //Checks if speed needs to be further limited
+    public boolean isSlow = false;
+
   // public void joystickControl(PS4Gamepad gp) {
   //   //Tele-Op Driving
   //   //Each Motor is Set to Brake Mode, the motor speeds are set in an Arcade Drive fashion

@@ -7,6 +7,7 @@ import frc.robot.commands.ChangeElevatorPosition;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LiftBack;
 import frc.robot.commands.LiftFront;
+import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.Sequences.CargoFaultSequence;
 import frc.robot.commands.Sequences.CollectCargoSequence;
@@ -63,12 +64,11 @@ public class OI {
 		driverX.toggleWhenActive(new Aim());
 		driverSquare.toggleWhenPressed(new LiftFront());
 		driverCircle.toggleWhenPressed(new LiftBack());
-		driverR1.whileHeld(new CollectCargo());
 
 		//Operator Controls
-		operatorX.whileHeld(new ChangeElevatorPosition(Constants.hatchLow));
-		operatorSquare.whileHeld(new ChangeElevatorPosition(Constants.hatchMid));
-		operatorTriangle.whileHeld(new ChangeElevatorPosition(Constants.hatchHigh));
+		operatorX.whileHeld(new ChangeElevatorPosition(Constants.low));
+		operatorSquare.whileHeld(new ChangeElevatorPosition(Constants.mid));
+		operatorTriangle.whileHeld(new ChangeElevatorPosition(Constants.high));
 		operatorCircle.whileHeld(new ChangeElevatorPosition(Constants.cargoShip));
 		operatorR2.whenPressed(new CollectCargoSequence());
 		// operatorL2.whenPressed(new CargoFaultSequence());

@@ -16,7 +16,7 @@ import frc.robot.commands.ShootCargo;
 public class CargoFaultSequence extends CommandGroup {
 
   public CargoFaultSequence() {
-    addSequential(new ChangeElevatorPosition(Constants.cargoLow),1);
+    addSequential(new ChangeElevatorPosition(Constants.low),1);
     addParallel(new RetractIntake(),.1);
     addSequential(new ShootCargo(),2);
   }
