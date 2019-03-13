@@ -49,7 +49,6 @@ public class Robot extends TimedRobot {
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
     elevator.setupEncoder();
-    drivetrain.cameraPivot(false);
     Robot.drivetrain.setDriverCamMode();
   }
 
