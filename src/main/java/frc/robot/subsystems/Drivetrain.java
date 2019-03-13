@@ -1,8 +1,5 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -72,18 +69,18 @@ public class Drivetrain extends Subsystem {
       rot = gp.getRightXAxis(); //If LL2 does not see a target, spin in place
     }
 
-    frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    frontrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
-    rearleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    rearrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
+    frontleftMotor.set(y+rot);
+    frontrightMotor.set(rot-y);
+    rearleftMotor.set(y+rot);
+    rearrightMotor.set(rot-y);
   }
 
   public void stop() {
     //Stops all drive
-    frontleftMotor.set(ControlMode.PercentOutput, 0);
-    frontrightMotor.set(ControlMode.PercentOutput, 0);
-    rearleftMotor.set(ControlMode.PercentOutput, 0);
-    rearrightMotor.set(ControlMode.PercentOutput, 0);   
+    frontleftMotor.set(0);
+    frontrightMotor.set(0);
+    rearleftMotor.set(0);
+    rearrightMotor.set(0);   
   }
   
   @Override
