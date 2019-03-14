@@ -7,7 +7,6 @@ import frc.robot.commands.ChangeElevatorPosition;
 import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LiftBack;
 import frc.robot.commands.LiftFront;
-import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.Sequences.CargoFaultSequence;
 import frc.robot.commands.Sequences.CollectCargoSequence;

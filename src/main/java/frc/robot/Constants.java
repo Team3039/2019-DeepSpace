@@ -13,8 +13,8 @@ package frc.robot;
 public class Constants {
 
     //Drivetrain 
-    public static final double y = .98;
-    public static final double rot = .92;
+    public static final double y = .8;
+    public static final double rot = .5;
 
 
 
