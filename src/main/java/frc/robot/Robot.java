@@ -109,8 +109,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    System.out.println("\n Left " + Robot.drivetrain.frontleftMotor.getAppliedOutput());
-    System.out.println("\n Right " + Robot.drivetrain.frontrightMotor.getAppliedOutput());
 
     SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
     SmartDashboard.putNumber("Velocity", Robot.elevator.elevatorA.getSelectedSensorVelocity());
