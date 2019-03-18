@@ -28,6 +28,7 @@ public class Drivetrain extends Subsystem {
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
 
+<<<<<<< HEAD
     //Calculated Outputs (Assuming SPARK MAXs limit Output Voltage according to Bus Voltage)
     double leftOutput = y + rot;
     double rightOutput = rot - y;
@@ -43,6 +44,24 @@ public class Drivetrain extends Subsystem {
     frontrightMotor.set(rightOutput);
     rearleftMotor.follow(frontleftMotor);
     rearrightMotor.follow(frontrightMotor);
+=======
+    frontleftMotor.setNeutralMode(NeutralMode.Brake);
+    frontrightMotor.setNeutralMode(NeutralMode.Brake);
+    rearrightMotor.setNeutralMode(NeutralMode.Brake);
+    rearleftMotor.setNeutralMode(NeutralMode.Brake);
+
+    frontleftMotor.set(ControlMode.PercentOutput, (y+rot));
+    frontrightMotor.set(ControlMode.PercentOutput, (rot-y));
+    rearleftMotor.set(ControlMode.PercentOutput, (y+rot));
+    rearrightMotor.set(ControlMode.PercentOutput, (rot-y));
+    
+    if(y < 0) {
+      isReversed = true;
+    }
+    else {
+      isReversed = false;
+    }
+>>>>>>> BrushedDrivetrain
   }
 
   public void setTrackingMode() {
@@ -57,7 +76,7 @@ public class Drivetrain extends Subsystem {
 
   public void aim(PS4Gamepad gp) {
 
-    double kP = -0.12;
+    double kP = -Constants.kP_Vision;
     double errorX = -Robot.targetX;
     double y = gp.getLeftYAxis()*-.9;
     double rot = 0;
