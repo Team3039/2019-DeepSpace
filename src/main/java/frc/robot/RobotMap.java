@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 public class RobotMap {
 //HID
   public final static int driver = 0;
@@ -38,4 +40,7 @@ public class RobotMap {
   public static int switch2 = 8;
   public static int allianceSwitch = 9;
 //AIO
+
+//Drivetrain Type
+  public static final MotorType driveMotorType = MotorType.kBrushed;
 }

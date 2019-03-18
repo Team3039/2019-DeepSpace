@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,13 +13,11 @@ import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
     //Drive Motors
-    public CANSparkMax frontleftMotor = new CANSparkMax(RobotMap.frontleftMotor, MotorType.kBrushless); 
-    public CANSparkMax frontrightMotor = new CANSparkMax(RobotMap.frontrightMotor, MotorType.kBrushless);
-    public CANSparkMax rearleftMotor = new CANSparkMax(RobotMap.rearleftMotor, MotorType.kBrushless);
-    public CANSparkMax rearrightMotor = new CANSparkMax(RobotMap.rearrightMotor, MotorType.kBrushless);
+    public CANSparkMax frontleftMotor = new CANSparkMax(RobotMap.frontleftMotor, RobotMap.driveMotorType); 
+    public CANSparkMax frontrightMotor = new CANSparkMax(RobotMap.frontrightMotor, RobotMap.driveMotorType);
+    public CANSparkMax rearleftMotor = new CANSparkMax(RobotMap.rearleftMotor, RobotMap.driveMotorType);
+    public CANSparkMax rearrightMotor = new CANSparkMax(RobotMap.rearrightMotor, RobotMap.driveMotorType);
 
-    //Checks if Robot is being driven in Reverse
-    public boolean isReversed = false;
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
@@ -28,10 +25,15 @@ public class Drivetrain extends Subsystem {
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
 
-<<<<<<< HEAD
-    //Calculated Outputs (Assuming SPARK MAXs limit Output Voltage according to Bus Voltage)
+    //Calculated Outputs (Limits Output to 12V)
     double leftOutput = y + rot;
     double rightOutput = rot - y;
+    if(leftOutput > frontleftMotor.getBusVoltage()) {
+      leftOutput = frontleftMotor.getBusVoltage();
+    }
+    if(rightOutput > frontrightMotor.getBusVoltage()) {
+      rightOutput = frontrightMotor.getBusVoltage();
+    }
 
     //Set Motor's Neutral/Idle Mode to Brake
     frontleftMotor.setIdleMode(IdleMode.kBrake);
@@ -44,24 +46,6 @@ public class Drivetrain extends Subsystem {
     frontrightMotor.set(rightOutput);
     rearleftMotor.follow(frontleftMotor);
     rearrightMotor.follow(frontrightMotor);
-=======
-    frontleftMotor.setNeutralMode(NeutralMode.Brake);
-    frontrightMotor.setNeutralMode(NeutralMode.Brake);
-    rearrightMotor.setNeutralMode(NeutralMode.Brake);
-    rearleftMotor.setNeutralMode(NeutralMode.Brake);
-
-    frontleftMotor.set(ControlMode.PercentOutput, (y+rot));
-    frontrightMotor.set(ControlMode.PercentOutput, (rot-y));
-    rearleftMotor.set(ControlMode.PercentOutput, (y+rot));
-    rearrightMotor.set(ControlMode.PercentOutput, (rot-y));
-    
-    if(y < 0) {
-      isReversed = true;
-    }
-    else {
-      isReversed = false;
-    }
->>>>>>> BrushedDrivetrain
   }
 
   public void setTrackingMode() {

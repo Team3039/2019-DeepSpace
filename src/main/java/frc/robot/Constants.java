@@ -16,12 +16,9 @@ public class Constants {
     public static final double y = .9;
     public static final double rot = .7;
 
-
-
-    //Elevator 
-
     //Proportional Gain: The distance between the actual position and the setpoint
     public static final double kP_Elevator = 0.13;
+    public static final double kP_Vision = 0.14;
     
     //Integral Gain: The area between the actual position and the setpoint over time 
     public static final double kI_Elevator = 0.000001;
@@ -40,8 +37,7 @@ public class Constants {
     
     //Ramp Rate: Overrides other Closed Loop Control to gradually increase speed (Seconds)
     public static final double kRampSeconds = 0.75;
-    
-    public static final double kP_Vision = 0.13;
+
     //Elevator Levels
     public static final double intake = -1500;
     public static final double low = 0; 
