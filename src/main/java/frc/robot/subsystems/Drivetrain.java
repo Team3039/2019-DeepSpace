@@ -39,10 +39,10 @@ public class Drivetrain extends Subsystem {
     rearrightMotor.setNeutralMode(NeutralMode.Brake);
     rearleftMotor.setNeutralMode(NeutralMode.Brake);
 
-    frontleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    frontrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
-    rearleftMotor.set(ControlMode.PercentOutput, (y+rot)/2);
-    rearrightMotor.set(ControlMode.PercentOutput, (rot-y)/2);
+    frontleftMotor.set(ControlMode.PercentOutput, (y+rot));
+    frontrightMotor.set(ControlMode.PercentOutput, (rot-y));
+    rearleftMotor.set(ControlMode.PercentOutput, (y+rot));
+    rearrightMotor.set(ControlMode.PercentOutput, (rot-y));
     
     if(y < 0) {
       isReversed = true;
@@ -65,7 +65,7 @@ public class Drivetrain extends Subsystem {
 
   public void aim(PS4Gamepad gp) {
 
-    double kP = -0.12;
+    double kP = -Constants.kP_Vision;
     double errorX = -Robot.targetX;
     double y = gp.getLeftYAxis()*-.9;
     double rot = 0;
