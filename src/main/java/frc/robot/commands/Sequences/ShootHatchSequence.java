@@ -15,6 +15,6 @@ public class ShootHatchSequence extends CommandGroup {
 
   public ShootHatchSequence() {
     addSequential(new ReleaseHatch(),.1);
-    addSequential(new ShootHatch(),.5);
+    addSequential(new ShootHatch(),1.25);
   }
 }

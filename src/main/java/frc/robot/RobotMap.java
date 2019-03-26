@@ -42,5 +42,5 @@ public class RobotMap {
 //AIO
 
 //Drivetrain Type
-  public static final MotorType driveMotorType = MotorType.kBrushed;
+  public static final MotorType driveMotorType = MotorType.kBrushless;
 }
