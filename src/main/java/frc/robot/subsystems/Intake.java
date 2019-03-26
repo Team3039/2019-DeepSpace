@@ -21,7 +21,7 @@ public class Intake extends Subsystem {
   public Solenoid extension = new Solenoid(RobotMap.intakeExtension);
 
   public void collectCargo() {
-    intake.set(ControlMode.PercentOutput,.8);
+    intake.set(ControlMode.PercentOutput,.9);
   }
 
   public void stopCargo() {

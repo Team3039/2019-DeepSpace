@@ -50,6 +50,8 @@ public class Robot extends TimedRobot {
     
     elevator.setupEncoder();
     Robot.drivetrain.setDriverCamMode();
+
+    System.out.println("Only True Led-Gends Will Know");
   }
 
   @Override
