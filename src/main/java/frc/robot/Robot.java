@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
-    SmartDashboard.putNumber("Velocity", Robot.elevator.elevatorA.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Velocity", Robot.elevator.encoder.getVelocity());
     // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
     // System.out.println("\n Hatch Pres  sure is " + Robot.shooter.getHatchStatus());
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);

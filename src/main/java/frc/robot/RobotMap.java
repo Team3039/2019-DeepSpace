@@ -19,6 +19,7 @@ public class RobotMap {
 
   public static int elevatorMotorA = 2;
   public static int elevatorMotorB = 3;
+  public static int elevatorMotorC = 1;
 
 //SOLENOID
   public static int hatchGrip = 0;
@@ -41,6 +42,7 @@ public class RobotMap {
   public static int allianceSwitch = 9;
 //AIO
 
-//Drivetrain Type
+//Motor Types
   public static final MotorType driveMotorType = MotorType.kBrushless;
+  public static final MotorType elevatorMotorType = MotorType.kBrushless;
 }

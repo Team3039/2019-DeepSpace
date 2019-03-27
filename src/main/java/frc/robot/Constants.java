@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 /**
@@ -44,4 +37,8 @@ public class Constants {
     public static final double mid = 18000;
     public static final double high = 32500;
     public static final double cargoShip = 10000;
+
+    //Encoder Converters
+    public static final double elevatorPositionConverter = 0;
+
 }
