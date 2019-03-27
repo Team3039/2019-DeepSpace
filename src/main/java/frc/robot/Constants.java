@@ -12,9 +12,13 @@ package frc.robot;
  */
 public class Constants {
 
-    //Drivetrain 
+    //Drivetrain Limiter
     public static final double y = .75;
     public static final double rot = .35;
+
+    //Drivetrain Encoder Conversion Factors
+    public static final double positionConverter = 0;
+    public static final double velocityConverter = 0;
 
     //Proportional Gain: The distance between the actual position and the setpoint
     public static final double kP_Elevator = 0.085;

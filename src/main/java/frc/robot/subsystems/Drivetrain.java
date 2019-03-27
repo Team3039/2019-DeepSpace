@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 
@@ -18,6 +19,9 @@ public class Drivetrain extends Subsystem {
     public CANSparkMax rearleftMotor = new CANSparkMax(RobotMap.rearleftMotor, RobotMap.driveMotorType);
     public CANSparkMax rearrightMotor = new CANSparkMax(RobotMap.rearrightMotor, RobotMap.driveMotorType);
 
+    //Encoders
+    public CANEncoder leftEncoder = frontleftMotor.getEncoder();
+    public CANEncoder rightEncoder = frontrightMotor.getEncoder();
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
@@ -59,7 +63,6 @@ public class Drivetrain extends Subsystem {
   }
 
   public void aim(PS4Gamepad gp) {
-
     double kP = -Constants.kP_Vision;
     double errorX = -Robot.targetX;
     double y = gp.getLeftYAxis()*-.9;
@@ -86,6 +89,28 @@ public class Drivetrain extends Subsystem {
     rearrightMotor.set(0);   
   }
   
+  public double getLeftPosition() {
+    return leftEncoder.getPosition();
+  }
+
+  public double getRightPosition() {
+    return rightEncoder.getPosition();
+  }
+
+  public double getLeftVelocity() {
+    return leftEncoder.getVelocity();
+  }
+
+  public double getRightVelocity() {
+    return rightEncoder.getVelocity();
+  }
+
+  public void setupEncoders() {
+    leftEncoder.setPositionConversionFactor(Constants.positionConverter);
+    rightEncoder.setPositionConversionFactor(Constants.positionConverter);
+    leftEncoder.setVelocityConversionFactor(Constants.velocityConverter);
+    rightEncoder.setVelocityConversionFactor(Constants.velocityConverter);
+  }
   @Override
   public void initDefaultCommand() {
     // The following command is constantly being run, and thus the gamepad input is constantly being

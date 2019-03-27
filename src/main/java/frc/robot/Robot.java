@@ -49,7 +49,8 @@ public class Robot extends TimedRobot {
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
     elevator.setupEncoder();
-    Robot.drivetrain.setDriverCamMode();
+    drivetrain.setDriverCamMode();
+    drivetrain.setupEncoders();
 
     System.out.println("Only True Led-Gends Will Know");
   }
@@ -71,11 +72,6 @@ public class Robot extends TimedRobot {
     targetArea = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
     targetSkew = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
 
-    SmartDashboard.putNumber("Valid Target", targetValid);
-    // SmartDashboard.putNumber("Target X", targetX);
-    // SmartDashboard.putNumber("Target Y", targetY);
-    // SmartDashboard.putNumber("Target Area", targetArea);
-    // SmartDashboard.putNumber("Target Skew", targetSkew);
   }
 
   @Override
