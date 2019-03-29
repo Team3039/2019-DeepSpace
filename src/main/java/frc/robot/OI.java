@@ -60,6 +60,7 @@ public class OI {
 
 		//driver Controls		;
 		driverX.toggleWhenActive(new Aim());
+		driverR1.whenPressed(new ShootHatchSequence());
 		driverSquare.toggleWhenPressed(new LiftFront());
 		driverCircle.toggleWhenPressed(new LiftBack());
 
