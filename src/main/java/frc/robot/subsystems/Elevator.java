@@ -1,11 +1,11 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-import com.revrobotics.CANSparkMax.IdleMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.Faults;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,15 +15,11 @@ import frc.robot.commands.DriveElevator;
 
 public class Elevator extends Subsystem {
 
-  public CANSparkMax elevatorA = new CANSparkMax(RobotMap.elevatorMotorA, RobotMap.elevatorMotorType);
-  public CANSparkMax elevatorB = new CANSparkMax(RobotMap.elevatorMotorB, RobotMap.elevatorMotorType);
-  public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorMotorC, RobotMap.elevatorMotorType);
-
-  public CANPIDController pidctrl = elevatorA.getPIDController();
-  public CANEncoder encoder = elevatorA.getEncoder();
-
+  public TalonSRX elevatorA = new TalonSRX(RobotMap.elevatorMotorA);
+  public TalonSRX elevatorB = new TalonSRX(RobotMap.elevatorMotorB);
   public DigitalInput lowerLimit = new DigitalInput(RobotMap.elevatorLowerLimit);
   public DigitalInput upperLimit = new DigitalInput(RobotMap.elevatorUpperLimit);
+  public Faults elevatorFaults = new Faults();
 
   public boolean isCargoMode = false; //When true, heights are offset to place Cargo into proper position
   public boolean isRaising = false; //The Elevator is moving up
@@ -36,31 +32,29 @@ public class Elevator extends Subsystem {
   
   public void driveElevatorManual(double power) {
     //Manual drive for the elevator
-    elevatorA.setClosedLoopRampRate(0);
-    elevatorA.setOpenLoopRampRate(0);
+    elevatorA.configClosedloopRamp(0);
 
-    elevatorA.setIdleMode(IdleMode.kBrake);
-    elevatorB.setIdleMode(IdleMode.kBrake);
-    elevatorC.setIdleMode(IdleMode.kBrake);
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+    elevatorB.setNeutralMode(NeutralMode.Brake);
 
-    elevatorA.set(power);
-    elevatorB.set(power);  
-    elevatorC.set(power);
+    elevatorA.set(ControlMode.PercentOutput, power);
+    elevatorB.set(ControlMode.PercentOutput, power);  
     isClosedLoopControl = false;
   }
 
   public void driveElevatorClosedLoop() {
     setConstants();
+    
+    //Cargo or Hatch Levels?
 
+        
     //Powering Elevator
-    elevatorA.setClosedLoopRampRate(Constants.kRampSeconds);
-    pidctrl.setReference(targetPosition, ControlType.kSmartMotion);
+    elevatorA.configClosedloopRamp(Constants.kRampSeconds);
+    elevatorA.set(ControlMode.MotionMagic, targetPosition);
     elevatorB.follow(elevatorA); 
-    elevatorC.follow(elevatorA);
 
-    elevatorA.setIdleMode(IdleMode.kBrake);
-    elevatorB.setIdleMode(IdleMode.kBrake);
-    elevatorC.setIdleMode(IdleMode.kBrake);
+    elevatorA.setNeutralMode(NeutralMode.Brake);
+    elevatorB.setNeutralMode(NeutralMode.Brake);
   }
 
   public void changePosition(double newTarget) {
@@ -70,31 +64,31 @@ public class Elevator extends Subsystem {
 
   public void setConstants() {
     //PID Config 
-    pidctrl.setP(Constants.kP_Elevator);
-    pidctrl.setI(Constants.kI_Elevator);
-    pidctrl.setD(Constants.kD_Elevator);
-    pidctrl.setFF(Constants.kF_Elevator);
+    elevatorA.config_kP(0, Constants.kP_Elevator);
+    elevatorA.config_kP(0, Constants.kP_Elevator);
+    elevatorA.config_kI(0, Constants.kI_Elevator);
+    elevatorA.config_kD(0, Constants.kD_Elevator);
+    elevatorA.config_kF(0, Constants.kF_Elevator);
 
     //Motion Magic Config
-    pidctrl.setSmartMotionMaxVelocity(Constants.kCrusieVelocity,0);
-    pidctrl.setSmartMotionMaxAccel(Constants.kAcceleration, 0);
-
-    //Voltage Control
-    pidctrl.setOutputRange(-1, 1);
+    elevatorA.configMotionCruiseVelocity(Constants.kCrusieVelocity);
+    elevatorA.configMotionAcceleration(Constants.kAcceleration);
   }
 
    public void stopElevator() {
-    elevatorA.set(0);
+    elevatorA.set(ControlMode.PercentOutput,0);
     elevatorB.follow(elevatorA);
-    elevatorC.follow(elevatorA);
+    elevatorA.neutralOutput();
+    elevatorB.neutralOutput();
   }
 
   public void setupEncoder() {
-    encoder.setPositionConversionFactor(Constants.elevatorPositionConverter);
+    elevatorA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevatorA.setSensorPhase(true); //Ensures motor and encoder both increase/decrease at the same time
   }
 
   public double getPosition() {
-    return encoder.getPosition();
+    return elevatorA.getSelectedSensorPosition();
   }
 
   public boolean getLimit() {
@@ -108,7 +102,7 @@ public class Elevator extends Subsystem {
   }
 
   public void resetEncoder() {
-    encoder.setPosition(0);
+    elevatorA.setSelectedSensorPosition(0);
   }
 
   @Override
