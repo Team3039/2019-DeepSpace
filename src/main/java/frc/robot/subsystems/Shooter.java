@@ -20,6 +20,7 @@ import frc.robot.commands.GrabHatch;
 public class Shooter extends Subsystem {
 
   public boolean keepHatch = true;
+  public boolean cargoFalseTrigger = false;
 
   public TalonSRX leftShooter = new TalonSRX(RobotMap.leftShooter);
   public TalonSRX rightShooter = new TalonSRX(RobotMap.rightShooter);
@@ -50,6 +51,10 @@ public class Shooter extends Subsystem {
     leftShooter.set(ControlMode.PercentOutput, .65);
     rightShooter.set(ControlMode.PercentOutput, -.65);
     acquiredCargo = false;
+  }
+
+  public void setCargoFalseTrigger(boolean state) {
+    cargoFalseTrigger = state;
   }
 
   public void gripHatch() {

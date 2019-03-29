@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     }
     else {
         lights.setBlueAlliance();
-      }
+    }
 
     //Gather Vision Information
     targetValid = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);

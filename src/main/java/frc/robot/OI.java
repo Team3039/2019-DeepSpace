@@ -3,12 +3,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.Aim;
+import frc.robot.commands.CargoFalseTrigger;
 import frc.robot.commands.ChangeElevatorPosition;
-import frc.robot.commands.CollectCargo;
 import frc.robot.commands.LiftBack;
 import frc.robot.commands.LiftFront;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.Sequences.CargoFaultSequence;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
 import frc.util.PS4Copad;
@@ -69,9 +68,9 @@ public class OI {
 		operatorSquare.whileHeld(new ChangeElevatorPosition(Constants.mid));
 		operatorTriangle.whileHeld(new ChangeElevatorPosition(Constants.high));
 		operatorCircle.whileHeld(new ChangeElevatorPosition(Constants.cargoShip));
-		operatorR2.whenPressed(new CollectCargoSequence());
-		// operatorL2.whenPressed(new CargoFaultSequence());
 		operatorL1.whenPressed(new ShootHatchSequence());
+		operatorL2.whileHeld(new CargoFalseTrigger());
+		operatorR2.whenPressed(new CollectCargoSequence());
 		operatorR1.whileHeld(new ShootCargo());
 		operatorOptions.toggleWhenPressed(new ActuateIntake());
 
