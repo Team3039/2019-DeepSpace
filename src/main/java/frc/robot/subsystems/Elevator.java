@@ -91,10 +91,15 @@ public class Elevator extends Subsystem {
 
   public void setupEncoder() {
     encoder.setPositionConversionFactor(Constants.elevatorPositionConverter);
+    encoder.setVelocityConversionFactor(Constants.elevatorVelocityConverter);
   }
 
   public double getPosition() {
     return encoder.getPosition();
+  }
+
+  public double getVelocity() {
+    return encoder.getVelocity();
   }
 
   public boolean getLimit() {

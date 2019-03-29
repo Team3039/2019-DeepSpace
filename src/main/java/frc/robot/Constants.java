@@ -40,5 +40,6 @@ public class Constants {
 
     //Encoder Converters
     public static final double elevatorPositionConverter = 0;
+    public static final double elevatorVelocityConverter = 0;
 
 }
