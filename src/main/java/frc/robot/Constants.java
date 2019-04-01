@@ -37,4 +37,12 @@ public class Constants {
     public static final double mid = 18000;
     public static final double high = 32500;
     public static final double cargoShip = 10000;
+<<<<<<< HEAD
+=======
+
+    //Encoder Converters
+    public static final double elevatorPositionConverter = 0;
+    public static final double elevatorVelocityConverter = 0;
+
+>>>>>>> Expiramental
 }

@@ -83,12 +83,16 @@ public class Elevator extends Subsystem {
   }
 
   public void setupEncoder() {
-    elevatorA.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-    elevatorA.setSensorPhase(true); //Ensures motor and encoder both increase/decrease at the same time
+    encoder.setPositionConversionFactor(Constants.elevatorPositionConverter);
+    encoder.setVelocityConversionFactor(Constants.elevatorVelocityConverter);
   }
 
   public double getPosition() {
     return elevatorA.getSelectedSensorPosition();
+  }
+
+  public double getVelocity() {
+    return encoder.getVelocity();
   }
 
   public boolean getLimit() {
