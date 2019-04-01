@@ -25,15 +25,13 @@ public class Drivetrain extends Subsystem {
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
 
+    if(Math.abs(y) < .05) {
+      y = 0;
+    }
     //Calculated Outputs (Limits Output to 12V)
     double leftOutput = y + rot;
     double rightOutput = rot - y;
-    if(leftOutput > frontleftMotor.getBusVoltage()) {
-      leftOutput = frontleftMotor.getBusVoltage();
-    }
-    if(rightOutput > frontrightMotor.getBusVoltage()) {
-      rightOutput = frontrightMotor.getBusVoltage();
-    }
+
 
     //Set Motor's Neutral/Idle Mode to Brake
     frontleftMotor.setIdleMode(IdleMode.kBrake);

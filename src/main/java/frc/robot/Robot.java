@@ -112,12 +112,13 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
+    // SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
     // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
     // System.out.println("\n Hatch Pres  sure is " + Robot.shooter.getHatchStatus());
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);
     // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
     // System.out.println("\n   " + Robot.shooter.acquiredCargo);
+    System.out.println("\n " + Robot.elevator.elevatorA.getMotorOutputVoltage());
 
   }
 

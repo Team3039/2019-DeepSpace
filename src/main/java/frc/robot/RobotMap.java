@@ -17,8 +17,8 @@ public class RobotMap {
   public static int leftShooter = 6;
   public static int rightShooter = 0;
 
-  public static int elevatorMotorA = 2;
-  public static int elevatorMotorB = 3;
+  public static int elevatorMotorA = 3;
+  public static int elevatorMotorB = 2;
   public static int elevatorMotorC = 1;
 
 //SOLENOID
