@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);
     // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
     // System.out.println("\n   " + Robot.shooter.acquiredCargo);
-    System.out.println("\n " + Robot.elevator.elevatorA.getMotorOutputVoltage());
+    System.out.println("\n " + Robot.elevator.elevatorA.getAppliedOutput());
 
   }
 

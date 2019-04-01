@@ -43,11 +43,11 @@ public class DriveElevator extends Command {
       Robot.elevator.stopElevator();
     }
 
-    if(Robot.elevator.elevatorA.getMotorOutputVoltage() > 1) {
+    if(Robot.elevator.elevatorA.getAppliedOutput() > 1) {
       Robot.elevator.isRaising = true;
       Robot.elevator.isLowering = false;
     }
-    else if(Robot.elevator.elevatorA.getMotorOutputVoltage() < -1) {
+    else if(Robot.elevator.elevatorA.getAppliedOutput() < -1) {
       Robot.elevator.isRaising = false;
       Robot.elevator.isLowering = true; 
     }

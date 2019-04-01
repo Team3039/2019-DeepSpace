@@ -20,6 +20,7 @@ public class Elevator extends Subsystem {
   public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorMotorC, RobotMap.elevatorMotorType);
 
   public CANPIDController pidctrl = elevatorA.getPIDController();
+  public CANEncoder encoder = elevatorA.getEncoder();
 
   public DigitalInput lowerLimit = new DigitalInput(RobotMap.elevatorLowerLimit);
   public DigitalInput upperLimit = new DigitalInput(RobotMap.elevatorUpperLimit);
@@ -89,8 +90,8 @@ public class Elevator extends Subsystem {
   }
 
   public void setupEncoder() {
-    encoder.setPositionConversionFactor(Constants.elevatorPositionConverter);
-    encoder.setVelocityConversionFactor(Constants.elevatorVelocityConverter);
+    // encoder.setPositionConversionFactor(Constants.elevatorPositionConverter);
+    // encoder.setVelocityConversionFactor(Constants.elevatorVelocityConverter);
   }
 
   public double getPosition() {
