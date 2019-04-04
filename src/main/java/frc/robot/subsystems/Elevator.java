@@ -17,7 +17,7 @@ public class Elevator extends Subsystem {
 
   public CANSparkMax elevatorA = new CANSparkMax(RobotMap.elevatorMotorA, RobotMap.elevatorMotorType);
   public CANSparkMax elevatorB = new CANSparkMax(RobotMap.elevatorMotorB, RobotMap.elevatorMotorType);
-  public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorMotorC, RobotMap.elevatorMotorType);
+  // public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorMotorC, RobotMap.elevatorMotorType);
 
   public CANPIDController pidctrl = elevatorA.getPIDController();
   public CANEncoder encoder = elevatorA.getEncoder();
@@ -41,11 +41,11 @@ public class Elevator extends Subsystem {
 
     elevatorA.setIdleMode(IdleMode.kBrake);
     elevatorB.setIdleMode(IdleMode.kBrake);
-    elevatorC.setIdleMode(IdleMode.kBrake);
+    // elevatorC.setIdleMode(IdleMode.kBrake);
 
-    elevatorA.set(power);
-    elevatorB.set(power);  
-    elevatorC.set(power);
+    elevatorA.set(-power);
+    elevatorB.set(-power);  
+    // elevatorC.set(-power);
     isClosedLoopControl = false;
   }
 
@@ -54,13 +54,14 @@ public class Elevator extends Subsystem {
 
     //Powering Elevator
     elevatorA.setClosedLoopRampRate(Constants.kRampSeconds);
-    pidctrl.setReference(targetPosition, ControlType.kSmartMotion);
+    pidctrl.setReference(-targetPosition, ControlType.kPosition);
     elevatorB.follow(elevatorA); 
-    elevatorC.follow(elevatorA);
+    // elevatorC.follow(elevatorA);
 
     elevatorA.setIdleMode(IdleMode.kBrake);
     elevatorB.setIdleMode(IdleMode.kBrake);
-    elevatorC.setIdleMode(IdleMode.kBrake);
+    // elevatorC.setIdleMode(IdleMode.kBrake);
+
   }
 
   public void changePosition(double newTarget) {
@@ -75,10 +76,9 @@ public class Elevator extends Subsystem {
     pidctrl.setD(Constants.kD_Elevator);
     pidctrl.setFF(Constants.kF_Elevator);
 
-    //Motion Magic Config
-    pidctrl.setSmartMotionMaxVelocity(Constants.kCrusieVelocity,0);
-    pidctrl.setSmartMotionMaxAccel(Constants.kAcceleration, 0);
-
+    if(isLowering) {
+      pidctrl.setP(Constants.kP_Elevator/2);
+    }
     //Voltage Control
     pidctrl.setOutputRange(-1, 1);
   }
@@ -86,7 +86,7 @@ public class Elevator extends Subsystem {
    public void stopElevator() {
     elevatorA.set(0);
     elevatorB.follow(elevatorA);
-    elevatorC.follow(elevatorA);
+    // elevatorC.follow(elevatorA);
   }
 
   public void setupEncoder() {
@@ -95,7 +95,7 @@ public class Elevator extends Subsystem {
   }
 
   public double getPosition() {
-    return encoder.getPosition();
+    return -encoder.getPosition();
   }
 
   public double getVelocity() {

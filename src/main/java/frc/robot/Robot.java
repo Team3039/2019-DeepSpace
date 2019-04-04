@@ -71,7 +71,7 @@ public class Robot extends TimedRobot {
     targetArea = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
     targetSkew = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
 
-    SmartDashboard.putNumber("Valid Target", targetValid);
+    // SmartDashboard.putNumber("Valid Target", targetValid);
     // SmartDashboard.putNumber("Target X", targetX);
     // SmartDashboard.putNumber("Target Y", targetY);
     // SmartDashboard.putNumber("Target Area", targetArea);
@@ -112,14 +112,16 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    // SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
+    SmartDashboard.putNumber("Position", Robot.elevator.getPosition());
+    SmartDashboard.putNumber("Velocity", Robot.elevator.getVelocity());
     // SmartDashboard.putNumber("Error", Robot.elevator.elevatorA.getClosedLoopError());
     // System.out.println("\n Hatch Pres  sure is " + Robot.shooter.getHatchStatus());
     // System.out.println("\n  Raising " + Robot.elevator.isRaising);
     // System.out.println("\n  Lowering " + Robot.elevator.isLowering);
     // System.out.println("\n   " + Robot.shooter.acquiredCargo);
-    System.out.println("\n " + Robot.elevator.elevatorA.getAppliedOutput());
-
+    // System.out.println("\n " + Robot.elevator.elevatorA.getAppliedOutput());
+    // System.out.println("\n" + Robot.elevator.getVelocity());
+    System.out.println("\n" + Robot.elevator.getPosition());
   }
 
   @Override

@@ -60,14 +60,14 @@ public class Drivetrain extends Subsystem {
 
     double kP = -Constants.kP_Vision;
     double errorX = -Robot.targetX;
-    double y = gp.getLeftYAxis()*-.9;
+    double y = -gp.getLeftYAxis()*Constants.y;
     double rot = 0;
 
     if(Robot.targetValid == 1) {
       rot = kP*errorX; //If LL2 sees a target, use a P Controller to turn to it
     }
     else if(Robot.targetValid == 0) {
-      rot = gp.getRightXAxis(); //If LL2 does not see a target, spin in place
+      rot = gp.getRightXAxis()*Constants.rot; //If LL2 does not see a target, spin in place
     }
 
     frontleftMotor.set(y+rot);
