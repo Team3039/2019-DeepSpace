@@ -25,6 +25,7 @@ public class SuctionPad extends Command {
   @Override
   protected void execute() {
     Robot.climber.setSuctionPad(true);
+    System.out.println("Give me the Zucc!");
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +38,7 @@ public class SuctionPad extends Command {
   @Override
   protected void end() {
     Robot.climber.setSuctionPad(false);
+    System.out.println("No Zucc!");
   }
 
   // Called when another command which requires one or more of the same
@@ -44,5 +46,6 @@ public class SuctionPad extends Command {
   @Override
   protected void interrupted() {
     Robot.climber.setSuctionPad(false);
+    System.out.println("No Zucc!");
   }
 }
