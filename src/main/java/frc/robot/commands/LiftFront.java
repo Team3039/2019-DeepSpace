@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SuctionPad extends Command {
-  public SuctionPad() {
+public class LiftFront extends Command {
+  public LiftFront() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,7 +24,7 @@ public class SuctionPad extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.setSuctionPad(true);
+    Robot.climber.frontLift(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,13 +36,13 @@ public class SuctionPad extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climber.setSuctionPad(false);
+    Robot.climber.frontLift(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climber.setSuctionPad(false);
+    Robot.climber.frontLift(false);
   }
 }
