@@ -9,6 +9,7 @@ import frc.robot.commands.LowerLift;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.SuctionPad;
+import frc.robot.commands.TriggerPump;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
 import frc.util.PS4Copad;
@@ -67,6 +68,7 @@ public class OI {
 		driverL2.whileHeld(new LowerLift());
 		driverL1.whileHeld(new RaiseLift());
 		driverSquare.toggleWhenPressed(new SuctionPad());
+		driverCircle.toggleWhenPressed(new TriggerPump());
 
 		//Operator Controls
 		operatorX.whileHeld(new ChangeElevatorPosition(Constants.low));
