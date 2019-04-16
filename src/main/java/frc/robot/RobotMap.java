@@ -8,17 +8,17 @@ public class RobotMap {
   public final static int operator = 1;
 
 //CAN
-  public static int frontleftMotor = 4;
-  public static int frontrightMotor = 10;
-  public static int rearleftMotor = 5; 
-  public static int rearrightMotor = 11; 
+  public static int frontleftDrive = 4;
+  public static int frontrightDrive = 10;
+  public static int rearleftDrive = 5; 
+  public static int rearrightDrive = 11; 
 
   public static int intake = 7;
   public static int leftShooter = 6;
   public static int rightShooter = 0;
 
-  public static int elevatorMotorA = 3;
-  public static int elevatorMotorB = 2;
+  public static int elevatorA = 3;
+  public static int elevatorB = 2;
 
   public static int climberA = 8;
   public static int climberB = 9;

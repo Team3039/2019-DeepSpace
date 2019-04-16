@@ -15,9 +15,9 @@ import frc.robot.commands.DriveElevator;
 
 public class Elevator extends Subsystem {
 
-  public CANSparkMax elevatorA = new CANSparkMax(RobotMap.elevatorMotorA, RobotMap.elevatorMotorType);
-  public CANSparkMax elevatorB = new CANSparkMax(RobotMap.elevatorMotorB, RobotMap.elevatorMotorType);
-  // public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorMotorC, RobotMap.elevatorMotorType);
+  public CANSparkMax elevatorA = new CANSparkMax(RobotMap.elevatorA, RobotMap.elevatorMotorType);
+  public CANSparkMax elevatorB = new CANSparkMax(RobotMap.elevatorB, RobotMap.elevatorMotorType);
+  // public CANSparkMax elevatorC = new CANSparkMax(RobotMap.elevatorC, RobotMap.elevatorMotorType);
 
   public CANPIDController pidctrl = elevatorA.getPIDController();
   public CANEncoder encoder = elevatorA.getEncoder();

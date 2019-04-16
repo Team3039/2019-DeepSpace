@@ -13,10 +13,10 @@ import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
     //Drive Motors
-    public CANSparkMax frontleftMotor = new CANSparkMax(RobotMap.frontleftMotor, RobotMap.driveMotorType); 
-    public CANSparkMax frontrightMotor = new CANSparkMax(RobotMap.frontrightMotor, RobotMap.driveMotorType);
-    public CANSparkMax rearleftMotor = new CANSparkMax(RobotMap.rearleftMotor, RobotMap.driveMotorType);
-    public CANSparkMax rearrightMotor = new CANSparkMax(RobotMap.rearrightMotor, RobotMap.driveMotorType);
+    public CANSparkMax frontleftDrive = new CANSparkMax(RobotMap.frontleftDrive, RobotMap.driveMotorType); 
+    public CANSparkMax frontrightDrive = new CANSparkMax(RobotMap.frontrightDrive, RobotMap.driveMotorType);
+    public CANSparkMax rearleftDrive = new CANSparkMax(RobotMap.rearleftDrive, RobotMap.driveMotorType);
+    public CANSparkMax rearrightDrive = new CANSparkMax(RobotMap.rearrightDrive, RobotMap.driveMotorType);
 
 
   public void joystickControl(PS4Gamepad gp) {
@@ -34,16 +34,16 @@ public class Drivetrain extends Subsystem {
 
 
     //Set Motor's Neutral/Idle Mode to Brake
-    frontleftMotor.setIdleMode(IdleMode.kBrake);
-    frontrightMotor.setIdleMode(IdleMode.kBrake);
-    rearrightMotor.setIdleMode(IdleMode.kBrake);
-    rearleftMotor.setIdleMode(IdleMode.kBrake);
+    frontleftDrive.setIdleMode(IdleMode.kBrake);
+    frontrightDrive.setIdleMode(IdleMode.kBrake);
+    rearrightDrive.setIdleMode(IdleMode.kBrake);
+    rearleftDrive.setIdleMode(IdleMode.kBrake);
 
     //Assigns Each Motor's Power
-    frontleftMotor.set(leftOutput);
-    frontrightMotor.set(rightOutput);
-    rearleftMotor.follow(frontleftMotor);
-    rearrightMotor.follow(frontrightMotor);
+    frontleftDrive.set(leftOutput);
+    frontrightDrive.set(rightOutput);
+    rearleftDrive.follow(frontleftDrive);
+    rearrightDrive.follow(frontrightDrive);
   }
 
   public void setTrackingMode() {
@@ -70,18 +70,18 @@ public class Drivetrain extends Subsystem {
       rot = gp.getRightXAxis()*Constants.rot; //If LL2 does not see a target, spin in place
     }
 
-    frontleftMotor.set(y+rot);
-    frontrightMotor.set(rot-y);
-    rearleftMotor.set(y+rot);
-    rearrightMotor.set(rot-y);
+    frontleftDrive.set(y+rot);
+    frontrightDrive.set(rot-y);
+    rearleftDrive.set(y+rot);
+    rearrightDrive.set(rot-y);
   }
 
   public void stop() {
     //Stops all drive
-    frontleftMotor.set(0);
-    frontrightMotor.set(0);
-    rearleftMotor.set(0);
-    rearrightMotor.set(0);   
+    frontleftDrive.set(0);
+    frontrightDrive.set(0);
+    rearleftDrive.set(0);
+    rearrightDrive.set(0);   
   }
   
   @Override
