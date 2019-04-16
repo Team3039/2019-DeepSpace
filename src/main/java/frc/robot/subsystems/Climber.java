@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,7 +22,8 @@ public class Climber extends Subsystem {
   // public Solenoid frontLift = new Solenoid(RobotMap.frontLift);
 
   public Solenoid suctionPad = new Solenoid(RobotMap.suctionPad);
-  public TalonSRX vacuumPump = new TalonSRX(RobotMap.vacuumPump);
+  public Talon vacA = new Talon(RobotMap.vacuumA);
+  public Talon vacB = new Talon(RobotMap.vacuumB);
   public TalonSRX climberA = new TalonSRX(RobotMap.climberA);
   public TalonSRX climberB = new TalonSRX(RobotMap.climberB);
 
@@ -52,10 +54,12 @@ public class Climber extends Subsystem {
 
   public void setVacuumPump(boolean isPumping) {
     if(isPumping) {
-      vacuumPump.set(ControlMode.PercentOutput, .8);
+      vacA.set(.95);
+      vacB.set(.95);
     }
     else {
-      vacuumPump.set(ControlMode.PercentOutput, 0);
+      vacA.set(0);
+      vacB.set(0);
     }
   }
 

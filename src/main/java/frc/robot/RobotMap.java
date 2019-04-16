@@ -22,7 +22,6 @@ public class RobotMap {
 
   public static int climberA = 8;
   public static int climberB = 9;
-  public static int vacuumPump = 1;
 
 //SOLENOID
   public static int hatchGrip = 0;
@@ -34,6 +33,8 @@ public class RobotMap {
   public static int cameraPivot = 6;
 
 //PWM
+  public static int vacuumA = 0;
+  public static int vacuumB = 1;
 
 //DIO	
   public static int hatchSwitch = 0;
