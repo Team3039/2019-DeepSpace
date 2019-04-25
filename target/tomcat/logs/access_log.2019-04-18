@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:37 -0500] "GET / HTTP/1.1" 200 2082 http-bio-8080-exec-2 226
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:38 -0500] "GET /resources/js/script.js;jsessionid=B21D10AE9BDD59CB076A4024D395AEE0 HTTP/1.1" 200 17334 http-bio-8080-exec-3 8
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:38 -0500] "GET /resources/css/style.css;jsessionid=B21D10AE9BDD59CB076A4024D395AEE0 HTTP/1.1" 200 2173 http-bio-8080-exec-1 64
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:40 -0500] "GET /resources/img/field.png HTTP/1.1" 304 - http-bio-8080-exec-4 10
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:40 -0500] "GET /resources/img/fieldFlipped.png HTTP/1.1" 304 - http-bio-8080-exec-6 4
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:40 -0500] "POST /api/calculate_splines HTTP/1.1" 400 968 http-bio-8080-exec-8 57
+0:0:0:0:0:0:0:1 - - [18/Apr/2019:13:31:40 -0500] "POST /api/get_trajectory_list HTTP/1.1" 200 862 http-bio-8080-exec-5 123

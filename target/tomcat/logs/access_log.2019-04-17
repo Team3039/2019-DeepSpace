@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:03:51 -0500] "GET / HTTP/1.1" 200 2082 http-bio-8080-exec-1 237
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:03:51 -0500] "GET /resources/css/style.css;jsessionid=152BE60B59100A0CDB549CF02A8966A9 HTTP/1.1" 200 2173 http-bio-8080-exec-2 34
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:03:51 -0500] "GET /resources/js/script.js;jsessionid=152BE60B59100A0CDB549CF02A8966A9 HTTP/1.1" 200 17334 http-bio-8080-exec-3 168
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:03:53 -0500] "POST /api/get_trajectory_list HTTP/1.1" 200 862 http-bio-8080-exec-5 84
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:03:53 -0500] "POST /api/calculate_splines HTTP/1.1" 400 968 http-bio-8080-exec-4 9
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:05:19 -0500] "POST /api/calculate_splines HTTP/1.1" 400 968 http-bio-8080-exec-7 25
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:05:19 -0500] "POST /api/get_trajectory HTTP/1.1" 200 16468 http-bio-8080-exec-8 76
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:05:25 -0500] "POST /api/calculate_splines HTTP/1.1" 400 968 http-bio-8080-exec-9 7
+0:0:0:0:0:0:0:1 - - [17/Apr/2019:20:05:25 -0500] "POST /api/get_trajectory HTTP/1.1" 200 16509 http-bio-8080-exec-10 21
