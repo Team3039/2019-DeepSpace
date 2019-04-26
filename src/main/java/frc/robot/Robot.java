@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
     // System.out.println("\n   " + Robot.shooter.acquiredCargo);
     // System.out.println("\n " + Robot.elevator.elevatorA.getAppliedOutput());
     // System.out.println("\n" + Robot.elevator.getVelocity());
-    System.out.println("\n" + Robot.elevator.getPosition());
+    // System.out.println("\n" + Robot.elevator.getPosition());
   }
 
   @Override
