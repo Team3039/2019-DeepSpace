@@ -26,7 +26,7 @@ public class DriveElevator extends Command {
   protected void execute() {
 
     if(!Robot.elevator.getLimit()) {
-      if((Math.abs(Robot.oi.getCopad().getRightYAxis()) > .2)) {
+      if((Math.abs(Robot.oi.getOperatorController().getRightYAxis()) > .2)) {
         Robot.elevator.targetPosition = Robot.elevator.getPosition();
         Robot.elevator.isClosedLoopControl = false;
       }
@@ -36,7 +36,7 @@ public class DriveElevator extends Command {
       }
       else {
         Robot.elevator.targetPosition = Robot.elevator.getPosition();
-        Robot.elevator.driveElevatorManual(Robot.oi.getCopad().getRightYAxis() * -1);
+        Robot.elevator.driveElevatorManual(Robot.oi.getOperatorController().getRightYAxis() * -1);
       }
     }
     else {

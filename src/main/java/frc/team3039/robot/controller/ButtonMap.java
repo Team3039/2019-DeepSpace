@@ -15,10 +15,10 @@ public class ButtonMap {
 	public int AXIS_LEFT_TRIGGER;
 
 	// Controller Buttons
-	public int BUTTON_A;
-	public int BUTTON_B;
 	public int BUTTON_X;
-	public int BUTTON_Y;
+	public int BUTTON_CIRCLE;
+	public int BUTTON_SQAURE;
+	public int BUTTON_TRIANGLE;
 	//Bumpers
 	public int BUTTON_LEFT_BUMPER;	
 	public int BUTTON_RIGHT_BUMPER;

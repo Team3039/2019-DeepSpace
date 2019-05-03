@@ -13,10 +13,10 @@ public Logitech() {
     this.AXIS_RIGHT_X= 2;
     this.AXIS_RIGHT_Y= 3;
     
-    this.BUTTON_X = 1;
-    this.BUTTON_A = 2;
-    this.BUTTON_B = 3;
-    this.BUTTON_Y = 4;
+    this.BUTTON_SQAURE = 1;
+    this.BUTTON_X = 2;
+    this.BUTTON_CIRCLE = 3;
+    this.BUTTON_TRIANGLE = 4;
     this.BUTTON_LEFT_BUMPER = 5;	
     this.BUTTON_RIGHT_BUMPER = 6;
     this.BUTTON_LEFT_TRIGGER = 7;

@@ -61,29 +61,29 @@ public class GameController extends Joystick {
 	/**
 	 * Checks whether Button X/A is being pressed and returns true if it is.
 	 */
-	public boolean getButtonStateA() {
-		return getRawButton(map.BUTTON_A);
-	}
-
-	/**
-	 * Checks whether Button Circle/B is being pressed and returns true if it is.
-	 */
-	public boolean getButtonStateB() {
-		return getRawButton(map.BUTTON_B);
-	}
-
-	/**
-	 * Checks whether Button Sqaure/X is being pressed and returns true if it is.
-	 */
 	public boolean getButtonStateX() {
 		return getRawButton(map.BUTTON_X);
 	}
 
 	/**
+	 * Checks whether Button Circle/B is being pressed and returns true if it is.
+	 */
+	public boolean getButtonStateCircle() {
+		return getRawButton(map.BUTTON_CIRCLE);
+	}
+
+	/**
+	 * Checks whether Button Sqaure/X is being pressed and returns true if it is.
+	 */
+	public boolean getButtonStateSquare() {
+		return getRawButton(map.BUTTON_SQAURE);
+	}
+
+	/**
 	 * Checks whether Button Triangle/Y is being pressed and returns true if it is.
 	 */
-	public boolean getButtonStateY() {
-		return getRawButton(map.BUTTON_Y);
+	public boolean getButtonStateTriangle() {
+		return getRawButton(map.BUTTON_TRIANGLE);
 	}
 
 	
@@ -98,29 +98,29 @@ public class GameController extends Joystick {
 	/**
 	 * Returns an object of Button A.
 	 */
-	public Button getButtonA() {
-		return new JoystickButton(this, map.BUTTON_A);
-	}
-
-	/**
-	 * Returns an object of Button B.
-	 */
-	public Button getButtonB() {
-		return new JoystickButton(this, map.BUTTON_B);
-	}
-
-	/**
-	 * Returns an object of Button X.
-	 */
 	public Button getButtonX() {
 		return new JoystickButton(this, map.BUTTON_X);
 	}
 
 	/**
+	 * Returns an object of Button B.
+	 */
+	public Button getButtonCircle() {
+		return new JoystickButton(this, map.BUTTON_CIRCLE);
+	}
+
+	/**
+	 * Returns an object of Button X.
+	 */
+	public Button getButtonSqaure() {
+		return new JoystickButton(this, map.BUTTON_SQAURE);
+	}
+
+	/**
 	 * Returns an object of Button Y.
 	 */
-	public Button getButtonY() {
-		return new JoystickButton(this, map.BUTTON_Y);
+	public Button getButtonTriangle() {
+		return new JoystickButton(this, map.BUTTON_TRIANGLE);
 	}
 
 

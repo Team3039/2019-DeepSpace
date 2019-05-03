@@ -777,10 +777,10 @@ public class Drive extends Subsystem implements Loop {
     if (m_drive == null)
       return;
 
-    boolean cameraTrackTapeButton = OI.getInstance().driverPad.getR2().get();
+    boolean cameraTrackTapeButton = OI.getInstance().getDriverController().getR2().get();
 
-    m_moveInput = OI.getInstance().driverPad.getLeftYAxis(); //Slow down the speed just divide the output
-    m_steerInput = -OI.getInstance().driverPad.getRightXAxis();
+    m_moveInput = OI.getInstance().getDriverController().getLeftYAxis(); //Slow down the speed just divide the output
+    m_steerInput = -OI.getInstance().getDriverController().getRightXAxis();
 
     m_moveOutput = adjustForSensitivity(m_moveScale, m_moveTrim, m_moveInput, m_moveNonLinear, MOVE_NON_LINEARITY);
     m_steerOutput = adjustForSensitivity(m_steerScale, m_steerTrim, m_steerInput, m_steerNonLinear,

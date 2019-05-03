@@ -16,10 +16,10 @@ public Xbox() {
 	this.AXIS_RIGHT_X= 4;
     this.AXIS_RIGHT_Y= 5;
     
-	this.BUTTON_A = 1;
-	this.BUTTON_B = 2;
-	this.BUTTON_X = 3;
-	this.BUTTON_Y = 4;  
+	this.BUTTON_X = 1;
+	this.BUTTON_CIRCLE = 2;
+	this.BUTTON_SQAURE = 3;
+	this.BUTTON_TRIANGLE = 4;  
 	this.BUTTON_LEFT_BUMPER = 5;	
 	this.BUTTON_RIGHT_BUMPER = 6;
 	this.BUTTON_SHARE = 7; 			//Back Button
