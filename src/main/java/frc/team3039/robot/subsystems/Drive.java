@@ -318,7 +318,6 @@ public class Drive extends Subsystem implements Loop {
     }
   }
 
-
   public static Drive getInstance() {
     if (instance == null) {
       instance = new Drive();

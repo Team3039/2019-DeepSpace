@@ -11,8 +11,6 @@ import frc.team3039.robot.commands.Sequences.CollectCargoSequence;
 import frc.team3039.robot.commands.Sequences.ShootHatchSequence;
 import frc.team3039.robot.controller.GameController;
 import frc.team3039.robot.controller.Playstation;
-import frc.team3039.util.PS4Copad;
-import frc.team3039.util.PS4Gamepad;
 
 public class OI {
 	private static OI instance;
