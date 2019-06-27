@@ -5,11 +5,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.controllers.PS4Gamepad;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.TeleOpDrive;
-import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
     //Drive Motors

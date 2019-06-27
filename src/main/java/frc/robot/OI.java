@@ -1,5 +1,6 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.controllers.PS4Gamepad;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.Aim;
 import frc.robot.commands.CargoFalseTrigger;
@@ -9,20 +10,18 @@ import frc.robot.commands.LiftFront;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
-import frc.util.PS4Copad;
-import frc.util.PS4Gamepad;
 
 public class OI {
 	//Calls the Gamepad Classes: Defines gp and cp for the robot
 	private PS4Gamepad driverPad = new PS4Gamepad(RobotMap.driver);
-	private PS4Copad operatorPad = new PS4Copad(RobotMap.operator);
+	private PS4Gamepad operatorPad = new PS4Gamepad(RobotMap.operator);
 	
 	//Returns Controller Data for use with certain Methods
 	public PS4Gamepad getGamepad() {
 		return driverPad;
 	}
 	
-	public PS4Copad getCopad() {
+	public PS4Gamepad getCopad() {
 		return operatorPad;
 	}
 
