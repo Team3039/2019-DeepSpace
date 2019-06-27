@@ -14,7 +14,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lights;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Shooter; 
 
 public class Robot extends TimedRobot {
 
