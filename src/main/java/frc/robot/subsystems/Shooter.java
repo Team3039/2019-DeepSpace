@@ -50,7 +50,7 @@ public class Shooter extends Subsystem {
   public void shootCargo() {
     leftShooter.set(ControlMode.PercentOutput, .65);
     rightShooter.set(ControlMode.PercentOutput, -.65);
-    acquiredCargo = false;
+    acquiredCargo =false;
   }
 
   public void setCargoFalseTrigger(boolean state) {

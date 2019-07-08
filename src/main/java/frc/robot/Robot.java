@@ -14,7 +14,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lights;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Shooter; 
 
 public class Robot extends TimedRobot {
 
@@ -121,7 +121,7 @@ public class Robot extends TimedRobot {
     // System.out.println("\n   " + Robot.shooter.acquiredCargo);
     // System.out.println("\n " + Robot.elevator.elevatorA.getAppliedOutput());
     // System.out.println("\n" + Robot.elevator.getVelocity());
-    System.out.println("\n" + Robot.elevator.getPosition());
+    // System.out.println("\n" + Robot.elevator.getPosition());
   }
 
   @Override

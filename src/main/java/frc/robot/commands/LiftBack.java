@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LowerLift extends Command {
-  public LowerLift() {
+public class LiftBack extends Command {
+  public LiftBack() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,7 +24,7 @@ public class LowerLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.moveLift(-.9);
+    Robot.climber.rearLift(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,13 +36,13 @@ public class LowerLift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climber.moveLift(0);
+    Robot.climber.rearLift(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climber.moveLift(0);
+    Robot.climber.rearLift(false);
   }
 }

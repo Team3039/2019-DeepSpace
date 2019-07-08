@@ -1,37 +1,33 @@
 package frc.robot;
-
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.controllers.PS4Gamepad;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.Aim;
 import frc.robot.commands.CargoFalseTrigger;
 import frc.robot.commands.ChangeElevatorPosition;
-import frc.robot.commands.LowerLift;
-import frc.robot.commands.RaiseLift;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.SuctionPad;
 import frc.robot.commands.TriggerPump;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
-import frc.util.PS4Copad;
-import frc.util.PS4Gamepad;
 
 public class OI {
 	//Calls the Gamepad Classes: Defines gp and cp for the robot
 	private PS4Gamepad driverPad = new PS4Gamepad(RobotMap.driver);
-	private PS4Copad operatorPad = new PS4Copad(RobotMap.operator);
+	private PS4Gamepad operatorPad = new PS4Gamepad(RobotMap.operator);
 	
 	//Returns Controller Data for use with certain Methods
 	public PS4Gamepad getGamepad() {
 		return driverPad;
 	}
 	
-	public PS4Copad getCopad() {
+	public PS4Gamepad getCopad() {
 		return operatorPad;
 	}
 
 	public OI() {
 		//Driver Buttons
-		Button driverTriangle = driverPad.getButtonTriangle();
+		// Button driverTriangle = driverPad.getButtonTriangle();
 		Button driverSquare = driverPad.getButtonSquare();
 		Button driverCircle = driverPad.getButtonCircle();
 		Button driverX = driverPad.getButtonX();
@@ -50,15 +46,15 @@ public class OI {
 		Button operatorSquare = operatorPad.getButtonSquare();
 		Button operatorCircle = operatorPad.getButtonCircle();
 		Button operatorX = operatorPad.getButtonX();
-		Button operatorShare = operatorPad.getShareButton();
+		// Button operatorShare = operatorPad.getShareButton();
 		Button operatorOptions = operatorPad.getOptionsButton();
-		Button operatorPadButton = operatorPad.getButtonPad();
+		// Button operatorPadButton = operatorPad.getButtonPad();
 		Button operatorL1 = operatorPad.getL1();
 		Button operatorL2 = operatorPad.getL2();
-		Button operatorL3 = operatorPad.getL3();
+		// Button operatorL3 = operatorPad.getL3();
 		Button operatorR1 = operatorPad.getR1();
 		Button operatorR2 = operatorPad.getR2();
-		Button operatorR3 = operatorPad.getR3();
+		// Button operatorR3 = operatorPad.getR3();
 
 		//driver Controls		;
 		driverX.toggleWhenActive(new Aim());

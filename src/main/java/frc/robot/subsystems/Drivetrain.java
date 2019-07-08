@@ -5,11 +5,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.controllers.PS4Gamepad;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.TeleOpDrive;
-import frc.util.PS4Gamepad;
 
 public class Drivetrain extends Subsystem {
     //Drive Motors
@@ -17,7 +17,6 @@ public class Drivetrain extends Subsystem {
     public CANSparkMax frontrightDrive = new CANSparkMax(RobotMap.frontrightDrive, RobotMap.driveMotorType);
     public CANSparkMax rearleftDrive = new CANSparkMax(RobotMap.rearleftDrive, RobotMap.driveMotorType);
     public CANSparkMax rearrightDrive = new CANSparkMax(RobotMap.rearrightDrive, RobotMap.driveMotorType);
-
 
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
@@ -28,6 +27,7 @@ public class Drivetrain extends Subsystem {
     if(Math.abs(y) < .05) {
       y = 0;
     }
+    
     //Calculated Outputs (Limits Output to 12V)
     double leftOutput = y + rot;
     double rightOutput = rot - y;
