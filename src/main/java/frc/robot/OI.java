@@ -29,7 +29,7 @@ public class OI {
 	public OI() {
 		//Driver Buttons
 		// Button driverTriangle = driverPad.getButtonTriangle();
-		Button driverSquare = driverPad.getButtonSquare();
+		// Button driverSquare = driverPad.getButtonSquare();
 		Button driverCircle = driverPad.getButtonCircle();
 		Button driverX = driverPad.getButtonX();
 		// Button driverShare = driverPad.getShareButton();
@@ -60,8 +60,6 @@ public class OI {
 		//driver Controls		;
 		driverX.toggleWhenActive(new Aim());
 		driverR1.whenPressed(new ShootHatchSequence());
-		// driverSquare.toggleWhenPressed(new LiftFront());
-		// driverCircle.toggleWhenPressed(new LiftBack());
 		driverL2.whileHeld(new LowerLift());
 		driverL1.whileHeld(new RaiseLift());
 		driverCircle.toggleWhenPressed(new TriggerPump());

@@ -49,8 +49,9 @@ public class Robot extends TimedRobot {
     usbCamera.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 180, 60);
     
     elevator.setupEncoder();
-    Robot.drivetrain.setDriverCamMode();
-
+    drivetrain.setDriverCamMode();
+    climber.holdArm();
+    
     System.out.println("Only True Led-Gends Will Know");
   }
 
