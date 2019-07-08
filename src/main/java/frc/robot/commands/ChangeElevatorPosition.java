@@ -28,7 +28,7 @@ public class ChangeElevatorPosition extends Command {
   @Override
   protected void execute() {
     if(Robot.shooter.acquiredCargo) {
-      Robot.elevator.changePosition(targetPosition+8.75);
+      Robot.elevator.changePosition(targetPosition+8);
     }
     else {
       Robot.elevator.changePosition(targetPosition);
