@@ -5,8 +5,9 @@ import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.Aim;
 import frc.robot.commands.CargoFalseTrigger;
 import frc.robot.commands.ChangeElevatorPosition;
+import frc.robot.commands.LowerLift;
+import frc.robot.commands.RaiseLift;
 import frc.robot.commands.ShootCargo;
-import frc.robot.commands.SuctionPad;
 import frc.robot.commands.TriggerPump;
 import frc.robot.commands.Sequences.CollectCargoSequence;
 import frc.robot.commands.Sequences.ShootHatchSequence;
@@ -31,15 +32,15 @@ public class OI {
 		Button driverSquare = driverPad.getButtonSquare();
 		Button driverCircle = driverPad.getButtonCircle();
 		Button driverX = driverPad.getButtonX();
-		Button driverShare = driverPad.getShareButton();
-		Button driverOptions = driverPad.getOptionsButton();
-		Button driverPadButton = driverPad.getButtonPad();
+		// Button driverShare = driverPad.getShareButton();
+		// Button driverOptions = driverPad.getOptionsButton();
+		// Button driverPadButton = driverPad.getButtonPad();
 		Button driverL1 = driverPad.getL1();
 		Button driverL2 = driverPad.getL2();
-		Button driverL3 = driverPad.getL3();
+		// Button driverL3 = driverPad.getL3();
 		Button driverR1 = driverPad.getR1();
-		Button driverR2 = driverPad.getR2();
-		Button driverR3 = driverPad.getR3();
+		// Button driverR2 = driverPad.getR2();
+		// Button driverR3 = driverPad.getR3();
 
 		//Operator Buttons
 		Button operatorTriangle = operatorPad.getButtonTriangle();
@@ -63,7 +64,6 @@ public class OI {
 		// driverCircle.toggleWhenPressed(new LiftBack());
 		driverL2.whileHeld(new LowerLift());
 		driverL1.whileHeld(new RaiseLift());
-		driverSquare.toggleWhenPressed(new SuctionPad());
 		driverCircle.toggleWhenPressed(new TriggerPump());
 
 		//Operator Controls
