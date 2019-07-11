@@ -61,7 +61,7 @@ public class OI {
 		driverX.toggleWhenActive(new Aim());
 		driverR1.whenPressed(new ShootHatchSequence());
 		driverL2.whileHeld(new LowerLift());
-		driverL1.whileHeld(new RaiseLift());
+		driverL1.whenPressed(new RaiseLift());
 		driverCircle.toggleWhenPressed(new TriggerPump());
 
 		//Operator Controls

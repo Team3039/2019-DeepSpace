@@ -12,6 +12,7 @@ import frc.robot.Robot;
 
 public class RaiseLift extends Command {
   public RaiseLift() {
+    requires(Robot.climber);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,13 +25,13 @@ public class RaiseLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.moveLift(.6);
+    Robot.climber.moveLift(-.85);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (Robot.climber.getLimit());
   }
 
   // Called once after isFinished returns true

@@ -12,6 +12,7 @@ import frc.robot.Robot;
 
 public class LowerLift extends Command {
   public LowerLift() {
+    requires(Robot.climber);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,7 +25,7 @@ public class LowerLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.moveLift(-.9);
+    Robot.climber.moveLift(.9);
   }
 
   // Make this return true when this Command no longer needs to run execute()

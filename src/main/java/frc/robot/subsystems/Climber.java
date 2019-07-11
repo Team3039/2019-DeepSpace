@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,7 +24,7 @@ public class Climber extends Subsystem {
   public TalonSRX climberA = new TalonSRX(RobotMap.climberA);
   public TalonSRX climberB = new TalonSRX(RobotMap.climberB);
   public Solenoid armDrop = new Solenoid(RobotMap.suctionArmDrop);
-
+  public DigitalInput liftLimit = new DigitalInput(RobotMap.liftLimit);
   public boolean isClimbing = false;
 
   public void setVacuumPump(boolean isPumping) {
@@ -51,6 +52,10 @@ public class Climber extends Subsystem {
     armDrop.set(false);
   }
   
+  public boolean getLimit() {
+    return !liftLimit.get();
+  }
+
   @Override
   public void initDefaultCommand() {
   }
