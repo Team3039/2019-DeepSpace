@@ -6,8 +6,8 @@ package frc.robot;
 public class Constants {
 
     //Drivetrain 
-    public static final double y = .79;
-    public static final double rot = .35;
+    public static final double y = .95;
+    public static final double rot = .40;
 
     //Proportional Gain: The distance between the actual position and the setpoint
     public static final double kP_Elevator = 0.045;

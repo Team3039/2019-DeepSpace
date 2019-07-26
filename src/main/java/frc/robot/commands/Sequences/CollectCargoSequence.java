@@ -22,7 +22,7 @@ public class CollectCargoSequence extends CommandGroup {
     addSequential(new ExtendIntake(),.25);
     addParallel(new ChangeElevatorPosition(Constants.intake),.5);
     addSequential(new CollectCargo());
-    addSequential(new WaitCommand(.25));
+    addSequential(new WaitCommand(.35));
     addSequential(new ChangeElevatorPosition(Constants.cargoShip),.5);
     addSequential(new RetractIntake(),.1);
   }

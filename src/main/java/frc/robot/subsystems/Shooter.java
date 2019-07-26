@@ -40,8 +40,8 @@ public class Shooter extends Subsystem {
   }
 
   public void stopCargo() {
-    leftShooter.set(ControlMode.PercentOutput, -.05);
-    rightShooter.set(ControlMode.PercentOutput, .05);
+    leftShooter.set(ControlMode.PercentOutput, -.1);
+    rightShooter.set(ControlMode.PercentOutput, .1);
     leftShooter.setNeutralMode(NeutralMode.Brake);
     rightShooter.setNeutralMode(NeutralMode.Brake);
     acquiredCargo = true;
