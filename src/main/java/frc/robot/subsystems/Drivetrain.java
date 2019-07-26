@@ -18,13 +18,11 @@ public class Drivetrain extends Subsystem {
     public CANSparkMax rearleftMotor = new CANSparkMax(RobotMap.rearleftMotor, RobotMap.driveMotorType);
     public CANSparkMax rearrightMotor = new CANSparkMax(RobotMap.rearrightMotor, RobotMap.driveMotorType);
 
-
   public void joystickControl(PS4Gamepad gp) {
     //Tele-Op Driving
     //Each Motor is Set to Brake Mode, the motor speeds are set in an Arcade Drive fashion
     double y = gp.getLeftYAxis()*-Constants.y;
     double rot = gp.getRightXAxis()*Constants.rot;
-
 
     //Calculated Outputs (Limits Output to 12V)
     double leftOutput = y + rot;
