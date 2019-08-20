@@ -89,6 +89,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    Robot.drivetrain.setDriverCamMode();
     autoCommand = autoChooser.getSelected();
 
     if (autoCommand != null) {
