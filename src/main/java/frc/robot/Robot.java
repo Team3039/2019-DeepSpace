@@ -86,11 +86,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    drivetrain.setDriverCamMode();
+
     Scheduler.getInstance().run();
   }
 
   @Override
   public void autonomousInit() {
+    drivetrain.setDriverCamMode();
+
     autoCommand = autoChooser.getSelected();
 
     if (autoCommand != null) {
