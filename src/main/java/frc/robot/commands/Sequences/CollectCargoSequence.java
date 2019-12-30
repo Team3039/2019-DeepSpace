@@ -18,10 +18,13 @@ import frc.robot.commands.RetractIntake;
 public class CollectCargoSequence extends CommandGroup {
 
   public CollectCargoSequence() {
+
     addSequential(new ChangeElevatorPosition(12),.5);
     addSequential(new ExtendIntake(),.25);
+    
     addParallel(new ChangeElevatorPosition(Constants.intake),.5);
     addSequential(new CollectCargo());
+    
     addSequential(new WaitCommand(.35));
     addSequential(new ChangeElevatorPosition(Constants.cargoShip),.5);
     addSequential(new RetractIntake(),.1);
