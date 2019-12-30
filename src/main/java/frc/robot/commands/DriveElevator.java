@@ -39,6 +39,7 @@ public class DriveElevator extends Command {
         Robot.elevator.driveElevatorManual(Robot.oi.getCopad().getRightYAxis() * -.6);
       }
     }
+    
     else {
       Robot.elevator.stopElevator();
     }
