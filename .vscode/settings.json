@@ -1,29 +1,15 @@
 {
-  "vscode_custom_css.policy": true,
-  "vscode_custom_css.imports": [
-    "file:///C:/workspace/2019-DeepSpace-Xenu/.vscode/WildcatRobotics.css" 
-],
-"workbench.colorCustomizations": {
-    "statusBar.background" : "#ff000050",
-    "statusBar.noFolderBackground" : "#ff000050",
-    "statusBar.debuggingBackground": "#ff000050"
-}
   "java.configuration.updateBuildConfiguration": "automatic",
   "files.exclude": {
-    "**/.git": false,
+    "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
     "bin/": true,
-    ".classpath": true,
-    ".project": true,
     "**/.classpath": true,
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
-  },
-  "wpilib.online": true,
-  "C_Cpp.intelliSenseEngineFallback": "Enabled",
-  "C_Cpp.errorSquiggles": "Disabled"
+  }
 }
